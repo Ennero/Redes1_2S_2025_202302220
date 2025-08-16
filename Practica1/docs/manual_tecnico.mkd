@@ -127,34 +127,34 @@ A continuación se muestran todas las direcciones que se usaron en la práctica:
 
 | Dispositivo | Dirección IP | Máscara de Subred |
 |------------|--------------|-------------------|
-| contabilidad13 | 192.168.20.13 | 255.255.255.0 |
-| contabilidad14 | 192.168.20.14 | 255.255.255.0 |
-| contabilidad15 | 192.168.20.15 | 255.255.255.0 |
-| contabilidad16 | 192.168.20.16 | 255.255.255.0 |
-| contabilidad17 | 192.168.20.17 | 255.255.255.0 |
-| contabilidad18 | 192.168.20.18 | 255.255.255.0 |
-| contabilidad19 | 192.168.20.19 | 255.255.255.0 |
-| contabilidad20 | 192.168.20.20 | 255.255.255.0 |
+| contabilidad1 | 192.168.20.13 | 255.255.255.0 |
+| contabilidad2 | 192.168.20.14 | 255.255.255.0 |
+| contabilidad3 | 192.168.20.15 | 255.255.255.0 |
+| contabilidad4 | 192.168.20.16 | 255.255.255.0 |
+| contabilidad5 | 192.168.20.17 | 255.255.255.0 |
+| contabilidad6 | 192.168.20.18 | 255.255.255.0 |
+| contabilidad7 | 192.168.20.19 | 255.255.255.0 |
+| contabilidad8 | 192.168.20.20 | 255.255.255.0 |
 
 #### Direcciones IP del Departamento Legal
 
 | Dispositivo | Dirección IP | Máscara de Subred |
 |------------|--------------|-------------------|
-| legal21 | 192.168.20.21 | 255.255.255.0 |
-| legal22 | 192.168.20.22 | 255.255.255.0 |
-| legal23 | 192.168.20.23 | 255.255.255.0 |
-| legal24 | 192.168.20.24 | 255.255.255.0 |
-| legal25 | 192.168.20.25 | 255.255.255.0 |
+| legal1 | 192.168.20.21 | 255.255.255.0 |
+| legal2 | 192.168.20.22 | 255.255.255.0 |
+| legal3 | 192.168.20.23 | 255.255.255.0 |
+| legal4 | 192.168.20.24 | 255.255.255.0 |
+| legal5 | 192.168.20.25 | 255.255.255.0 |
 
 #### Direcciones IP de la Sala de Reuniones
 
 | Dispositivo | Dirección IP | Máscara de Subred |
 |------------|--------------|-------------------|
-| reuniones26 | 192.168.20.26 | 255.255.255.0 |
-| reuniones27 | 192.168.20.27 | 255.255.255.0 |
-| reuniones28 | 192.168.20.28 | 255.255.255.0 |
-| reuniones29 | 192.168.20.29 | 255.255.255.0 |
-| reuniones30 | 192.168.20.30 | 255.255.255.0 |
+| reuniones1 | 192.168.20.26 | 255.255.255.0 |
+| reuniones2 | 192.168.20.27 | 255.255.255.0 |
+| reuniones3 | 192.168.20.28 | 255.255.255.0 |
+| reuniones4 | 192.168.20.29 | 255.255.255.0 |
+| reuniones5 | 192.168.20.30 | 255.255.255.0 |
 
 ### Direcciones IP del Nivel 2
 
@@ -162,33 +162,33 @@ A continuación se muestran todas las direcciones que se usaron en la práctica:
 
 | Dispositivo | Dirección IP | Máscara de Subred |
 |------------|--------------|-------------------|
-| arquitectura31 | 192.168.20.31 | 255.255.255.0 |
-| arquitectura32 | 192.168.20.32 | 255.255.255.0 |
-| arquitectura33 | 192.168.20.33 | 255.255.255.0 |
-| arquitectura34 | 192.168.20.34 | 255.255.255.0 |
-| arquitectura35 | 192.168.20.35 | 255.255.255.0 |
-| arquitectura36 | 192.168.20.36 | 255.255.255.0 |
+| arquitectura1 | 192.168.20.31 | 255.255.255.0 |
+| arquitectura2 | 192.168.20.32 | 255.255.255.0 |
+| arquitectura3 | 192.168.20.33 | 255.255.255.0 |
+| arquitectura4 | 192.168.20.34 | 255.255.255.0 |
+| arquitectura5 | 192.168.20.35 | 255.255.255.0 |
+| arquitectura6 | 192.168.20.36 | 255.255.255.0 |
 
 #### Direcciones IP del Departamento de Urbanismo
 
 | Dispositivo | Dirección IP | Máscara de Subred |
 |------------|--------------|-------------------|
-| urbanismo37 | 192.168.20.37 | 255.255.255.0 |
-| urbanismo38 | 192.168.20.38 | 255.255.255.0 |
-| urbanismo39 | 192.168.20.39 | 255.255.255.0 |
-| urbanismo40 | 192.168.20.40 | 255.255.255.0 |
-| urbanismo41 | 192.168.20.41 | 255.255.255.0 |
-| urbanismo42 | 192.168.20.42 | 255.255.255.0 |
+| urbanismo1 | 192.168.20.37 | 255.255.255.0 |
+| urbanismo2 | 192.168.20.38 | 255.255.255.0 |
+| urbanismo3 | 192.168.20.39 | 255.255.255.0 |
+| urbanismo4 | 192.168.20.40 | 255.255.255.0 |
+| urbanismo5 | 192.168.20.41 | 255.255.255.0 |
+| urbanismo6 | 192.168.20.42 | 255.255.255.0 |
 
 #### Direcciones IP de la Sala de Revisión de Planos
 
 | Dispositivo | Dirección IP | Máscara de Subred |
 |------------|--------------|-------------------|
-| planos43 | 192.168.20.43 | 255.255.255.0 |
-| planos44 | 192.168.20.44 | 255.255.255.0 |
-| planos45 | 192.168.20.45 | 255.255.255.0 |
-| planos46 | 192.168.20.46 | 255.255.255.0 |
-| planos47 | 192.168.20.47 | 255.255.255.0 |
+| planos1 | 192.168.20.43 | 255.255.255.0 |
+| planos2 | 192.168.20.44 | 255.255.255.0 |
+| planos3 | 192.168.20.45 | 255.255.255.0 |
+| planos4 | 192.168.20.46 | 255.255.255.0 |
+| planos5 | 192.168.20.47 | 255.255.255.0 |
 
 ### Direcciones IP del Nivel 3
 
@@ -196,29 +196,29 @@ A continuación se muestran todas las direcciones que se usaron en la práctica:
 
 | Dispositivo | Dirección IP | Máscara de Subred |
 |------------|--------------|-------------------|
-| direccion48 | 192.168.20.48 | 255.255.255.0 |
-| direccion49 | 192.168.20.49 | 255.255.255.0 |
-| direccion50 | 192.168.20.50 | 255.255.255.0 |
-| direccion51 | 192.168.20.51 | 255.255.255.0 |
+| direccion1 | 192.168.20.48 | 255.255.255.0 |
+| direccion2 | 192.168.20.49 | 255.255.255.0 |
+| direccion3 | 192.168.20.50 | 255.255.255.0 |
+| direccion4 | 192.168.20.51 | 255.255.255.0 |
 
 #### Direcciones IP del Departamento de Ingeniería Civil
 
 | Dispositivo | Dirección IP | Máscara de Subred |
 |------------|--------------|-------------------|
-| ingenieria52 | 192.168.20.52 | 255.255.255.0 |
-| ingenieria53 | 192.168.20.53 | 255.255.255.0 |
-| ingenieria54 | 192.168.20.54 | 255.255.255.0 |
-| ingenieria55 | 192.168.20.55 | 255.255.255.0 |
-| ingenieria56 | 192.168.20.56 | 255.255.255.0 |
-| ingenieria57 | 192.168.20.57 | 255.255.255.0 |
+| ingenieria1 | 192.168.20.52 | 255.255.255.0 |
+| ingenieria2 | 192.168.20.53 | 255.255.255.0 |
+| ingenieria3 | 192.168.20.54 | 255.255.255.0 |
+| ingenieria4 | 192.168.20.55 | 255.255.255.0 |
+| ingenieria5 | 192.168.20.56 | 255.255.255.0 |
+| ingenieria6 | 192.168.20.57 | 255.255.255.0 |
 
 #### Direcciones IP del Departamento de Servidores Principales
 
 | Dispositivo | Dirección IP | Máscara de Subred |
 |------------|--------------|-------------------|
-| servidores58 | 192.168.20.58 | 255.255.255.0 |
-| servidores59 | 192.168.20.59 | 255.255.255.0 |
-| servidores60 | 192.168.20.60 | 255.255.255.0 |
+| servidores1 | 192.168.20.58 | 255.255.255.0 |
+| servidores2 | 192.168.20.59 | 255.255.255.0 |
+| servidores3 | 192.168.20.60 | 255.255.255.0 |
 
 
 ## Comandos para Configuración de Switches
