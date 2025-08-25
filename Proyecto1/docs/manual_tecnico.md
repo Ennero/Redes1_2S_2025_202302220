@@ -38,6 +38,14 @@
       - [5.2.6 Switch SW17](#526-switch-sw17)
       - [5.2.7 Conexión entre los Switches](#527-conexión-entre-los-switches)
     - [5.3 Infraestructura IT](#53-infraestructura-it)
+      - [5.3.1 Switch MSW8](#531-switch-msw8)
+      - [5.3.2 Switch19 (Local Transparente)](#532-switch19-local-transparente)
+      - [5.3.3 Switch SW8](#533-switch-sw8)
+      - [5.3.4 Switch SW9](#534-switch-sw9)
+      - [5.3.5 Switch SW10](#535-switch-sw10)
+      - [5.3.6 Switch SW11](#536-switch-sw11)
+      - [5.3.7 Switch MSW12](#537-switch-msw12)
+      - [5.2.8 Conexión entre los Switches](#528-conexión-entre-los-switches)
     - [5.4 Análissis de Datos](#54-análissis-de-datos)
     - [5.5 Redacción Digital](#55-redacción-digital)
       - [5.5.1 Switch MSW9](#551-switch-msw9)
@@ -335,8 +343,13 @@ interface Port-channel11
  switchport mode trunk
  exit
 
-! NUEVO Enlace Troncal hacia MSW10 (Gerencia) 
+! Enlace Troncal hacia MSW10 (Gerencia) 
 interface FastEthernet0/20
+ switchport mode trunk
+ exit
+
+! Enlace Troncal hacia MSW8 (Infraestructura IT)
+ interface FastEthernet0/1
  switchport mode trunk
  exit
 
@@ -432,6 +445,11 @@ interface FastEthernet0/24
  switchport mode trunk
  exit
 
+ ! Enlace Troncal hacia MSW8 (Infraestructura IT) 
+interface FastEthernet0/1
+ switchport mode trunk
+ exit
+
 ! Termino y guardo
 end
 copy running-config startup-config
@@ -482,6 +500,11 @@ interface range FastEthernet0/10 - 12
  no shutdown
  exit
 interface Port-channel11
+ switchport mode trunk
+ exit
+
+! Enlace Troncal hacia MSW8 (Infraestructura IT)
+interface FastEthernet0/1
  switchport mode trunk
  exit
 
@@ -767,6 +790,285 @@ copy running-config startup-config
  | SW14   | fa1              | SW13              | fa24               |
 
 ### 5.3 Infraestructura IT
+
+A continuación se listan las configuraciones de los switches de esta area.
+
+#### 5.3.1 Switch MSW8
+
+```bash
+enable
+configure terminal
+hostname MSW8
+
+! Configuración VTP (Modo Cliente)
+vtp mode client
+vtp domain C2_FIUComm
+vtp password proyecto12025
+
+! Uplinks Troncales hacia el Backbone 
+interface FastEthernet0/22 ! Hacia MSW4
+ switchport mode trunk
+ exit
+interface FastEthernet0/23 ! Hacia MSW5
+ switchport mode trunk
+ exit
+interface FastEthernet0/24 ! Hacia MSW2
+ switchport mode trunk
+ exit
+
+! Downlinks Troncales hacia Switches de Acceso
+interface FastEthernet0/1 ! Hacia SW8
+ switchport mode trunk
+ exit
+interface FastEthernet0/2 ! Hacia Switch19
+ switchport mode trunk
+ exit
+interface FastEthernet0/3 ! Hacia SW12
+ switchport mode trunk
+ exit
+ 
+! Guardar Configuración 
+end
+copy running-config startup-config
+```
+
+
+#### 5.3.2 Switch19 (Local Transparente)
+
+- **Rol:** Tiene el modo VTP Transparente. No aprende VLANs del servidor, pero tiene su propria VLAN local.
+
+```bash
+enable
+configure terminal
+hostname Switch19
+
+! Configuración VTP (Modo Transparente)
+vtp mode transparent
+vtp domain C2_FIUComm
+vtp password proyecto12025
+
+! VLAN Local (Solo existe en este switch)
+vlan 70
+ name Recepcion
+ exit
+ 
+! Enlace Troncal (Uplink)
+interface FastEthernet0/24 ! Hacia MSW8
+ switchport mode trunk
+ exit
+
+! Puertos de Acceso para VLAN Local
+interface FastEthernet0/1 ! PC-PT Local1
+ switchport mode access
+ switchport access vlan 70
+ spanning-tree portfast
+ exit
+interface FastEthernet0/2 ! Laptop-PT Local2
+ switchport mode access
+ switchport access vlan 70
+ spanning-tree portfast
+ exit
+interface FastEthernet0/3 ! PC-PT Local3
+ switchport mode access
+ switchport access vlan 70
+ spanning-tree portfast
+ exit
+ 
+! Guardar Configuración 
+end
+copy running-config startup-config
+```
+
+#### 5.3.3 Switch SW8
+
+```bash
+enable
+configure terminal
+hostname SW8
+
+! Configuración VTP (Modo Cliente)
+vtp mode client
+vtp domain C2_FIUComm
+vtp password proyecto12025
+
+! Enlaces Troncales
+interface FastEthernet0/24 ! Uplink a MSW8
+ switchport mode trunk
+ exit
+interface FastEthernet0/23 ! Enlace a SW9
+ switchport mode trunk
+ exit
+
+! Puertos de Acceso
+interface FastEthernet0/1 ! Laptop-PT RD7
+ switchport mode access
+ switchport access vlan 10
+ spanning-tree portfast
+ exit
+interface FastEthernet0/2 ! Laptop-PT IT1
+ switchport mode access
+ switchport access vlan 30
+ spanning-tree portfast
+ exit
+
+! === Guardar Configuración ===
+end
+copy running-config startup-config
+```
+
+
+#### 5.3.4 Switch SW9
+
+```bash
+enable
+configure terminal
+hostname SW9
+
+! Configuración VTP (Modo Cliente)
+vtp mode client
+vtp domain C2_FIUComm
+vtp password proyecto12025
+
+! Enlaces Troncales
+interface FastEthernet0/24 ! Uplink a SW10
+ switchport mode trunk
+ exit
+interface FastEthernet0/1 ! Enlace a SW8
+ switchport mode trunk
+ exit
+
+! Puerto de Acceso
+interface FastEthernet0/2 ! PC-PT AD8
+ switchport mode access
+ switchport access vlan 20
+ spanning-tree portfast
+ exit
+
+! Guardar Configuración
+end
+copy running-config startup-config
+```
+
+#### 5.3.5 Switch SW10
+
+```bash
+enable
+configure terminal
+hostname SW10
+
+! Configuración VTP (Modo Cliente) 
+vtp mode client
+vtp domain C2_FIUComm
+vtp password proyecto12025
+
+! Enlaces Troncales
+interface FastEthernet0/24 ! Uplink a SW11
+ switchport mode trunk
+ exit
+interface FastEthernet0/1 ! Enlace a SW9
+ switchport mode trunk
+ exit
+
+! === Puertos de Acceso ===
+interface FastEthernet0/2 ! Laptop-PT G5
+ switchport mode access
+ switchport access vlan 50
+ spanning-tree portfast
+ exit
+interface FastEthernet0/3 ! PC-PT RD6
+ switchport mode access
+ switchport access vlan 10
+ spanning-tree portfast
+ exit
+
+! Guardar Configuración
+end
+copy running-config startup-config
+```
+
+#### 5.3.6 Switch SW11
+
+```bash
+enable
+configure terminal
+hostname SW11
+
+! Configuración VTP (Modo Cliente)
+vtp mode client
+vtp domain C2_FIUComm
+vtp password proyecto12025
+
+! Enlaces Troncales
+interface FastEthernet0/24 ! Uplink a SW12
+ switchport mode trunk
+ exit
+interface FastEthernet0/1 ! Enlace a SW10
+ switchport mode trunk
+ exit
+
+! Puerto de Acceso
+interface FastEthernet0/2 ! Laptop-PT IT2
+ switchport mode access
+ switchport access vlan 30
+ spanning-tree portfast
+ exit
+
+! Guardar Configuración
+end
+copy running-config startup-config
+```
+
+#### 5.3.7 Switch MSW12
+
+```bash
+enable
+configure terminal
+hostname SW12
+
+! Configuración VTP (Modo Cliente)
+vtp mode client
+vtp domain C2_FIUComm
+vtp password proyecto12025
+
+! Enlaces Troncales
+interface FastEthernet0/24 ! Uplink a MSW8
+ switchport mode trunk
+ exit
+interface FastEthernet0/1 ! Enlace a SW11
+ switchport mode trunk
+ exit
+
+! Puertos de Acceso 
+interface FastEthernet0/2 ! PC-PT S5
+ switchport mode access
+ switchport access vlan 40
+ spanning-tree portfast
+ exit
+interface FastEthernet0/3 ! PC-PT IT3
+ switchport mode access
+ switchport access vlan 30
+ spanning-tree portfast
+ exit
+
+! Guardar Configuración
+end
+copy running-config startup-config
+```
+
+#### 5.2.8 Conexión entre los Switches
+
+   Switch | Puerto en Switch | Conexión a Switch | Puerto en Conexión |
+ |--------|------------------|-------------------|--------------------|
+ | MSW5   | fa1              | MSW8              | fa23               |
+ | MSW4   | fa1              | MSW8              | fa22               |
+ | MSW2   | fa1              | MSW8              | fa24               |
+ | MSW8   | fa1              | SW8               | fa24               |
+ | MSW8   | fa2              | SW19              | fa24               |
+ | MSW8   | fa3              | SW12              | fa24               |
+ | SW12   | fa1              | SW11              | fa24               |
+ | SW11   | fa1              | SW10              | fa24               |
+ | SW10   | fa1              | SW9               | fa24               |
+ | SW9    | fa1              | SW8               | fa23               |
 
 ### 5.4 Análissis de Datos 
 
