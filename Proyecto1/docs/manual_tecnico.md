@@ -120,20 +120,62 @@ A continuación, se presenta el diagrama de la topología de red implementada en
 
 La siguiente tabla detalla el esquema de direccionamiento IP estático asignado a los dispositivos finales dentro de cada VLAN departamental.
 
-| Dispositivo | Departamento (VLAN) | Dirección IP | Máscara de Subred |
-| :--- | :--- | :--- | :--- |
-| `PC-Gerencia-01` | `Gerencia (VLAN XX)` | `XXX.XXX.XX.XX` | `255.255.255.0` |
-| `PC-Gerencia-02` | `Gerencia (VLAN XX)` | `XXX.XXX.XX.XX` | `255.255.255.0` |
-| `PC-IT-01` | `Infra IT (VLAN XX)` | `XXX.XXX.XX.XX` | `255.255.255.0` |
-| `PC-IT-02` | `Infra IT (VLAN XX)` | `XXX.XXX.XX.XX` | `255.255.255.0` |
-| `PC-Datos-01` | `Análisis (VLAN XX)`| `XXX.XXX.XX.XX` | `255.255.255.0` |
-| `PC-Datos-02` | `Análisis (VLAN XX)`| `XXX.XXX.XX.XX` | `255.255.255.0` |
-| `PC-Redaccion-01`|`Redacción (VLAN XX)`| `XXX.XXX.XX.XX` | `255.255.255.0` |
-| `PC-Redaccion-02`|`Redacción (VLAN XX)`| `XXX.XXX.XX.XX` | `255.255.255.0` |
-| `PC-Seguridad-01`|`Seguridad (VLAN XX)`| `XXX.XXX.XX.XX` | `255.255.255.0` |
-| `PC-Seguridad-02`|`Seguridad (VLAN XX)`| `XXX.XXX.XX.XX` | `255.255.255.0` |
-
-*Nota: Reemplaza las 'XX' con los valores correspondientes de tu proyecto.*
+   Nombre    | VLAN | Dirección IP     | Máscara de Red   |
+ |-----------|------|------------------|------------------|
+ | RD1       | 10   | 192.168.10.1     | 255.255.255.0    |
+ | RD2       | 10   | 192.168.10.2     | 255.255.255.0    |
+ | RD3       | 10   | 192.168.10.3     | 255.255.255.0    |
+ | RD4       | 10   | 192.168.10.4     | 255.255.255.0    |
+ | RD5       | 10   | 192.168.10.5     | 255.255.255.0    |
+ | RD6       | 10   | 192.168.10.6     | 255.255.255.0    |
+ | RD7       | 10   | 192.168.10.7     | 255.255.255.0    |
+ | RD8       | 10   | 192.168.10.8     | 255.255.255.0    |
+ | RD9       | 10   | 192.168.10.9     | 255.255.255.0    |
+ | RD10      | 10   | 192.168.10.10    | 255.255.255.0    |
+ | AD1       | 20   | 192.168.20.1     | 255.255.255.0    |
+ | AD2       | 20   | 192.168.20.2     | 255.255.255.0    |
+ | AD3       | 20   | 192.168.20.3     | 255.255.255.0    |
+ | AD4       | 20   | 192.168.20.4     | 255.255.255.0    |
+ | AD5       | 20   | 192.168.20.5     | 255.255.255.0    |
+ | AD6       | 20   | 192.168.20.6     | 255.255.255.0    |
+ | AD7       | 20   | 192.168.20.7     | 255.255.255.0    |
+ | AD8       | 20   | 192.168.20.8     | 255.255.255.0    |
+ | AD9       | 20   | 192.168.20.9     | 255.255.255.0    |
+ | AD10      | 20   | 192.168.20.10    | 255.255.255.0    |
+ | IT1       | 30   | 192.168.30.1     | 255.255.255.0    |
+ | IT2       | 30   | 192.168.30.2     | 255.255.255.0    |
+ | IT3       | 30   | 192.168.30.3     | 255.255.255.0    |
+ | IT4       | 30   | 192.168.30.4     | 255.255.255.0    |
+ | IT5       | 30   | 192.168.30.5     | 255.255.255.0    |
+ | IT6       | 30   | 192.168.30.6     | 255.255.255.0    |
+ | IT7       | 30   | 192.168.30.7     | 255.255.255.0    |
+ | IT8       | 30   | 192.168.30.8     | 255.255.255.0    |
+ | IT9       | 30   | 192.168.30.9     | 255.255.255.0    |
+ | IT10      | 30   | 192.168.30.10    | 255.255.255.0    |
+ | S1        | 40   | 192.168.40.1     | 255.255.255.0    |
+ | S2        | 40   | 192.168.40.2     | 255.255.255.0    |
+ | S3        | 40   | 192.168.40.3     | 255.255.255.0    |
+ | S4        | 40   | 192.168.40.4     | 255.255.255.0    |
+ | S5        | 40   | 192.168.40.5     | 255.255.255.0    |
+ | S6        | 40   | 192.168.40.6     | 255.255.255.0    |
+ | S7        | 40   | 192.168.40.7     | 255.255.255.0    |
+ | S8        | 40   | 192.168.40.8     | 255.255.255.0    |
+ | S9        | 40   | 192.168.40.9     | 255.255.255.0    |
+ | S10       | 40   | 192.168.40.10    | 255.255.255.0    |
+ | G1        | 50   | 192.168.50.1     | 255.255.255.0    |
+ | G2        | 50   | 192.168.50.2     | 255.255.255.0    |
+ | G3        | 50   | 192.168.50.3     | 255.255.255.0    |
+ | G4        | 50   | 192.168.50.4     | 255.255.255.0    |
+ | G5        | 50   | 192.168.50.5     | 255.255.255.0    |
+ | G6        | 50   | 192.168.50.6     | 255.255.255.0    |
+ | G7        | 50   | 192.168.50.7     | 255.255.255.0    |
+ | G8        | 50   | 192.168.50.8     | 255.255.255.0    |
+ | G9        | 50   | 192.168.50.9     | 255.255.255.0    |
+ | G10       | 50   | 192.168.50.10    | 255.255.255.0    |
+ | Local1    | 70   | 192.168.70.1     | 255.255.255.0    |
+ | Local2    | 70   | 192.168.70.2     | 255.255.255.0    |
+ | Local3    | 70   | 192.168.70.3     | 255.255.255.0    |
+ | Local4    | 70   | 192.168.70.4     | 255.255.255.0    |
 
 ---
 
@@ -189,6 +231,7 @@ interface range FastEthernet0/1 - 3
  no shutdown
  exit
 interface Port-channel1
+ switchport trunk encapsulation dot1q
  switchport mode trunk
  exit
 
@@ -200,6 +243,7 @@ interface range FastEthernet0/4 - 6
  no shutdown
  exit
 interface Port-channel2
+ switchport trunk encapsulation dot1q
  switchport mode trunk
  exit
 
@@ -212,6 +256,7 @@ interface range FastEthernet0/13 - 15
  no shutdown
  exit
 interface Port-channel3
+ switchport trunk encapsulation dot1q
  switchport mode trunk
  exit
 
@@ -224,6 +269,7 @@ interface range FastEthernet0/16 - 18
  no shutdown
  exit
 interface Port-channel4
+ switchport trunk encapsulation dot1q
  switchport mode trunk
  exit
 
@@ -235,6 +281,7 @@ interface range FastEthernet0/19 - 21
  no shutdown
  exit
 interface Port-channel5
+ switchport trunk encapsulation dot1q
  switchport mode trunk
  exit
 
@@ -247,6 +294,7 @@ interface range FastEthernet0/22 - 24
  no shutdown
  exit
 interface Port-channel6
+ switchport trunk encapsulation dot1q
  switchport mode trunk
  exit
 
@@ -293,6 +341,7 @@ interface range FastEthernet0/16 - 18
  no shutdown
  exit
 interface Port-channel4
+ switchport trunk encapsulation dot1q
  switchport mode trunk
  exit
 
@@ -304,16 +353,19 @@ interface range FastEthernet0/22 - 24
  no shutdown
  exit
 interface Port-channel10
+ switchport trunk encapsulation dot1q
  switchport mode trunk
  exit
 
 ! Enlace Troncal hacia MSW10 (Gerencia)
 interface FastEthernet0/21
+ switchport trunk encapsulation dot1q
  switchport mode trunk
  exit
 
 ! Enlace Troncal hacia MSW7 (Análisis de Datos)
 interface FastEthernet0/10
+ switchport trunk encapsulation dot1q
  switchport mode trunk
  exit
 
@@ -344,6 +396,7 @@ interface range FastEthernet0/13 - 15
  no shutdown
  exit
 interface Port-channel3
+ switchport trunk encapsulation dot1q
  switchport mode trunk
  exit
 
@@ -355,16 +408,19 @@ interface range FastEthernet0/10 - 12
  no shutdown
  exit
 interface Port-channel11
+ switchport trunk encapsulation dot1q
  switchport mode trunk
  exit
 
 ! Enlace Troncal hacia MSW10 (Gerencia) 
 interface FastEthernet0/20
+ switchport trunk encapsulation dot1q
  switchport mode trunk
  exit
 
 ! Enlace Troncal hacia MSW8 (Infraestructura IT)
  interface FastEthernet0/1
+ switchport trunk encapsulation dot1q
  switchport mode trunk
  exit
 
@@ -395,6 +451,7 @@ interface range FastEthernet0/1 - 3
  no shutdown
  exit
 interface Port-channel1
+ switchport trunk encapsulation dot1q
  switchport mode trunk
  exit
 
@@ -406,16 +463,19 @@ interface range FastEthernet0/4 - 6
  no shutdown
  exit
 interface Port-channel12
+ switchport trunk encapsulation dot1q
  switchport mode trunk
  exit
 
 ! Enlace Troncal hacia MSW9 (Redacción Digital)
 interface FastEthernet0/24
+ switchport trunk encapsulation dot1q
  switchport mode trunk
  exit
 
 ! Enlace Troncal hacia MSW7 (Análisis de Datos)
 interface FastEthernet0/10
+ switchport trunk encapsulation dot1q
  switchport mode trunk
  exit
 
@@ -446,6 +506,7 @@ interface range FastEthernet0/4 - 6
  no shutdown
  exit
 interface Port-channel2
+ switchport trunk encapsulation dot1q
  switchport mode trunk
  exit
 
@@ -457,16 +518,19 @@ interface range FastEthernet0/7 - 9
  no shutdown
  exit
 interface Port-channel13
+ switchport trunk encapsulation dot1q
  switchport mode trunk
  exit
 
  ! Enlace Troncal hacia MSW9 (Redacción Digital)
 interface FastEthernet0/24
+ switchport trunk encapsulation dot1q
  switchport mode trunk
  exit
 
  ! Enlace Troncal hacia MSW8 (Infraestructura IT) 
 interface FastEthernet0/1
+ switchport trunk encapsulation dot1q
  switchport mode trunk
  exit
 
@@ -498,6 +562,7 @@ interface range FastEthernet0/22 - 24
  no shutdown
  exit
 interface Port-channel6
+ switchport trunk encapsulation dot1q
  switchport mode trunk
  exit
 
@@ -509,6 +574,7 @@ interface range FastEthernet0/7 - 9
  no shutdown
  exit
 interface Port-channel13
+ switchport trunk encapsulation dot1q
  switchport mode trunk
  exit
 
@@ -520,11 +586,13 @@ interface range FastEthernet0/10 - 12
  no shutdown
  exit
 interface Port-channel11
+ switchport trunk encapsulation dot1q
  switchport mode trunk
  exit
 
 ! Enlace Troncal hacia MSW8 (Infraestructura IT)
 interface FastEthernet0/1
+ switchport trunk encapsulation dot1q
  switchport mode trunk
  exit
 
@@ -556,6 +624,7 @@ interface range FastEthernet0/19 - 21
  no shutdown
  exit
 interface Port-channel5
+ switchport trunk encapsulation dot1q
  switchport mode trunk
  exit
 
@@ -567,6 +636,7 @@ interface range FastEthernet0/4 - 6
  no shutdown
  exit
 interface Port-channel12
+ switchport trunk encapsulation dot1q
  switchport mode trunk
  exit
 
@@ -578,11 +648,13 @@ interface range FastEthernet0/22 - 24
  no shutdown
  exit
 interface Port-channel10
+ switchport trunk encapsulation dot1q
  switchport mode trunk
  exit
 
 ! Enlace Troncal hacia MSW7 (Análisis de Datos)
 interface FastEthernet0/10
+ switchport trunk encapsulation dot1q
  switchport mode trunk
  exit
 
@@ -619,14 +691,17 @@ vtp password proyecto12025
 
 ! Configuración de Uplinks Troncales hacia el Backbone 
 interface FastEthernet0/21
+ switchport trunk encapsulation dot1q
  switchport mode trunk
  exit
 interface FastEthernet0/20
+ switchport trunk encapsulation dot1q
  switchport mode trunk
  exit
 
 ! Configuración de Downlink Troncal hacia Switches de Acceso
 interface FastEthernet0/1
+ switchport trunk encapsulation dot1q
  switchport mode trunk
  exit
  
@@ -648,18 +723,24 @@ vtp domain C2_FIUComm
 vtp password proyecto12025
 
 ! Enlaces Troncales 
-interface FastEthernet0/24 ! Uplink a MSW10
+! Uplink a MSW10
+interface FastEthernet0/24 
  switchport mode trunk
  exit
-interface FastEthernet0/1 ! Downlink a SW14
+
+! Downlink a SW14
+interface FastEthernet0/1 
  switchport mode trunk
  exit
-interface FastEthernet0/2 ! Downlink a SW16
+
+! Downlink a SW16
+interface FastEthernet0/2 
  switchport mode trunk
  exit
 
 ! Puerto de Acceso 
-interface FastEthernet0/3 ! PC-PT RD8
+! PC-PT RD8
+interface FastEthernet0/3 
  switchport mode access
  switchport access vlan 10
  spanning-tree portfast
@@ -683,20 +764,26 @@ vtp domain C2_FIUComm
 vtp password proyecto12025
 
 ! Enlaces Troncales 
-interface FastEthernet0/24 ! Uplink a SW15
+! Uplink a SW15
+interface FastEthernet0/24 
  switchport mode trunk
  exit
-interface FastEthernet0/1 ! Downlink a SW13
+
+! Downlink a SW13
+interface FastEthernet0/1 
  switchport mode trunk
  exit
 
 ! Puertos de Acceso 
-interface FastEthernet0/2 ! Laptop-PT S1
+! Laptop-PT S1
+interface FastEthernet0/2
  switchport mode access
  switchport access vlan 40
  spanning-tree portfast
  exit
-interface FastEthernet0/3 ! PC-PT IT5
+
+! PC-PT IT5
+interface FastEthernet0/3 
  switchport mode access
  switchport access vlan 30
  spanning-tree portfast
@@ -720,12 +807,14 @@ vtp domain C2_FIUComm
 vtp password proyecto12025
 
 ! Enlace Troncal
-interface FastEthernet0/24 ! Uplink a SW14
+! Uplink a SW14
+interface FastEthernet0/24 
  switchport mode trunk
  exit
 
 ! Puerto de Acceso
-interface FastEthernet0/1 ! PC-PT AD6
+! PC-PT AD6
+interface FastEthernet0/1 
  switchport mode access
  switchport access vlan 20
  spanning-tree portfast
@@ -749,15 +838,19 @@ vtp domain C2_FIUComm
 vtp password proyecto12025
 
 ! Enlaces Troncales
-interface FastEthernet0/24 ! Uplink a SW15
+! Uplink a SW15
+interface FastEthernet0/24 
  switchport mode trunk
  exit
-interface FastEthernet0/1 ! Downlink a SW17
+
+! Downlink a SW17
+interface FastEthernet0/1 
  switchport mode trunk
  exit
 
 ! Puerto de Acceso
-interface FastEthernet0/3 ! Laptop-PT G1
+! Laptop-PT G1
+interface FastEthernet0/3 
  switchport mode access
  switchport access vlan 50
  spanning-tree portfast
@@ -781,17 +874,21 @@ vtp domain C2_FIUComm
 vtp password proyecto12025
 
 ! Enlace Troncal
-interface FastEthernet0/24 ! Uplink a SW16
+! Uplink a SW16
+interface FastEthernet0/24 
  switchport mode trunk
  exit
 
 ! Puertos de Acceso
-interface FastEthernet0/1 ! PC-PT IT4
+! PC-PT IT4
+interface FastEthernet0/1 
  switchport mode access
  switchport access vlan 30
  spanning-tree portfast
  exit
-interface FastEthernet0/2 ! Laptop-PT AD7
+
+! Laptop-PT AD7
+interface FastEthernet0/2 
  switchport mode access
  switchport access vlan 20
  spanning-tree portfast
@@ -831,24 +928,39 @@ vtp domain C2_FIUComm
 vtp password proyecto12025
 
 ! Uplinks Troncales hacia el Backbone 
-interface FastEthernet0/22 ! Hacia MSW4
+! Hacia MSW4
+interface FastEthernet0/22 
+ switchport trunk encapsulation dot1q
  switchport mode trunk
  exit
-interface FastEthernet0/23 ! Hacia MSW5
+
+! Hacia MSW5
+interface FastEthernet0/23 
+ switchport trunk encapsulation dot1q
  switchport mode trunk
  exit
-interface FastEthernet0/24 ! Hacia MSW2
+
+! Hacia MSW2
+interface FastEthernet0/24 
  switchport mode trunk
  exit
 
 ! Downlinks Troncales hacia Switches de Acceso
-interface FastEthernet0/1 ! Hacia SW8
+! Hacia SW8
+interface FastEthernet0/1 
+ switchport trunk encapsulation dot1q
  switchport mode trunk
  exit
-interface FastEthernet0/2 ! Hacia Switch19
+
+! Hacia Switch19
+interface FastEthernet0/2 
+ switchport trunk encapsulation dot1q
  switchport mode trunk
  exit
-interface FastEthernet0/3 ! Hacia SW12
+
+! Hacia SW12
+interface FastEthernet0/3 
+ switchport trunk encapsulation dot1q2
  switchport mode trunk
  exit
  
@@ -878,22 +990,28 @@ vlan 70
  exit
  
 ! Enlace Troncal (Uplink)
-interface FastEthernet0/24 ! Hacia MSW8
+! Hacia MSW8
+interface FastEthernet0/24 
  switchport mode trunk
  exit
 
 ! Puertos de Acceso para VLAN Local
-interface FastEthernet0/1 ! PC-PT Local1
+! PC-PT Local1
+interface FastEthernet0/1 
  switchport mode access
  switchport access vlan 70
  spanning-tree portfast
  exit
-interface FastEthernet0/2 ! Laptop-PT Local2
+
+! Laptop-PT Local2
+interface FastEthernet0/2 
  switchport mode access
  switchport access vlan 70
  spanning-tree portfast
  exit
-interface FastEthernet0/3 ! PC-PT Local3
+
+! PC-PT Local3
+interface FastEthernet0/3 
  switchport mode access
  switchport access vlan 70
  spanning-tree portfast
@@ -917,26 +1035,32 @@ vtp domain C2_FIUComm
 vtp password proyecto12025
 
 ! Enlaces Troncales
-interface FastEthernet0/24 ! Uplink a MSW8
+! Uplink a MSW8
+interface FastEthernet0/24 
  switchport mode trunk
  exit
-interface FastEthernet0/23 ! Enlace a SW9
+
+! Enlace a SW9
+interface FastEthernet0/23 
  switchport mode trunk
  exit
 
 ! Puertos de Acceso
-interface FastEthernet0/1 ! Laptop-PT RD7
+! Laptop-PT RD7
+interface FastEthernet0/1 
  switchport mode access
  switchport access vlan 10
  spanning-tree portfast
  exit
-interface FastEthernet0/2 ! Laptop-PT IT1
+
+! Laptop-PT IT1
+interface FastEthernet0/2 
  switchport mode access
  switchport access vlan 30
  spanning-tree portfast
  exit
 
-! === Guardar Configuración ===
+! Guardar Configuración
 end
 copy running-config startup-config
 ```
@@ -955,15 +1079,19 @@ vtp domain C2_FIUComm
 vtp password proyecto12025
 
 ! Enlaces Troncales
-interface FastEthernet0/24 ! Uplink a SW10
+! Uplink a SW10
+interface FastEthernet0/24 
  switchport mode trunk
  exit
-interface FastEthernet0/1 ! Enlace a SW8
+
+! Enlace a SW8
+interface FastEthernet0/1 
  switchport mode trunk
  exit
 
 ! Puerto de Acceso
-interface FastEthernet0/2 ! PC-PT AD8
+! PC-PT AD8
+interface FastEthernet0/2 
  switchport mode access
  switchport access vlan 20
  spanning-tree portfast
@@ -987,20 +1115,25 @@ vtp domain C2_FIUComm
 vtp password proyecto12025
 
 ! Enlaces Troncales
-interface FastEthernet0/24 ! Uplink a SW11
+! Uplink a SW11
+interface FastEthernet0/24 
  switchport mode trunk
  exit
-interface FastEthernet0/1 ! Enlace a SW9
+! Enlace a SW9
+interface FastEthernet0/1 
  switchport mode trunk
  exit
 
-! === Puertos de Acceso ===
-interface FastEthernet0/2 ! Laptop-PT G5
+! Puertos de Acceso 
+! Laptop-PT G5
+interface FastEthernet0/2 
  switchport mode access
  switchport access vlan 50
  spanning-tree portfast
  exit
-interface FastEthernet0/3 ! PC-PT RD6
+
+! PC-PT RD6
+interface FastEthernet0/3 
  switchport mode access
  switchport access vlan 10
  spanning-tree portfast
@@ -1024,15 +1157,18 @@ vtp domain C2_FIUComm
 vtp password proyecto12025
 
 ! Enlaces Troncales
-interface FastEthernet0/24 ! Uplink a SW12
+! Uplink a SW12
+interface FastEthernet0/24 
  switchport mode trunk
  exit
-interface FastEthernet0/1 ! Enlace a SW10
+! Enlace a SW10
+interface FastEthernet0/1 
  switchport mode trunk
  exit
 
 ! Puerto de Acceso
-interface FastEthernet0/2 ! Laptop-PT IT2
+! Laptop-PT IT2
+interface FastEthernet0/2 
  switchport mode access
  switchport access vlan 30
  spanning-tree portfast
@@ -1056,20 +1192,28 @@ vtp domain C2_FIUComm
 vtp password proyecto12025
 
 ! Enlaces Troncales
-interface FastEthernet0/24 ! Uplink a MSW8
+! Uplink a MSW8
+interface FastEthernet0/24 
+ switchport trunk encapsulation dot1q
  switchport mode trunk
  exit
-interface FastEthernet0/1 ! Enlace a SW11
+
+! Enlace a SW11
+interface FastEthernet0/1 
+ switchport trunk encapsulation dot1q
  switchport mode trunk
  exit
 
 ! Puertos de Acceso 
-interface FastEthernet0/2 ! PC-PT S5
+! PC-PT S5
+interface FastEthernet0/2 
  switchport mode access
  switchport access vlan 40
  spanning-tree portfast
  exit
-interface FastEthernet0/3 ! PC-PT IT3
+
+! PC-PT IT3
+interface FastEthernet0/3 
  switchport mode access
  switchport access vlan 30
  spanning-tree portfast
@@ -1112,18 +1256,27 @@ vtp domain C2_FIUComm
 vtp password proyecto12025
 
 ! Uplinks Troncales hacia el Backbone
-interface FastEthernet0/22 ! Hacia MSW3
+! Hacia MSW3
+interface FastEthernet0/22 
+ switchport trunk encapsulation dot1q
  switchport mode trunk
  exit
-interface FastEthernet0/23 ! Hacia MSW6
+
+! Hacia MSW6
+interface FastEthernet0/23 
+ switchport trunk encapsulation dot1q
  switchport mode trunk
  exit
-interface FastEthernet0/24 ! Hacia MSW1
+
+! Hacia MSW1
+interface FastEthernet0/24 
+ switchport trunk encapsulation dot1q
  switchport mode trunk
  exit
 
 ! Downlinks Troncales hacia Switches de Acceso
 interface range FastEthernet0/1 - 5
+ switchport trunk encapsulation dot1q
  switchport mode trunk
  exit
  
@@ -1145,7 +1298,8 @@ vtp domain C2_FIUComm
 vtp password proyecto12025
 
 ! Enlaces Troncales
-interface FastEthernet0/24 ! Uplink a MSW7
+! Uplink a MSW7
+interface FastEthernet0/24 
  switchport mode trunk
  exit
 interface range FastEthernet0/1 - 4
@@ -1153,12 +1307,15 @@ interface range FastEthernet0/1 - 4
  exit
 
 ! Puertos de Acceso
-interface FastEthernet0/5 ! Laptop-PT AD2
+! Laptop-PT AD2
+interface FastEthernet0/5 
  switchport mode access
  switchport access vlan 20
  spanning-tree portfast
  exit
-interface FastEthernet0/6 ! Laptop-PT IT8
+
+! Laptop-PT IT8
+interface FastEthernet0/6 
  switchport mode access
  switchport access vlan 30
  spanning-tree portfast
@@ -1181,7 +1338,8 @@ vtp domain C2_FIUComm
 vtp password proyecto12025
 
 ! Enlaces Troncales
-interface FastEthernet0/24 ! Enlace a SW1
+! Enlace a SW1
+interface FastEthernet0/24 
  switchport mode trunk
  exit
 interface range FastEthernet0/1 - 4
@@ -1189,7 +1347,8 @@ interface range FastEthernet0/1 - 4
  exit
 
 ! Puerto de Acceso
-interface FastEthernet0/5 !<-- PC-PT RD3
+! PC-PT RD3
+interface FastEthernet0/5 
  switchport mode access
  switchport access vlan 10
  spanning-tree portfast
@@ -1214,10 +1373,13 @@ vtp domain C2_FIUComm
 vtp password proyecto12025
 
 ! Enlaces Troncales
-interface FastEthernet0/24 ! Uplink a MSW7
+! Uplink a MSW7
+interface FastEthernet0/24 
  switchport mode trunk
  exit
-interface FastEthernet0/23 ! Enlace a SW2
+
+! Enlace a SW2
+interface FastEthernet0/23 
  switchport mode trunk
  exit
 interface range FastEthernet0/1 - 3
@@ -1225,17 +1387,22 @@ interface range FastEthernet0/1 - 3
  exit
 
 ! Puertos de Acceso
-interface FastEthernet0/4 ! Laptop-PT AD5
+! Laptop-PT AD5
+interface FastEthernet0/4 
  switchport mode access
  switchport access vlan 20
  spanning-tree portfast
  exit
-interface FastEthernet0/5 ! PC-PT G3
+
+! PC-PT G3
+interface FastEthernet0/5 
  switchport mode access
  switchport access vlan 50
  spanning-tree portfast
  exit
-interface FastEthernet0/6 ! Laptop-PT AD1
+
+! Laptop-PT AD1
+interface FastEthernet0/6 
  switchport mode access
  switchport access vlan 20
  spanning-tree portfast
@@ -1260,13 +1427,18 @@ vtp domain C2_FIUComm
 vtp password proyecto12025
 
 ! Enlaces Troncales
-interface FastEthernet0/24 ! Uplink a MSW7
+! Uplink a MSW7
+interface FastEthernet0/24 
  switchport mode trunk
  exit
-interface FastEthernet0/23 ! Enlace a SW1
+
+! Enlace a SW1
+interface FastEthernet0/23 
  switchport mode trunk
  exit
-interface FastEthernet0/22 ! Enlace a SW3
+
+! Enlace a SW3
+interface FastEthernet0/22 
  switchport mode trunk
  exit
 interface range FastEthernet0/1 - 2
@@ -1274,7 +1446,8 @@ interface range FastEthernet0/1 - 2
  exit
 
 ! Puerto de Acceso
-interface FastEthernet0/3 ! PC-PT RD5
+! PC-PT RD5
+interface FastEthernet0/3 
  switchport mode access
  switchport access vlan 10
  spanning-tree portfast
@@ -1299,16 +1472,23 @@ vtp domain C2_FIUComm
 vtp password proyecto12025
 
 ! Enlaces Troncales
-interface FastEthernet0/24 ! Uplink a MSW7
+! Uplink a MSW7
+interface FastEthernet0/24 
  switchport mode trunk
  exit
-interface FastEthernet0/23 ! Enlace a SW1
+
+! Enlace a SW1
+interface FastEthernet0/23 
  switchport mode trunk
  exit
-interface FastEthernet0/22 ! Enlace a SW2
+
+! Enlace a SW2
+interface FastEthernet0/22 
  switchport mode trunk
  exit
-interface FastEthernet0/21 ! Enlace a SW4
+
+! Enlace a SW4
+interface FastEthernet0/21 
  switchport mode trunk
  exit
 interface FastEthernet0/1
@@ -1316,12 +1496,15 @@ interface FastEthernet0/1
  exit
 
 ! Puertos de Acceso
-interface FastEthernet0/2 ! Laptop-PT S4
+! Laptop-PT S4
+interface FastEthernet0/2 
  switchport mode access
  switchport access vlan 40
  spanning-tree portfast
  exit
-interface FastEthernet0/3 ! Laptop-PT G4
+
+! Laptop-PT G4
+interface FastEthernet0/3 
  switchport mode access
  switchport access vlan 50
  spanning-tree portfast
@@ -1346,16 +1529,23 @@ vtp domain C2_FIUComm
 vtp password proyecto12025
 
 ! Enlaces Troncales
-interface FastEthernet0/24 ! Enlace a SW1
+! Enlace a SW1
+interface FastEthernet0/24 
  switchport mode trunk
  exit
-interface FastEthernet0/23 ! Enlace a SW2
+
+! Enlace a SW2
+interface FastEthernet0/23 
  switchport mode trunk
  exit
-interface FastEthernet0/22 ! Enlace a SW3
+
+! Enlace a SW3
+interface FastEthernet0/22 
  switchport mode trunk
  exit
-interface FastEthernet0/21 ! Enlace a SW5
+
+! Enlace a SW5
+interface FastEthernet0/21 
  switchport mode trunk
  exit
 interface FastEthernet0/1
@@ -1363,17 +1553,22 @@ interface FastEthernet0/1
  exit
 
 ! Puertos de Acceso
-interface FastEthernet0/2 ! PC-PT AD4
+! PC-PT AD4
+interface FastEthernet0/2 
  switchport mode access
  switchport access vlan 20
  spanning-tree portfast
  exit
-interface FastEthernet0/3 ! Laptop-PT RD4
+
+! Laptop-PT RD4
+interface FastEthernet0/3 
  switchport mode access
  switchport access vlan 10
  spanning-tree portfast
  exit
-interface FastEthernet0/4 ! PC-PT AD3
+
+! PC-PT AD3
+interface FastEthernet0/4 
  switchport mode access
  switchport access vlan 20
  spanning-tree portfast
@@ -1397,29 +1592,41 @@ vtp domain C2_FIUComm
 vtp password proyecto12025
 
 ! Enlaces Troncales
-interface FastEthernet0/24 ! Uplink a MSW7
+! Uplink a MSW7
+interface FastEthernet0/24 
  switchport mode trunk
  exit
-interface FastEthernet0/23 ! Enlace a SW2
+
+! Enlace a SW2
+interface FastEthernet0/23 
  switchport mode trunk
  exit
-interface FastEthernet0/22 ! Enlace a SW3
+
+! Enlace a SW3
+interface FastEthernet0/22 
  switchport mode trunk
  exit
-interface FastEthernet0/21 ! Enlace a SW4
+
+! Enlace a SW4
+interface FastEthernet0/21 
  switchport mode trunk
  exit
-interface FastEthernet0/20 ! Enlace a SW6
+
+! Enlace a SW6
+interface FastEthernet0/20 
  switchport mode trunk
  exit
 
 ! Puertos de Acceso
-interface FastEthernet0/1 ! PC-PT IT7
+! PC-PT IT7
+interface FastEthernet0/1 
  switchport mode access
  switchport access vlan 30
  spanning-tree portfast
  exit
-interface FastEthernet0/2 ! PC-PT RD1
+
+! PC-PT RD1
+interface FastEthernet0/2 
  switchport mode access
  switchport access vlan 10
  spanning-tree portfast
@@ -1478,11 +1685,13 @@ vtp password proyecto12025
 
 ! Configuración de Uplinks Troncales hacia el Backbone 
 interface range GigabitEthernet0/1 - 2
+ switchport trunk encapsulation dot1q
  switchport mode trunk
  exit
 
 ! Configuración de Downlinks hacia Switches de Acceso
 interface range FastEthernet0/1 - 2
+ switchport trunk encapsulation dot1q
  switchport mode trunk
  exit
 
