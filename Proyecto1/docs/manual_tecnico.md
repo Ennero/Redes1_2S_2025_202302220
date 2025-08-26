@@ -46,7 +46,16 @@
       - [5.3.6 Switch SW11](#536-switch-sw11)
       - [5.3.7 Switch MSW12](#537-switch-msw12)
       - [5.2.8 Conexión entre los Switches](#528-conexión-entre-los-switches)
-    - [5.4 Análissis de Datos](#54-análissis-de-datos)
+    - [5.4 Análisis de Datos](#54-análisis-de-datos)
+      - [5.4.1 Switch MSW7](#541-switch-msw7)
+      - [5.4.2 Switch SW1](#542-switch-sw1)
+      - [5.4.3 Switch SW2](#543-switch-sw2)
+      - [5.4.4 Switch SW3](#544-switch-sw3)
+      - [5.4.5 Switch SW4](#545-switch-sw4)
+      - [5.4.6 Switch SW5](#546-switch-sw5)
+      - [5.4.7 Switch SW6](#547-switch-sw6)
+      - [5.4.8 Switch SW7](#548-switch-sw7)
+      - [5.2.9 Conexión entre los Switches](#529-conexión-entre-los-switches)
     - [5.5 Redacción Digital](#55-redacción-digital)
       - [5.5.1 Switch MSW9](#551-switch-msw9)
       - [5.5.2 Switch SW18](#552-switch-sw18)
@@ -131,6 +140,7 @@ La siguiente tabla detalla el esquema de direccionamiento IP estático asignado 
 ## 5. Configuraciones de Dispositivos
 
 En esta sección se documentan los comandos clave utilizados para la configuración de los switches de la red.
+Antes de la configuración siempre se recomienda que se elimine toda configuración previa con el comando ```write erase``` y luego ```delete vlan.dat``` para finalizar con ```reload```.
 
 ### 5.1 Área Central
 
@@ -302,6 +312,11 @@ interface FastEthernet0/21
  switchport mode trunk
  exit
 
+! Enlace Troncal hacia MSW7 (Análisis de Datos)
+interface FastEthernet0/10
+ switchport mode trunk
+ exit
+
 ! Termino y guardo 
 end
 copy running-config startup-config
@@ -396,6 +411,11 @@ interface Port-channel12
 
 ! Enlace Troncal hacia MSW9 (Redacción Digital)
 interface FastEthernet0/24
+ switchport mode trunk
+ exit
+
+! Enlace Troncal hacia MSW7 (Análisis de Datos)
+interface FastEthernet0/10
  switchport mode trunk
  exit
 
@@ -558,6 +578,11 @@ interface range FastEthernet0/22 - 24
  no shutdown
  exit
 interface Port-channel10
+ switchport mode trunk
+ exit
+
+! Enlace Troncal hacia MSW7 (Análisis de Datos)
+interface FastEthernet0/10
  switchport mode trunk
  exit
 
@@ -1070,8 +1095,369 @@ copy running-config startup-config
  | SW10   | fa1              | SW9               | fa24               |
  | SW9    | fa1              | SW8               | fa23               |
 
-### 5.4 Análissis de Datos 
+### 5.4 Análisis de Datos 
 
+A continuación se listan las configuraciones de los switches de esta area.
+
+#### 5.4.1 Switch MSW7
+
+```bash
+enable
+configure terminal
+hostname MSW7
+
+! Configuración VTP (Modo Cliente)
+vtp mode client
+vtp domain C2_FIUComm
+vtp password proyecto12025
+
+! Uplinks Troncales hacia el Backbone
+interface FastEthernet0/22 ! Hacia MSW3
+ switchport mode trunk
+ exit
+interface FastEthernet0/23 ! Hacia MSW6
+ switchport mode trunk
+ exit
+interface FastEthernet0/24 ! Hacia MSW1
+ switchport mode trunk
+ exit
+
+! Downlinks Troncales hacia Switches de Acceso
+interface range FastEthernet0/1 - 5
+ switchport mode trunk
+ exit
+ 
+! Guardar Configuración
+end
+copy running-config startup-config
+```
+
+#### 5.4.2 Switch SW1
+
+```bash
+enable
+configure terminal
+hostname SW1
+
+! Configuración VTP (Modo Cliente)
+vtp mode client
+vtp domain C2_FIUComm
+vtp password proyecto12025
+
+! Enlaces Troncales
+interface FastEthernet0/24 ! Uplink a MSW7
+ switchport mode trunk
+ exit
+interface range FastEthernet0/1 - 4
+ switchport mode trunk
+ exit
+
+! Puertos de Acceso
+interface FastEthernet0/5 ! Laptop-PT AD2
+ switchport mode access
+ switchport access vlan 20
+ spanning-tree portfast
+ exit
+interface FastEthernet0/6 ! Laptop-PT IT8
+ switchport mode access
+ switchport access vlan 30
+ spanning-tree portfast
+ exit
+ 
+! Guardar Configuración
+end
+copy running-config startup-config
+```
+
+#### 5.4.3 Switch SW2
+```bash
+enable
+configure terminal
+hostname SW2
+
+! Configuración VTP (Modo Cliente) 
+vtp mode client
+vtp domain C2_FIUComm
+vtp password proyecto12025
+
+! Enlaces Troncales
+interface FastEthernet0/24 ! Enlace a SW1
+ switchport mode trunk
+ exit
+interface range FastEthernet0/1 - 4
+ switchport mode trunk
+ exit
+
+! Puerto de Acceso
+interface FastEthernet0/5 !<-- PC-PT RD3
+ switchport mode access
+ switchport access vlan 10
+ spanning-tree portfast
+ exit
+ 
+! Guardar Configuración
+end
+copy running-config startup-config
+```
+
+
+#### 5.4.4 Switch SW3
+
+```bash
+enable
+configure terminal
+hostname SW3
+
+! Configuración VTP (Modo Cliente)
+vtp mode client
+vtp domain C2_FIUComm
+vtp password proyecto12025
+
+! Enlaces Troncales
+interface FastEthernet0/24 ! Uplink a MSW7
+ switchport mode trunk
+ exit
+interface FastEthernet0/23 ! Enlace a SW2
+ switchport mode trunk
+ exit
+interface range FastEthernet0/1 - 3
+ switchport mode trunk
+ exit
+
+! Puertos de Acceso
+interface FastEthernet0/4 ! Laptop-PT AD5
+ switchport mode access
+ switchport access vlan 20
+ spanning-tree portfast
+ exit
+interface FastEthernet0/5 ! PC-PT G3
+ switchport mode access
+ switchport access vlan 50
+ spanning-tree portfast
+ exit
+interface FastEthernet0/6 ! Laptop-PT AD1
+ switchport mode access
+ switchport access vlan 20
+ spanning-tree portfast
+ exit
+ 
+! Guardar Configuración
+end
+copy running-config startup-config
+```
+
+
+#### 5.4.5 Switch SW4
+
+```bash
+enable
+configure terminal
+hostname SW4
+
+! Configuración VTP (Modo Cliente)
+vtp mode client
+vtp domain C2_FIUComm
+vtp password proyecto12025
+
+! Enlaces Troncales
+interface FastEthernet0/24 ! Uplink a MSW7
+ switchport mode trunk
+ exit
+interface FastEthernet0/23 ! Enlace a SW1
+ switchport mode trunk
+ exit
+interface FastEthernet0/22 ! Enlace a SW3
+ switchport mode trunk
+ exit
+interface range FastEthernet0/1 - 2
+ switchport mode trunk
+ exit
+
+! Puerto de Acceso
+interface FastEthernet0/3 ! PC-PT RD5
+ switchport mode access
+ switchport access vlan 10
+ spanning-tree portfast
+ exit
+ 
+! Guardar Configuración
+end
+copy running-config startup-config
+```
+
+
+#### 5.4.6 Switch SW5
+
+```bash
+enable
+configure terminal
+hostname SW5
+
+! Configuración VTP (Modo Cliente)
+vtp mode client
+vtp domain C2_FIUComm
+vtp password proyecto12025
+
+! Enlaces Troncales
+interface FastEthernet0/24 ! Uplink a MSW7
+ switchport mode trunk
+ exit
+interface FastEthernet0/23 ! Enlace a SW1
+ switchport mode trunk
+ exit
+interface FastEthernet0/22 ! Enlace a SW2
+ switchport mode trunk
+ exit
+interface FastEthernet0/21 ! Enlace a SW4
+ switchport mode trunk
+ exit
+interface FastEthernet0/1
+ switchport mode trunk
+ exit
+
+! Puertos de Acceso
+interface FastEthernet0/2 ! Laptop-PT S4
+ switchport mode access
+ switchport access vlan 40
+ spanning-tree portfast
+ exit
+interface FastEthernet0/3 ! Laptop-PT G4
+ switchport mode access
+ switchport access vlan 50
+ spanning-tree portfast
+ exit
+ 
+! Guardar Configuración
+end
+copy running-config startup-config
+```
+
+
+#### 5.4.7 Switch SW6
+
+```bash
+enable
+configure terminal
+hostname SW6
+
+! Configuración VTP (Modo Cliente)
+vtp mode client
+vtp domain C2_FIUComm
+vtp password proyecto12025
+
+! Enlaces Troncales
+interface FastEthernet0/24 ! Enlace a SW1
+ switchport mode trunk
+ exit
+interface FastEthernet0/23 ! Enlace a SW2
+ switchport mode trunk
+ exit
+interface FastEthernet0/22 ! Enlace a SW3
+ switchport mode trunk
+ exit
+interface FastEthernet0/21 ! Enlace a SW5
+ switchport mode trunk
+ exit
+interface FastEthernet0/1
+ switchport mode trunk
+ exit
+
+! Puertos de Acceso
+interface FastEthernet0/2 ! PC-PT AD4
+ switchport mode access
+ switchport access vlan 20
+ spanning-tree portfast
+ exit
+interface FastEthernet0/3 ! Laptop-PT RD4
+ switchport mode access
+ switchport access vlan 10
+ spanning-tree portfast
+ exit
+interface FastEthernet0/4 ! PC-PT AD3
+ switchport mode access
+ switchport access vlan 20
+ spanning-tree portfast
+ exit
+ 
+! Guardar Configuración
+end
+copy running-config startup-config
+```
+
+#### 5.4.8 Switch SW7
+
+```bash
+enable
+configure terminal
+hostname SW7
+
+! Configuración VTP (Modo Cliente)
+vtp mode client
+vtp domain C2_FIUComm
+vtp password proyecto12025
+
+! Enlaces Troncales
+interface FastEthernet0/24 ! Uplink a MSW7
+ switchport mode trunk
+ exit
+interface FastEthernet0/23 ! Enlace a SW2
+ switchport mode trunk
+ exit
+interface FastEthernet0/22 ! Enlace a SW3
+ switchport mode trunk
+ exit
+interface FastEthernet0/21 ! Enlace a SW4
+ switchport mode trunk
+ exit
+interface FastEthernet0/20 ! Enlace a SW6
+ switchport mode trunk
+ exit
+
+! Puertos de Acceso
+interface FastEthernet0/1 ! PC-PT IT7
+ switchport mode access
+ switchport access vlan 30
+ spanning-tree portfast
+ exit
+interface FastEthernet0/2 ! PC-PT RD1
+ switchport mode access
+ switchport access vlan 10
+ spanning-tree portfast
+ exit
+ 
+! Guardar Configuración
+end
+copy running-config startup-config
+```
+
+
+#### 5.2.9 Conexión entre los Switches
+
+| Switch | Puerto en Switch | Conexión a Switch | Puerto en Conexión |
+|--------|------------------|-------------------|--------------------|
+| MSW1   | fa10             | MSW7              | fa24               |
+| MSW6   | fa10             | MSW7              | fa23               |
+| MSW3   | fa10             | MSW7              | fa22               |
+| MSW7   | fa1              | SW1               | fa24               |
+| MSW7   | fa2              | SW3               | fa24               |
+| MSW7   | fa3              | SW4               | fa24               |
+| MSW7   | fa4              | SW5               | fa24               |
+| MSW7   | fa5              | SW7               | fa24               |
+| SW1    | fa1              | SW2               | fa24               |
+| SW1    | fa2              | SW4               | fa23               |
+| SW1    | fa3              | SW5               | fa23               |
+| SW1    | fa4              | SW6               | fa24               |
+| SW2    | fa1              | SW3               | fa23               |
+| SW2    | fa2              | SW5               | fa22               |
+| SW2    | fa3              | SW6               | fa23               |
+| SW2    | fa4              | SW7               | fa23               |
+| SW3    | fa1              | SW4               | fa22               |
+| SW3    | fa2              | SW6               | fa22               |
+| SW3    | fa3              | SW7               | fa22               |
+| SW4    | fa1              | SW5               | fa21               |
+| SW4    | fa2              | SW7               | fa21               |
+| SW5    | fa1              | SW6               | fa21               |
+| SW6    | fa1              | SW7               | fa20               |
 
 
 ### 5.5 Redacción Digital
