@@ -44,7 +44,7 @@
       - [5.3.4 Switch SW9](#534-switch-sw9)
       - [5.3.5 Switch SW10](#535-switch-sw10)
       - [5.3.6 Switch SW11](#536-switch-sw11)
-      - [5.3.7 Switch MSW12](#537-switch-msw12)
+      - [5.3.7 Switch SW12](#537-switch-sw12)
       - [5.2.8 Conexión entre los Switches](#528-conexión-entre-los-switches)
     - [5.4 Análisis de Datos](#54-análisis-de-datos)
       - [5.4.1 Switch MSW7](#541-switch-msw7)
@@ -59,9 +59,11 @@
     - [5.5 Redacción Digital](#55-redacción-digital)
       - [5.5.1 Switch MSW9](#551-switch-msw9)
       - [5.5.2 Switch SW18](#552-switch-sw18)
-      - [5.5.2 Switch SW19](#552-switch-sw19)
-      - [5.5.2 Switch SW20](#552-switch-sw20)
-      - [5.5.4 Conexiones entre los Switches](#554-conexiones-entre-los-switches)
+      - [5.5.3 Switch SW19](#553-switch-sw19)
+      - [5.5.4 Switch SW20](#554-switch-sw20)
+      - [5.5.5 Conexiones entre los Switches](#555-conexiones-entre-los-switches)
+  - [6. Pruebas y validaciones](#6-pruebas-y-validaciones)
+  - [7. Presupuesto](#7-presupuesto)
 
 
 
@@ -425,7 +427,7 @@ vtp mode client
 vtp domain C2_FIUComm
 vtp password proyecto12025
 
-! Lo configuro en LACP
+! Lo configuro en PAGP
 interface range FastEthernet0/1 - 3
  shutdown
  channel-protocol pagp
@@ -924,6 +926,7 @@ interface FastEthernet0/23
 
 ! Hacia MSW2
 interface FastEthernet0/24 
+ switchport trunk encapsulation dot1q
  switchport mode trunk
  exit
 
@@ -942,7 +945,7 @@ interface FastEthernet0/2
 
 ! Hacia SW12
 interface FastEthernet0/3 
- switchport trunk encapsulation dot1q2
+ switchport trunk encapsulation dot1q
  switchport mode trunk
  exit
  
@@ -1161,7 +1164,7 @@ end
 copy running-config startup-config
 ```
 
-#### 5.3.7 Switch MSW12
+#### 5.3.7 Switch SW12
 
 ```bash
 enable
@@ -1176,13 +1179,11 @@ vtp password proyecto12025
 ! Enlaces Troncales
 ! Uplink a MSW8
 interface FastEthernet0/24 
- switchport trunk encapsulation dot1q
  switchport mode trunk
  exit
 
 ! Enlace a SW11
 interface FastEthernet0/1 
- switchport trunk encapsulation dot1q
  switchport mode trunk
  exit
 
@@ -1719,7 +1720,7 @@ copy running-config startup-config
 ```
 
 
-#### 5.5.2 Switch SW19
+#### 5.5.3 Switch SW19
 
 ```bash
 enable
@@ -1753,7 +1754,7 @@ end
 copy running-config startup-config
 ```
 
-#### 5.5.2 Switch SW20
+#### 5.5.4 Switch SW20
 
 ```bash
 enable
@@ -1796,12 +1797,39 @@ copy running-config startup-config
 ```
 
 
-#### 5.5.4 Conexiones entre los Switches
+#### 5.5.5 Conexiones entre los Switches
+
    Switch | Puerto en Switch | Conexión a Switch | Puerto en Conexión |
  |--------|------------------|-------------------|--------------------|
  | MSW3   | FastEthernet 24  | MSW9              | GigabitEthernet 1  |
  | MSW4   | FastEthernet 24  | MSW9              | GigabitEthernet 2  |
  | SW18   | FastEthernet 2   | MSW9              | FastEthernet 1     |
- | SW18   | FastEthernet 1   | SW20              | Puerto 3           |
+ | SW18   | FastEthernet 1   | SW20              | FastEthernet 3    |
  | SW19   | FastEthernet 2   | MSW9              | FastEthernet 2     |
+
+
+## 6. Pruebas y validaciones
+
+
+
+
+## 7. Presupuesto
+
+| Categoría                          | Ítem                  | Modelo / Especificación                                                     | Cant. | Precio Unitario (GTQ) | Subtotal (GTQ)  |
+|------------------------------------|-----------------------|--------------------------------------------------------------------------------|-------|-----------------------|-----------------|
+| Switches de Backbone y Distribución | Switch Multicapa      | Cisco Catalyst 3560-24PS (Nuevo)                                            | 11    | Q 4,500.00            | Q 49,500.00     |
+| Switches de Acceso                  | Switch de Acceso      | Cisco Catalyst 2960-24TT (Nuevo)                                            | 21    | Q 3,200.00            | Q 67,200.00     |
+| Equipo de Cómputo                  | Laptops               | Dell/HP, Core i5, 8GB RAM, 256GB SSD (Nuevas)                               | 17    | Q 4,500.00            | Q 76,500.00     |
+| Equipo de Cómputo                  | PCs de Escritorio     | Dell/HP, Core i5, 8GB RAM, 256GB SSD + Monitor (Nuevas)                      | 19    | Q 5,200.00            | Q 98,800.00     |
+| Cableado Estructurado              | Cable UTP             | Cat 6, 100% Cobre, Bobina de 305m (1000 pies)                               | 12    | Q 1,600.00            | Q 19,200.00     |
+| Conectividad y Organización        | Conectores RJ-45      | Categoría 6, Paquete de 100 unidades                                        | 4     | Q 150.00              | Q 600.00        |
+| Conectividad y Organización        | Patch Panel           | 24 Puertos, Cat 6, para Rack de 19                                          | 6     | Q 450.00              | Q 2,700.00      |
+| Conectividad y Organización        | Patch Cords           | 1 metro, Cat 6, fabricados en fábrica (varios colores)                      | 75    | Q 25.00               | Q 1,875.00      |
+| Infraestructura Física             | Rack de Comunicaciones| Gabinete de Pared o de Piso, 12U                                           | 4     | Q 1,800.00            | Q 7,200.00      |
+| Infraestructura Física             | Organizadores de Cable| Horizontales, para Rack de 19"                                             | 8     | Q 125.00              | Q 1,000.00      |
+| Suministro Eléctrico               | UPS / PDU             | Regleta de poder para Rack (PDU) y UPS de 1500VA                           | 4     | Q 2,000.00            | Q 8,000.00      |
+| Mano de Obra e Instalación         | Instalación y Configuración | Técnico de redes (estimado 80 horas de trabajo)                     | 1     | Q 15,000.00           | Q 15,000.00     |
+ | | | | | Total del Proyecto: |Q 347,575.00 |
+
+
 
