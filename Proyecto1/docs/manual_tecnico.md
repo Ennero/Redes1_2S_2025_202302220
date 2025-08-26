@@ -863,14 +863,14 @@ interface FastEthernet0/24
 
 ! Puertos de Acceso
 ! PC-PT IT4
-interface FastEthernet0/1 
+interface FastEthernet0/2 
  switchport mode access
  switchport access vlan 30
  spanning-tree portfast
  exit
 
 ! Laptop-PT AD7
-interface FastEthernet0/2 
+interface FastEthernet0/1 
  switchport mode access
  switchport access vlan 20
  spanning-tree portfast
