@@ -67,6 +67,14 @@
       - [5.5.5 Conexiones entre los Switches](#555-conexiones-entre-los-switches)
       - [5.5.6 Dispositivos finales](#556-dispositivos-finales)
   - [6. Pruebas y validaciones](#6-pruebas-y-validaciones)
+    - [6.1. Validación de VTP y VLANs](#61-validación-de-vtp-y-vlans)
+    - [6.2. Validación de Spanning Tree](#62-validación-de-spanning-tree)
+    - [6.3. Validación de EtherChannel](#63-validación-de-etherchannel)
+    - [6.4. Validación de Conectividad de Extremo a Extremo](#64-validación-de-conectividad-de-extremo-a-extremo)
+      - [6.4.1. PING dentro de la misma VLAN](#641-ping-dentro-de-la-misma-vlan)
+      - [6.4.2. PING entre diferentes VLANs (debe de fallar)](#642-ping-entre-diferentes-vlans-debe-de-fallar)
+    - [6.5. Prueba de Resiliencia y Redundancia](#65-prueba-de-resiliencia-y-redundancia)
+    - [6.6. Conclusión](#66-conclusión)
   - [7. Presupuesto](#7-presupuesto)
 
 
@@ -1868,6 +1876,479 @@ copy running-config startup-config
 
 ## 6. Pruebas y validaciones
 
+A continuación, se detalla el proceso de validación para confirmar que la red está configurada y funciona de acuerdo con los objetivos del proyecto. Las pruebas se dividen en la verificación de protocolos de Capa 2 y la validación de conectividad de extremo a extremo.
+
+### 6.1. Validación de VTP y VLANs
+
+**Objetivo:** Confirmar que el VTP Server (SERVIDOR) está distribuyendo correctamente la base de datos de VLANs y que todos los switches cliente la han recibido.
+
+Ejecutando el SERVIDOR ``show vtp status`` se puede observar que se encuentra en modo **server**.
+
+```bash
+VTP Version capable             : 1 to 2
+VTP version running             : 1
+VTP Domain Name                 : C2_FIUComm
+VTP Pruning Mode                : Disabled
+VTP Traps Generation            : Disabled
+Device ID                       : 0000.0C1A.B2A0
+Configuration last modified by 0.0.0.0 at 3-1-93 00:00:00
+Local updater ID is 0.0.0.0 (no valid interface found)
+
+Feature VLAN : 
+--------------
+VTP Operating Mode                : Server
+Maximum VLANs supported locally   : 1005
+Number of existing VLANs          : 10
+Configuration Revision            : 25
+MD5 digest                        : 0xF0 0xD0 0xF6 0xFB 0x3E 0xDE 0x5C 0x3E 
+                                    0x61 0x90 0xE7 0x70 0x6C 0xA6 0x67 0xB1 
+```
+
+Ahora ejecutando en cualquier switch que no sea el server, se puede notar que efectivamente se encuentra en modo cliente.
+```bash
+show vtp status
+show vlan brief
+```
+Se puede observar que se encuentra en modo cliente, que el código de revisión es el mismo y que la tabla muestra las 5 vlan configuradas en server.
+
+```bash
+VTP Version capable             : 1 to 2
+VTP version running             : 1
+VTP Domain Name                 : C2_FIUComm
+VTP Pruning Mode                : Disabled
+VTP Traps Generation            : Disabled
+Device ID                       : 0001.634E.D250
+Configuration last modified by 0.0.0.0 at 3-1-93 00:00:00
+
+Feature VLAN : 
+--------------
+VTP Operating Mode                : Client
+Maximum VLANs supported locally   : 1005
+Number of existing VLANs          : 10
+Configuration Revision            : 25
+MD5 digest                        : 0xF0 0xD0 0xF6 0xFB 0x3E 0xDE 0x5C 0x3E 
+                                    0x61 0x90 0xE7 0x70 0x6C 0xA6 0x67 0xB1 
+MSW6>show vlan brief
+
+VLAN Name                             Status    Ports
+---- -------------------------------- --------- -------------------------------
+1    default                          active    Fa0/1, Fa0/2, Fa0/3, Fa0/7
+                                                Fa0/8, Fa0/9, Fa0/11, Fa0/12
+                                                Fa0/13, Fa0/14, Fa0/15, Fa0/16
+                                                Fa0/17, Fa0/18, Gig0/1, Gig0/2
+10   Redaccion_Digital                active    
+20   Analisis_de_Datos                active    
+30   Infraestructura_IT               active    
+40   Seguridad                        active    
+50   Gerencia                         active    
+1002 fddi-default                     active    
+1003 token-ring-default               active    
+1004 fddinet-default                  active    
+1005 trnet-default                    active 
+```
+
+Este deberia de mostrarse igual o similar en todos los switches.
+
+
+### 6.2. Validación de Spanning Tree
+
+**Objetivo:** Para evitar que existan bucles, ahora se validará que STP esté funcionando correctamente.
+
+Ejecutando el siguiente comando en SERVIDOR ```show spanning-tree``` se observa que server es la raiz ```This bridge is the root```.
+
+```bash
+VTP Version capable             : 1 to 2
+VTP version running             : 1
+VTP Domain Name                 : C2_FIUComm
+VTP Pruning Mode                : Disabled
+VTP Traps Generation            : Disabled
+Device ID                       : 0000.0C1A.B2A0
+Configuration last modified by 0.0.0.0 at 3-1-93 00:00:00
+Local updater ID is 0.0.0.0 (no valid interface found)
+
+Feature VLAN : 
+--------------
+VTP Operating Mode                : Server
+Maximum VLANs supported locally   : 1005
+Number of existing VLANs          : 10
+Configuration Revision            : 25
+MD5 digest                        : 0xF0 0xD0 0xF6 0xFB 0x3E 0xDE 0x5C 0x3E 
+                                    0x61 0x90 0xE7 0x70 0x6C 0xA6 0x67 0xB1 
+SERVIDOR>
+SERVIDOR>
+SERVIDOR>
+SERVIDOR>
+SERVIDOR>show spanning-tree
+VLAN0001
+  Spanning tree enabled protocol ieee
+  Root ID    Priority    32769
+             Address     0001.43E5.BC16
+             Cost        9
+             Port        27(Port-channel1)
+             Hello Time  2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    32769  (priority 32768 sys-id-ext 1)
+             Address     000A.F325.2529
+             Hello Time  2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  20
+
+Interface        Role Sts Cost      Prio.Nbr Type
+---------------- ---- --- --------- -------- --------------------------------
+Po2              Desg FWD 9         128.28   Shr
+Po1              Root FWD 9         128.27   Shr
+Po3              Desg FWD 9         128.29   Shr
+Po4              Desg FWD 9         128.30   Shr
+Po5              Desg FWD 9         128.31   Shr
+Po6              Desg FWD 9         128.32   Shr
+
+VLAN0010
+  Spanning tree enabled protocol ieee
+  Root ID    Priority    24586
+             Address     000A.F325.2529
+             This bridge is the root
+             Hello Time  2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    24586  (priority 24576 sys-id-ext 10)
+             Address     000A.F325.2529
+             Hello Time  2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  20
+
+Interface        Role Sts Cost      Prio.Nbr Type
+---------------- ---- --- --------- -------- --------------------------------
+Po2              Desg FWD 9         128.28   Shr
+Po1              Desg FWD 9         128.27   Shr
+Po3              Desg FWD 9         128.29   Shr
+Po4              Desg FWD 9         128.30   Shr
+Po5              Desg FWD 9         128.31   Shr
+Po6              Desg FWD 9         128.32   Shr
+
+VLAN0020
+  Spanning tree enabled protocol ieee
+  Root ID    Priority    24596
+             Address     000A.F325.2529
+             This bridge is the root
+             Hello Time  2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    24596  (priority 24576 sys-id-ext 20)
+             Address     000A.F325.2529
+             Hello Time  2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  20
+
+Interface        Role Sts Cost      Prio.Nbr Type
+---------------- ---- --- --------- -------- --------------------------------
+Po2              Desg FWD 9         128.28   Shr
+Po1              Desg FWD 9         128.27   Shr
+Po3              Desg FWD 9         128.29   Shr
+Po4              Desg FWD 9         128.30   Shr
+Po5              Desg FWD 9         128.31   Shr
+Po6              Desg FWD 9         128.32   Shr
+
+VLAN0030
+  Spanning tree enabled protocol ieee
+  Root ID    Priority    24606
+             Address     000A.F325.2529
+             This bridge is the root
+             Hello Time  2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    24606  (priority 24576 sys-id-ext 30)
+             Address     000A.F325.2529
+             Hello Time  2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  20
+
+Interface        Role Sts Cost      Prio.Nbr Type
+---------------- ---- --- --------- -------- --------------------------------
+Po2              Desg FWD 9         128.28   Shr
+Po1              Desg FWD 9         128.27   Shr
+Po3              Desg FWD 9         128.29   Shr
+Po4              Desg FWD 9         128.30   Shr
+Po5              Desg FWD 9         128.31   Shr
+Po6              Desg FWD 9         128.32   Shr
+
+VLAN0040
+  Spanning tree enabled protocol ieee
+  Root ID    Priority    24616
+             Address     000A.F325.2529
+             This bridge is the root
+             Hello Time  2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    24616  (priority 24576 sys-id-ext 40)
+             Address     000A.F325.2529
+             Hello Time  2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  20
+
+Interface        Role Sts Cost      Prio.Nbr Type
+---------------- ---- --- --------- -------- --------------------------------
+Po2              Desg FWD 9         128.28   Shr
+Po1              Desg FWD 9         128.27   Shr
+Po3              Desg FWD 9         128.29   Shr
+Po4              Desg FWD 9         128.30   Shr
+Po5              Desg FWD 9         128.31   Shr
+Po6              Desg FWD 9         128.32   Shr
+
+VLAN0050
+  Spanning tree enabled protocol ieee
+  Root ID    Priority    24626
+             Address     000A.F325.2529
+             This bridge is the root
+             Hello Time  2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    24626  (priority 24576 sys-id-ext 50)
+             Address     000A.F325.2529
+             Hello Time  2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  20
+
+Interface        Role Sts Cost      Prio.Nbr Type
+---------------- ---- --- --------- -------- --------------------------------
+Po2              Desg FWD 9         128.28   Shr
+Po1              Desg FWD 9         128.27   Shr
+Po3              Desg FWD 9         128.29   Shr
+Po4              Desg FWD 9         128.30   Shr
+Po5              Desg FWD 9         128.31   Shr
+Po6              Desg FWD 9         128.32   Shr
+```
+
+
+Y con algún switch que se encuentra en estado blocking para observar como es que esto esta bien configurado.
+
+```bash
+VLAN0001
+  Spanning tree enabled protocol ieee
+  Root ID    Priority    32769
+             Address     0001.43E5.BC16
+             Cost        38
+             Port        24(FastEthernet0/24)
+             Hello Time  2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    32769  (priority 32768 sys-id-ext 1)
+             Address     00E0.A369.457C
+             Hello Time  2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  20
+
+Interface        Role Sts Cost      Prio.Nbr Type
+---------------- ---- --- --------- -------- --------------------------------
+Fa0/3            Desg FWD 19        128.3    P2p
+Fa0/22           Altn BLK 19        128.22   P2p
+Fa0/24           Root FWD 19        128.24   P2p
+Fa0/21           Altn BLK 19        128.21   P2p
+Fa0/20           Desg FWD 19        128.20   P2p
+Fa0/23           Desg FWD 19        128.23   P2p
+
+VLAN0010
+  Spanning tree enabled protocol ieee
+  Root ID    Priority    24586
+             Address     000A.F325.2529
+             Cost        47
+             Port        24(FastEthernet0/24)
+             Hello Time  2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    32778  (priority 32768 sys-id-ext 10)
+             Address     00E0.A369.457C
+             Hello Time  2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  20
+
+Interface        Role Sts Cost      Prio.Nbr Type
+---------------- ---- --- --------- -------- --------------------------------
+Fa0/2            Desg FWD 19        128.2    P2p
+Fa0/22           Altn BLK 19        128.22   P2p
+Fa0/24           Root FWD 19        128.24   P2p
+Fa0/21           Altn BLK 19        128.21   P2p
+Fa0/20           Desg FWD 19        128.20   P2p
+Fa0/23           Desg FWD 19        128.23   P2p
+
+VLAN0020
+  Spanning tree enabled protocol ieee
+  Root ID    Priority    24596
+             Address     000A.F325.2529
+             Cost        47
+             Port        24(FastEthernet0/24)
+             Hello Time  2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    32788  (priority 32768 sys-id-ext 20)
+             Address     00E0.A369.457C
+             Hello Time  2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  20
+
+Interface        Role Sts Cost      Prio.Nbr Type
+---------------- ---- --- --------- -------- --------------------------------
+Fa0/22           Altn BLK 19        128.22   P2p
+Fa0/24           Root FWD 19        128.24   P2p
+Fa0/21           Altn BLK 19        128.21   P2p
+Fa0/20           Desg FWD 19        128.20   P2p
+Fa0/23           Desg FWD 19        128.23   P2p
+
+VLAN0030
+  Spanning tree enabled protocol ieee
+  Root ID    Priority    24606
+             Address     000A.F325.2529
+             Cost        47
+             Port        24(FastEthernet0/24)
+             Hello Time  2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    32798  (priority 32768 sys-id-ext 30)
+             Address     00E0.A369.457C
+             Hello Time  2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  20
+
+Interface        Role Sts Cost      Prio.Nbr Type
+---------------- ---- --- --------- -------- --------------------------------
+Fa0/22           Altn BLK 19        128.22   P2p
+Fa0/24           Root FWD 19        128.24   P2p
+Fa0/21           Altn BLK 19        128.21   P2p
+Fa0/20           Desg FWD 19        128.20   P2p
+Fa0/23           Desg FWD 19        128.23   P2p
+
+VLAN0040
+  Spanning tree enabled protocol ieee
+  Root ID    Priority    24616
+             Address     000A.F325.2529
+             Cost        47
+             Port        24(FastEthernet0/24)
+             Hello Time  2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    32808  (priority 32768 sys-id-ext 40)
+             Address     00E0.A369.457C
+             Hello Time  2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  20
+
+Interface        Role Sts Cost      Prio.Nbr Type
+---------------- ---- --- --------- -------- --------------------------------
+Fa0/22           Altn BLK 19        128.22   P2p
+Fa0/24           Root FWD 19        128.24   P2p
+Fa0/21           Altn BLK 19        128.21   P2p
+Fa0/20           Desg FWD 19        128.20   P2p
+Fa0/23           Desg FWD 19        128.23   P2p
+
+VLAN0050
+  Spanning tree enabled protocol ieee
+  Root ID    Priority    24626
+             Address     000A.F325.2529
+             Cost        47
+             Port        24(FastEthernet0/24)
+             Hello Time  2 sec  Max Age 20 sec  Forward Delay 15 sec
+
+  Bridge ID  Priority    32818  (priority 32768 sys-id-ext 50)
+             Address     00E0.A369.457C
+             Hello Time  2 sec  Max Age 20 sec  Forward Delay 15 sec
+             Aging Time  20
+
+Interface        Role Sts Cost      Prio.Nbr Type
+---------------- ---- --- --------- -------- --------------------------------
+Fa0/22           Altn BLK 19        128.22   P2p
+Fa0/24           Root FWD 19        128.24   P2p
+Fa0/21           Altn BLK 19        128.21   P2p
+Fa0/20           Desg FWD 19        128.20   P2p
+Fa0/23           Desg FWD 19        128.23   P2p
+```
+
+### 6.3. Validación de EtherChannel
+
+**Objetivo:** Confirmar que los grupos de puertos físicos configurados con LACP y PAgP se han agregado exitosamente en un único enlace lógico (Port-channel).
+
+Usando el comando ```show etherchannel summary``` en SERVIDOR se mostrará que tiene el ```Port-channel``` estado **SU** y que cada uno de los puertos miebros tenga el estado **P**.
+- ```S``` = Layer 2 
+- ```U``` = in use (en uso)
+- ```P``` = in port-channel (agrupado)
+
+```bash
+Flags:  D - down        P - in port-channel
+        I - stand-alone s - suspended
+        H - Hot-standby (LACP only)
+        R - Layer3      S - Layer2
+        U - in use      f - failed to allocate aggregator
+        u - unsuitable for bundling
+        w - waiting to be aggregated
+        d - default port
+
+
+Number of channel-groups in use: 6
+Number of aggregators:           6
+
+Group  Port-channel  Protocol    Ports
+------+-------------+-----------+----------------------------------------------
+
+1      Po1(SU)           PAgP   Fa0/1(P) Fa0/2(P) Fa0/3(P) 
+2      Po2(SU)           PAgP   Fa0/4(P) Fa0/5(P) Fa0/6(P) 
+3      Po3(SU)           LACP   Fa0/13(P) Fa0/14(P) Fa0/15(P) 
+4      Po4(SU)           LACP   Fa0/16(P) Fa0/17(P) Fa0/18(P) 
+5      Po5(SU)           LACP   Fa0/19(P) Fa0/20(P) Fa0/21(P) 
+6      Po6(SU)           LACP   Fa0/22(P) Fa0/23(P) Fa0/24(P) 
+```
+
+Y usandolo en otro multiswitch se muestra que también se encuentra ordenados.
+
+```bash
+Flags:  D - down        P - in port-channel
+        I - stand-alone s - suspended
+        H - Hot-standby (LACP only)
+        R - Layer3      S - Layer2
+        U - in use      f - failed to allocate aggregator
+        u - unsuitable for bundling
+        w - waiting to be aggregated
+        d - default port
+
+
+Number of channel-groups in use: 3
+Number of aggregators:           3
+
+Group  Port-channel  Protocol    Ports
+------+-------------+-----------+----------------------------------------------
+
+5      Po5(SU)           LACP   Fa0/19(P) Fa0/20(P) Fa0/21(P) 
+10     Po10(SU)           LACP   Fa0/22(P) Fa0/23(P) Fa0/24(P) 
+12     Po12(SU)           PAgP   Fa0/4(P) Fa0/5(P) Fa0/6(P) 
+```
+
+### 6.4. Validación de Conectividad de Extremo a Extremo
+
+**Objetivo:** Verificar que los dispositivos dentro de la misma VLAN pueden comunicarse y que la segmentación entre diferentes VLANs es efectiva.
+
+#### 6.4.1. PING dentro de la misma VLAN
+
+Realizando un ping entre la Laptop RD2 a la PC RD1 con ```ping 192.168.10.1``` se envían exitosamente los 4 paquetes.
+
+```bash
+Pinging 192.168.10.1 with 32 bytes of data:
+
+Reply from 192.168.10.1: bytes=32 time=10ms TTL=128
+Reply from 192.168.10.1: bytes=32 time<1ms TTL=128
+Reply from 192.168.10.1: bytes=32 time=10ms TTL=128
+Reply from 192.168.10.1: bytes=32 time<1ms TTL=128
+
+Ping statistics for 192.168.10.1:
+    Packets: Sent = 4, Received = 4, Lost = 0 (0% loss),
+Approximate round trip times in milli-seconds:
+    Minimum = 0ms, Maximum = 10ms, Average = 5ms
+```
+
+#### 6.4.2. PING entre diferentes VLANs (debe de fallar)
+
+Realizando ping de la misma forma, desde laptop RD2 pero ahora a otro departamento, en este caso IT2 usando ```ping 192.168.30.2```, se nota que hay error (como debe de ser) porque son de distintos departamentos, divididos por la VLAN.
+
+```bash
+Pinging 192.168.30.2 with 32 bytes of data:
+
+Request timed out.
+Request timed out.
+Request timed out.
+Request timed out.
+
+Ping statistics for 192.168.30.2:
+    Packets: Sent = 4, Received = 0, Lost = 4 (100% loss),
+```
+
+### 6.5. Prueba de Resiliencia y Redundancia
+
+**Objetivo:** Validar que el protocolo STP puede reconverger la red y mantener la conectividad en caso de que un enlace principal falle, utilizando los caminos redundantes diseñados.
+
+Se inicio un ping continuo (````ping -t````) entre dos dispositivos en areas de alta redundancia y durante el ping se eliminó manualmente el cable de enlace que estaba siendo usado. Al eliminarse, el ping falló durante un breve periodo de tiempo, pero se recuperó recalculando la topología automáticamente.
+
+![alt text](imgs/e2.png)
+![alt text](imgs/e1.png)
+![alt text](imgs/e3.png)
+
+### 6.6. Conclusión
+
+Las pruebas validan que la comunicación intra-VLAN es funcional en toda la red y que la segmentación lógica entre VLANs es robusta y previene el tráfico no autorizado entre departamentos.
 
 
 
