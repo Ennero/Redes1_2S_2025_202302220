@@ -37,6 +37,7 @@
       - [5.2.5 Switch SW16](#525-switch-sw16)
       - [5.2.6 Switch SW17](#526-switch-sw17)
       - [5.2.7 Conexión entre los Switches](#527-conexión-entre-los-switches)
+      - [5.2.8 Dispositivos finales](#528-dispositivos-finales)
     - [5.3 Infraestructura IT](#53-infraestructura-it)
       - [5.3.1 Switch MSW8](#531-switch-msw8)
       - [5.3.2 Switch19 (Local Transparente)](#532-switch19-local-transparente)
@@ -45,7 +46,8 @@
       - [5.3.5 Switch SW10](#535-switch-sw10)
       - [5.3.6 Switch SW11](#536-switch-sw11)
       - [5.3.7 Switch SW12](#537-switch-sw12)
-      - [5.2.8 Conexión entre los Switches](#528-conexión-entre-los-switches)
+      - [5.3.8 Conexión entre los Switches](#538-conexión-entre-los-switches)
+      - [5.3.9 Dispositivos finales](#539-dispositivos-finales)
     - [5.4 Análisis de Datos](#54-análisis-de-datos)
       - [5.4.1 Switch MSW7](#541-switch-msw7)
       - [5.4.2 Switch SW1](#542-switch-sw1)
@@ -55,13 +57,15 @@
       - [5.4.6 Switch SW5](#546-switch-sw5)
       - [5.4.7 Switch SW6](#547-switch-sw6)
       - [5.4.8 Switch SW7](#548-switch-sw7)
-      - [5.2.9 Conexión entre los Switches](#529-conexión-entre-los-switches)
+      - [5.4.9 Conexión entre los Switches](#549-conexión-entre-los-switches)
+      - [5.4.10 Dispositivos finales](#5410-dispositivos-finales)
     - [5.5 Redacción Digital](#55-redacción-digital)
       - [5.5.1 Switch MSW9](#551-switch-msw9)
       - [5.5.2 Switch SW18](#552-switch-sw18)
       - [5.5.3 Switch SW19](#553-switch-sw19)
       - [5.5.4 Switch SW20](#554-switch-sw20)
       - [5.5.5 Conexiones entre los Switches](#555-conexiones-entre-los-switches)
+      - [5.5.6 Dispositivos finales](#556-dispositivos-finales)
   - [6. Pruebas y validaciones](#6-pruebas-y-validaciones)
   - [7. Presupuesto](#7-presupuesto)
 
@@ -290,7 +294,7 @@ copy running-config startup-config
 
 ##### 5.1.1.1 Conecciones del Servidor con sus switches adyacentes
 
-   Puerto en SERVIDOR | Grupo de Canal | Protocolo | Conexión a Switch |
+   Puerto en SERVIDOR | Grupo de Canal | Protocolo | Conexión a Switch  |
  |--------------------|----------------|-----------|-------------------|
  | FastEthernet 1-3   | Port-channel1  | PAgP      | MSW3, puertos 1-3 |
  | FastEthernet 4-6   | Port-channel2  | PAgP      | MSW4, puertos 4-6 |
@@ -649,12 +653,16 @@ copy running-config startup-config
 
 ##### 5.1.2.7 Conexiones entre los Switches Cliente
 
-   Switch | Puerto en Switch | Protocolo | Conexión a Switch |
- |--------|------------------|-----------|-------------------|
- | MSW4   | FastEthernet 7-9 | PAgP      | MSW5, puertos 7-9 |
- | MSW5   | FastEthernet 10-12 | LACP    | MSW2, puertos 10-12 |
- | MSW3   | FastEthernet 4-6 | PAgP      | MSW6, puertos 4-6 |
- | MSW6   | FastEthernet 22-24 | LACP    | MSW1, puertos 22-24 |
+ | Switch  | Puerto en Switch | Protocolo | Conexión a Switch |
+ |---------|------------------|-----------|-------------------|
+ | MSW4    | FastEthernet 7-9 | PAgP      | MSW5, puertos 7-9 |
+ | MSW5    | FastEthernet 10-12 | LACP    | MSW2, puertos 10-12 |
+ | MSW3    | FastEthernet 4-6 | PAgP      | MSW6, puertos 4-6 |
+ | MSW6    | FastEthernet 22-24 | LACP    | MSW1, puertos 22-24 |
+ | MSW1    | FastEthernet 22-24 | LACP    | MSW6, puertos 22-24 |
+ | MSW2    | FastEthernet 10-12 | LACP    | MSW5, puertos 10-12 |
+ | MSW5    | FastEthernet 7-9 | PAgP      | MSW4, puertos 7-9 |
+ | MSW6    | FastEthernet 4-6 | PAgP      | MSW3, puertos 4-6 |
 
 
 ### 5.2 Gerencia
@@ -894,6 +902,17 @@ copy running-config startup-config
  | SW15   | fa2              | SW16              | fa24               |
  | SW16   | fa1              | SW17              | fa24               |
  | SW14   | fa1              | SW13              | fa24               |
+
+#### 5.2.8 Dispositivos finales
+ | Switch | Puerto en Switch | Dispositivo Final |
+ |--------|------------------|-------------------|
+ | SW15   | fa3              | PC-PT RD8         |
+ | SW14   | fa2              | Laptop-PT S1      |
+ | SW14   | fa3              | PC-PT IT5         |
+ | SW13   | fa1              | PC-PT AD6         |
+ | SW16   | fa3              | Laptop-PT G1      |
+ | SW17   | fa1              | PC-PT AD7         |
+ | SW17   | fa2              | PC-PT IT4         |
 
 ### 5.3 Infraestructura IT
 
@@ -1207,20 +1226,34 @@ end
 copy running-config startup-config
 ```
 
-#### 5.2.8 Conexión entre los Switches
+#### 5.3.8 Conexión entre los Switches
+   Switch   | Puerto en Switch | Conexión a Switch | Puerto en Conexión |
+ |----------|------------------|-------------------|--------------------|
+ | MSW5    | fa1              | MSW8              | fa23               |
+ | MSW4    | fa1              | MSW8              | fa22               |
+ | MSW2    | fa1              | MSW8              | fa24               |
+ | MSW8    | fa1              | SW8               | fa24               |
+ | MSW8    | fa2              | Switch19          | fa24               |
+ | MSW8    | fa3              | SW12              | fa24               |
+ | SW12    | fa1              | SW11              | fa24               |
+ | SW11    | fa1              | SW10              | fa24               |
+ | SW10    | fa1              | SW9               | fa24               |
+ | SW9     | fa1              | SW8               | fa23               |
 
-   Switch | Puerto en Switch | Conexión a Switch | Puerto en Conexión |
- |--------|------------------|-------------------|--------------------|
- | MSW5   | fa1              | MSW8              | fa23               |
- | MSW4   | fa1              | MSW8              | fa22               |
- | MSW2   | fa1              | MSW8              | fa24               |
- | MSW8   | fa1              | SW8               | fa24               |
- | MSW8   | fa2              | SW19              | fa24               |
- | MSW8   | fa3              | SW12              | fa24               |
- | SW12   | fa1              | SW11              | fa24               |
- | SW11   | fa1              | SW10              | fa24               |
- | SW10   | fa1              | SW9               | fa24               |
- | SW9    | fa1              | SW8               | fa23               |
+#### 5.3.9 Dispositivos finales
+ | Switch   | Puerto en Switch | Dispositivo Final |
+ |----------|------------------|-------------------|
+ | Switch19 | fa1              | PC-PT Local1      |
+ | Switch19 | fa2              | Laptop-PT Local2  |
+ | Switch19 | fa3              | PC-PT Local3      |
+ | SW8      | fa1              | Laptop-PT RD7     |
+ | SW8      | fa2              | Laptop-PT IT1     |
+ | SW9      | fa2              | PC-PT AD8         |
+ | SW10     | fa2              | Laptop-PT G5      |
+ | SW10     | fa3              | PC-PT RD6         |
+ | SW11     | fa2              | Laptop-PT IT2     |
+ | SW12     | fa2              | PC-PT S5          |
+ | SW12     | fa3              | PC-PT IT3         |
 
 ### 5.4 Análisis de Datos 
 
@@ -1621,34 +1654,50 @@ copy running-config startup-config
 ```
 
 
-#### 5.2.9 Conexión entre los Switches
+#### 5.4.9 Conexión entre los Switches
+   Switch | Puerto en Switch | Conexión a Switch | Puerto en Conexión |
+ |--------|------------------|-------------------|--------------------|
+ | MSW1   | fa10             | MSW7              | fa24               |
+ | MSW6   | fa10             | MSW7              | fa23               |
+ | MSW3   | fa10             | MSW7              | fa22               |
+ | MSW7   | fa1              | SW1               | fa24               |
+ | MSW7   | fa2              | SW3               | fa24               |
+ | MSW7   | fa3              | SW4               | fa24               |
+ | MSW7   | fa4              | SW5               | fa24               |
+ | MSW7   | fa5              | SW7               | fa24               |
+ | SW1    | fa1              | SW2               | fa24               |
+ | SW1    | fa2              | SW4               | fa23               |
+ | SW1    | fa3              | SW5               | fa23               |
+ | SW1    | fa4              | SW6               | fa24               |
+ | SW2    | fa1              | SW3               | fa23               |
+ | SW2    | fa2              | SW5               | fa22               |
+ | SW2    | fa3              | SW6               | fa23               |
+ | SW2    | fa4              | SW7               | fa23               |
+ | SW3    | fa1              | SW4               | fa22               |
+ | SW3    | fa2              | SW6               | fa22               |
+ | SW3    | fa3              | SW7               | fa22               |
+ | SW4    | fa1              | SW5               | fa21               |
+ | SW4    | fa2              | SW7               | fa21               |
+ | SW5    | fa1              | SW6               | fa21               |
+ | SW6    | fa1              | SW7               | fa20               |
 
-| Switch | Puerto en Switch | Conexión a Switch | Puerto en Conexión |
-|--------|------------------|-------------------|--------------------|
-| MSW1   | fa10             | MSW7              | fa24               |
-| MSW6   | fa10             | MSW7              | fa23               |
-| MSW3   | fa10             | MSW7              | fa22               |
-| MSW7   | fa1              | SW1               | fa24               |
-| MSW7   | fa2              | SW3               | fa24               |
-| MSW7   | fa3              | SW4               | fa24               |
-| MSW7   | fa4              | SW5               | fa24               |
-| MSW7   | fa5              | SW7               | fa24               |
-| SW1    | fa1              | SW2               | fa24               |
-| SW1    | fa2              | SW4               | fa23               |
-| SW1    | fa3              | SW5               | fa23               |
-| SW1    | fa4              | SW6               | fa24               |
-| SW2    | fa1              | SW3               | fa23               |
-| SW2    | fa2              | SW5               | fa22               |
-| SW2    | fa3              | SW6               | fa23               |
-| SW2    | fa4              | SW7               | fa23               |
-| SW3    | fa1              | SW4               | fa22               |
-| SW3    | fa2              | SW6               | fa22               |
-| SW3    | fa3              | SW7               | fa22               |
-| SW4    | fa1              | SW5               | fa21               |
-| SW4    | fa2              | SW7               | fa21               |
-| SW5    | fa1              | SW6               | fa21               |
-| SW6    | fa1              | SW7               | fa20               |
-
+#### 5.4.10 Dispositivos finales
+ | Switch | Puerto en Switch | Dispositivo Final |
+ |--------|------------------|-------------------|
+ | SW1    | fa5              | Laptop-PT AD2     |
+ | SW1    | fa6              | Laptop-PT IT8     |
+ | SW2    | fa5              | PC-PT RD3         |
+ | SW3    | fa4              | Laptop-PT AD5     |
+ | SW3    | fa5              | PC-PT G3          |
+ | SW3    | fa6              | Laptop-PT AD1     |
+ | SW4    | fa3              | PC-PT RD5         |
+ | SW5    | fa2              | Laptop-PT S4      |
+ | SW5    | fa3              | Laptop-PT G4      |
+ | SW6    | fa2              | PC-PT AD4         |
+ | SW6    | fa3              | Laptop-PT RD4     |
+ | SW6    | fa4              | PC-PT AD3         |
+ | SW7    | fa1              | PC-PT IT7         |
+ | SW7    | fa2              | PC-PT RD1         |
 
 ### 5.5 Redacción Digital
 
@@ -1796,16 +1845,25 @@ copy running-config startup-config
 
 ```
 
-
 #### 5.5.5 Conexiones entre los Switches
 
-   Switch | Puerto en Switch | Conexión a Switch | Puerto en Conexión |
- |--------|------------------|-------------------|--------------------|
- | MSW3   | FastEthernet 24  | MSW9              | GigabitEthernet 1  |
- | MSW4   | FastEthernet 24  | MSW9              | GigabitEthernet 2  |
- | SW18   | FastEthernet 2   | MSW9              | FastEthernet 1     |
- | SW18   | FastEthernet 1   | SW20              | FastEthernet 3    |
- | SW19   | FastEthernet 2   | MSW9              | FastEthernet 2     |
+| Switch   | Puerto en Switch   | Conexión a Switch | Puerto en Conexión |
+|----------|--------------------|-------------------|--------------------|
+| MSW3    | FastEthernet 24   | MSW9              | GigabitEthernet 1  |
+| MSW4    | FastEthernet 24   | MSW9              | GigabitEthernet 2  |
+| SW18    | FastEthernet 2    | MSW9              | FastEthernet 1     |
+| SW18    | FastEthernet 1    | SW20              | FastEthernet 3     |
+| SW19    | FastEthernet 2    | MSW9              | FastEthernet 2     |
+
+#### 5.5.6 Dispositivos finales
+
+| Switch   | Puerto en Switch | Dispositivo Final |
+|----------|------------------|-------------------|
+| MSW9    | FastEthernet 3   | PC-PT S3          |
+| SW19    | FastEthernet 1   | Laptop-PT G2      |
+| SW20    | FastEthernet 1   | PC-PT S2          |
+| SW20    | FastEthernet 2   | Laptop-PT RD2     |
+
 
 
 ## 6. Pruebas y validaciones
