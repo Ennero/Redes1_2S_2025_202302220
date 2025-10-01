@@ -27,6 +27,26 @@
     - [5.5 Edificio S12](#55-edificio-s12)
     - [5.6 BACKBONE](#56-backbone)
   - [6. Configuraciones de Dispositivos](#6-configuraciones-de-dispositivos)
+    - [6.1 DIGA](#61-diga)
+      - [6.1.1 Conexiones entre los switches](#611-conexiones-entre-los-switches)
+      - [6.1.2 Conexiones a dispositivos finales](#612-conexiones-a-dispositivos-finales)
+    - [6.2 Biblioteca](#62-biblioteca)
+      - [6.2.1 Conexiones entre los switches](#621-conexiones-entre-los-switches)
+      - [6.2.2 Conexiones a dispositivos finales](#622-conexiones-a-dispositivos-finales)
+    - [6.3 Edificio T4](#63-edificio-t4)
+      - [6.3.1 Conexiones entre los switches](#631-conexiones-entre-los-switches)
+      - [6.3.2 Conexiones a dispositivos finales](#632-conexiones-a-dispositivos-finales)
+    - [6.4 Edificio S11](#64-edificio-s11)
+      - [6.4.1 Conexiones entre los switches](#641-conexiones-entre-los-switches)
+      - [6.4.2 Conexiones a dispositivos finales](#642-conexiones-a-dispositivos-finales)
+    - [6.5 Edificio S12](#65-edificio-s12)
+      - [6.5.1 Conexiones entre los switches](#651-conexiones-entre-los-switches)
+      - [6.5.2 Conexiones a dispositivos finales](#652-conexiones-a-dispositivos-finales)
+    - [6.6 BACKBONE](#66-backbone)
+      - [6.6.1 RIP (Routing Information Protocol)](#661-rip-routing-information-protocol)
+      - [6.6.2 OSPF (Open Shortest Path First)](#662-ospf-open-shortest-path-first)
+      - [6.6.3 EIGRP (Enhances Interior Gateway Routing Protocol)](#663-eigrp-enhances-interior-gateway-routing-protocol)
+      - [6.6.4 Rutas Estáticas](#664-rutas-estáticas)
 
 
 
@@ -147,6 +167,207 @@ Para este edificio se usa VLSM:
 
 
 ## 6. Configuraciones de Dispositivos
+
+### 6.1 DIGA
+
+
+#### 6.1.1 Conexiones entre los switches
+| Switch/Router | Puerto1 | Switch/Router2 | Puerto2 |
+|--------------|---------|---------------|---------|
+| SW6          | fa4     | SW5           | fa22    |
+| SW5          | fa3     | SW4           | fa22    |
+| SW4          | fa3     | SW3           | fa23    |
+| MS2          | fa1     | SW6           | fa24    |
+| MS2          | fa2     | SW5           | fa24    |
+| MS2          | fa3     | SW4           | fa24    |
+| MS1          | fa1     | SW5           | fa23    |
+| MS1          | fa2     | SW4           | fa23    |
+| MS1          | fa3     | SW3           | fa24    |
+| firewall1    | gi1     | MS2           | fa24    |
+| firewall1    | gi2     | MS1           | fa24    |
+
+
+#### 6.1.2 Conexiones a dispositivos finales
+
+| Switch/Router | Puerto en Switch | Dispositivo Final |
+|--------------|------------------|-------------------|
+| SW6          | fa1              | vigilancia2       |
+| SW6          | fa2              | vigilancia3       |
+| SW6          | fa3              | admin5            |
+| SW5          | fa1              | admin4            |
+| SW5          | fa2              | admin3            |
+| SW4          | fa1              | admin2            |
+| SW4          | fa2              | admin1            |
+| SW3          | fa1              | admin Server      |
+| SW3          | fa2              | estudiantes Server|
+| SW3          | fa3              | docentes Server   |
+
+
+
+### 6.2 Biblioteca
+
+
+#### 6.2.1 Conexiones entre los switches
+| Switch/Router | Puerto1 | Switch/Router2 | Puerto2 |
+|--------------|---------|---------------|---------|
+| MS0          | fa1     | SW0           | fa24    |
+| MS0          | fa2     | Switch6       | fa24    |
+| MS0          | fa3     | SW1           | fa24    |
+| R1           | gi0     | MS0           | fa24    |
+| R0           | gi0     | MS0           | fa23    |
+| firewall2    | gi1     | R1            | gi1     |
+| firewall2    | gi2     | R0            | gi1     |
+
+
+
+#### 6.2.2 Conexiones a dispositivos finales
+
+| Switch/Router | Puerto en Switch | Dispositivo Final |
+|--------------|------------------|-------------------|
+| SW0          | fa1              | vigilancia1       |
+| SW0          | fa2              | biblioteca3        |
+| Switch6      | fa1              | estudiantes3      |
+| Switch6      | fa2              | biblioteca1        |
+| SW1          | fa1              | estudiantes1      |
+| SW1          | fa2              | estudiantes2      |
+
+
+
+### 6.3 Edificio T4
+
+
+
+#### 6.3.1 Conexiones entre los switches
+
+| Switch/Router | Puerto1 | Switch/Router2 | Puerto2 |
+|--------------|---------|---------------|---------|
+| SW9          | fa3     | SW8           | fa23    |
+| SW8          | fa3     | SW7           | fa23    |
+| MS5          | fa1     | SW9           | fa24    |
+| MS5          | fa2     | SW8           | fa24    |
+| MS5          | fa3     | SW7           | fa24    |
+| firewall3    | gi1     | MS5           | fa24    |
+
+#### 6.3.2 Conexiones a dispositivos finales
+
+| Switch/Router | Puerto en Switch | Dispositivo Final |
+|--------------|------------------|-------------------|
+| SW9          | fa1              | vigilancia4       |
+| SW9          | fa2              | docentes2         |
+| SW8          | fa1              | estudiantes10     |
+| SW8          | fa2              | admin6            |
+| SW7          | fa1              | biblioteca5        |
+| SW7          | fa2              | biblioteca4        |
+
+
+
+
+### 6.4 Edificio S11
+
+
+
+#### 6.4.1 Conexiones entre los switches
+| Switch/Router | Puerto1 | Switch/Router2 | Puerto2 |
+|--------------|---------|---------------|---------|
+| SW10         | fa3     | SW11          | fa22    |
+| SW11         | fa3     | SW12          | fa24    |
+| R10          | gi0     | SW1           | fa24    |
+| R11          | gi0     | MS0           | fa23    |
+| firewall4    | gi1     | R10           | gi1     |
+| firewall4    | gi2     | R11           | gi1     |
+
+
+
+#### 6.4.2 Conexiones a dispositivos finales
+| Switch/Router | Puerto en Switch | Dispositivo Final |
+|--------------|------------------|-------------------|
+| SW10         | fa1              | admin7            |
+| SW10         | fa2              | docentes3         |
+| SW11         | fa1              | docentes4         |
+| SW11         | fa2              | estudiantes4      |
+| SW12         | fa1              | estudiantes5      |
+| SW12         | fa2              | vigilancia5       |
+
+
+
+
+### 6.5 Edificio S12
+
+
+#### 6.5.1 Conexiones entre los switches
+
+| Switch/Router | Puerto1 | Switch/Router2 | Puerto2 |
+|--------------|---------|---------------|---------|
+| SW13         | fa1     | SW15          | fa24    |
+| SW13         | fa2     | SW16          | fa24    |
+| SW13         | fa3     | SW17          | fa24    |
+| SW14         | fa1     | SW15          | fa23    |
+| SW14         | fa2     | SW16          | fa23    |
+| SW14         | fa3     | SW17          | fa23    |
+| MS9          | fa1     | SW13          | fa24    |
+| MS9          | fa2     | SW14          | fa24    |
+| MS7          | fa1     | MS9           | fa24    |
+| MS8          | fa1     | MS9           | fa23    |
+| firewall5    | gi1     | MS7           | fa24    |
+| firewall5    | gi2     | MS8           | fa24    |
+
+
+#### 6.5.2 Conexiones a dispositivos finales
+| Switch/Router | Puerto en Switch | Dispositivo Final |
+|--------------|------------------|-------------------|
+| SW15         | fa1              | vigilancia6       |
+| SW15         | fa2              | estudiantes7      |
+| SW16         | fa1              | docentes6         |
+| SW16         | fa2              | estudiantes6      |
+| SW17         | fa1              | docentes5         |
+| SW17         | fa2              | admin8            |
+
+
+
+### 6.6 BACKBONE
+
+
+#### 6.6.1 RIP (Routing Information Protocol)
+| Switch/Router (DCE) | Puerto1 | Switch/Router2 | Puerto2 |
+|-------------------|---------|---------------|---------|
+| R3                | gi0     | firewall1     | gi8     |
+| R3                | gi1     | firewall2     | gi8     |
+| R4                | serial0 | R3            | serial0 |
+| R4                | serial1 | R2            | serial1 |
+| R2                | serial1 | R3            | serial1 |
+| R5                | gi0     | R4            | gi1     |
+
+
+
+#### 6.6.2 OSPF (Open Shortest Path First)
+| Switch/Router | Puerto1 | Switch/Router2 | Puerto2 |
+|--------------|---------|---------------|---------|
+| R7           | gi0     | R8            | g1      |
+| R8           | g0      | R9            | gi1     |
+| R9           | fa6     | firewall5     | gi8     |
+| R9           | fa7     | firewall4     | gi8     |
+
+
+#### 6.6.3 EIGRP (Enhances Interior Gateway Routing Protocol)
+| Switch/Router | Puerto1 | Switch/Router2 | Puerto2 |
+|--------------|---------|---------------|---------|
+| MS4          | fa1-3   | MS3           | fa1-3   |
+| MS4          | fa4-6   | MS6           | fa4-6   |
+| MS4          | gi1     | R6            | gi1     |
+| MS3          | fa7-9   | MS6           | fa7-9   |
+| MS3          | gi1     | R5            | gi1     |
+| MS6          | gi1     | R7            | gi1     |
+
+
+
+#### 6.6.4 Rutas Estáticas
+
+| Switch/Router | Puerto1 | Switch/Router2 | Puerto2 |
+|--------------|---------|---------------|---------|
+| R6           | gi0     | firewall4     | gi8     |
+
+
+
 
 
 
