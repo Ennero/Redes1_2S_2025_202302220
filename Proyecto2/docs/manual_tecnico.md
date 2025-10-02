@@ -38,8 +38,18 @@
     - [5.6 BACKBONE](#56-backbone)
   - [6. Configuraciones de Dispositivos](#6-configuraciones-de-dispositivos)
     - [6.1 DIGA](#61-diga)
-      - [6.1.1 Conexiones entre los switches](#611-conexiones-entre-los-switches)
-      - [6.1.2 Conexiones a dispositivos finales](#612-conexiones-a-dispositivos-finales)
+      - [6.1.1 Configuración Switches](#611-configuración-switches)
+        - [6.1.1.1 SW3](#6111-sw3)
+        - [6.1.1.2 SW4](#6112-sw4)
+        - [6.1.1.2 SW5 (Servidor vtp de esta área)](#6112-sw5-servidor-vtp-de-esta-área)
+        - [6.1.1.2 SW6](#6112-sw6)
+      - [6.1.2 Configuración Multiswitches](#612-configuración-multiswitches)
+        - [6.1.2.1 MS1](#6121-ms1)
+        - [6.1.2.2 MS2](#6122-ms2)
+      - [6.1.3 Configuración Firewall](#613-configuración-firewall)
+        - [6.1.3.1 firewal1](#6131-firewal1)
+      - [6.1.4 Conexiones entre los switches](#614-conexiones-entre-los-switches)
+      - [6.1.5 Conexiones a dispositivos finales](#615-conexiones-a-dispositivos-finales)
     - [6.2 Biblioteca](#62-biblioteca)
       - [6.2.1 Conexiones entre los switches](#621-conexiones-entre-los-switches)
       - [6.2.2 Conexiones a dispositivos finales](#622-conexiones-a-dispositivos-finales)
@@ -341,13 +351,296 @@ Para este edificio se usa VLSM:
 | 2               | R3            | firewall2     | 10.0.0.64  | 255.255.255.252   | 0.0.0.3    | 10.0.0.65                   | 10.0.0.66                    | 10.0.0.67    | 2                | 2              | 0           |
 
 
-
 ## 6. Configuraciones de Dispositivos
 
 ### 6.1 DIGA
 
 
-#### 6.1.1 Conexiones entre los switches
+#### 6.1.1 Configuración Switches
+
+##### 6.1.1.1 SW3
+```bash
+enable
+configure terminal
+
+! 1. Configuración Básica y VTP
+hostname SW3
+vtp mode client
+vtp domain #202302220
+vtp password usac2025
+
+! 2. Configuración de Puertos Troncales
+interface FastEthernet0/23
+ description Enlace_a_SW4
+ switchport mode trunk
+ exit
+interface FastEthernet0/24
+ description Enlace_a_MS1
+ switchport mode trunk
+ exit
+
+! 3. Configuración de Puertos de Acceso
+interface FastEthernet0/1
+ description admin_Server
+ switchport mode access
+ switchport access vlan 42
+ spanning-tree portfast
+ exit
+interface FastEthernet0/2
+ description estudiantes_Server
+ switchport mode access
+ switchport access vlan 12
+ spanning-tree portfast
+ exit
+interface FastEthernet0/3
+ description docentes_Server
+ switchport mode access
+ switchport access vlan 22
+ spanning-tree portfast
+ exit
+
+end
+write memory
+```
+
+##### 6.1.1.2 SW4
+```bash
+enable
+configure terminal
+
+! 1. Configuración Básica y VTP
+hostname SW4
+vtp mode client
+vtp domain #202302220
+vtp password usac2025
+
+! 2. Configuración de Puertos Troncales
+interface FastEthernet0/22
+ description Enlace_a_SW5
+ switchport mode trunk
+ exit
+interface FastEthernet0/3
+ description Enlace_a_SW3
+ switchport mode trunk
+ exit
+interface FastEthernet0/24
+ description Enlace_a_MS2
+ switchport mode trunk
+ exit
+interface FastEthernet0/23
+ description Enlace_a_MS1
+ switchport mode trunk
+ exit
+
+! 3. Configuración de Puertos de Acceso
+interface FastEthernet0/1
+ description PC_admin2
+ switchport mode access
+ switchport access vlan 42
+ spanning-tree portfast
+ exit
+interface FastEthernet0/2
+ description PC_admin1
+ switchport mode access
+ switchport access vlan 42
+ spanning-tree portfast
+ exit
+
+end
+write memory
+```
+
+##### 6.1.1.2 SW5 (Servidor vtp de esta área)
+```bash
+enable
+configure terminal
+
+! 1. Configuración Básica y VTP
+hostname SW5
+vtp mode server
+vtp domain #202302220
+vtp password usac2025
+
+! 2. Creación de VLANs
+vlan 12
+ name Estudiantes
+vlan 22
+ name Docentes
+vlan 32
+ name Vigilancia
+vlan 42
+ name Admin
+
+! 3. Configuración de Puertos Troncales
+interface FastEthernet0/22
+ description Enlace_a_SW6
+ switchport mode trunk
+ exit
+interface FastEthernet0/3
+ description Enlace_a_SW4
+ switchport mode trunk
+ exit
+interface FastEthernet0/24
+ description Enlace_a_MS2
+ switchport mode trunk
+ exit
+interface FastEthernet0/23
+ description Enlace_a_MS1
+ switchport mode trunk
+ exit
+
+! 4. Configuración de Puertos de Acceso
+interface FastEthernet0/1
+ description PC_admin4
+ switchport mode access
+ switchport access vlan 42
+ spanning-tree portfast
+ exit
+interface FastEthernet0/2
+ description PC_admin3
+ switchport mode access
+ switchport access vlan 42
+ spanning-tree portfast
+ exit
+
+end
+write memory
+```
+
+##### 6.1.1.2 SW6
+```bash
+enable
+configure terminal
+
+! 1. Configuración Básica y VTP
+hostname SW6
+vtp mode client
+vtp domain #202302220
+vtp password usac2025
+
+! 2. Configuración de Puertos Troncales
+interface FastEthernet0/4
+ description Enlace_a_SW5
+ switchport mode trunk
+ exit
+interface FastEthernet0/24
+ description Enlace_a_MS2
+ switchport mode trunk
+ exit
+
+! 3. Configuración de Puertos de Acceso
+interface FastEthernet0/1
+ description PC_vigilancia2
+ switchport mode access
+ switchport access vlan 32
+ spanning-tree portfast
+ exit
+interface FastEthernet0/2
+ description PC_vigilancia3
+ switchport mode access
+ switchport access vlan 32
+ spanning-tree portfast
+ exit
+interface FastEthernet0/3
+ description PC_admin5
+ switchport mode access
+ switchport access vlan 42
+ spanning-tree portfast
+ exit
+
+end
+write memory
+```
+
+
+
+#### 6.1.2 Configuración Multiswitches
+
+##### 6.1.2.1 MS1
+```bash
+enable
+configure terminal
+
+! 1. Habilitar Enrutamiento de Capa 3
+ip routing
+
+! 2. Configuración Básica y VTP
+hostname MS1
+vtp mode client
+vtp domain #202302220
+vtp password usac2025
+
+! 3. Configuración de Puertos Troncales
+interface FastEthernet0/1
+ description Enlace_a_SW5
+ switchport mode trunk
+ exit
+interface FastEthernet0/2
+ description Enlace_a_SW4
+ switchport mode trunk
+ exit
+interface FastEthernet0/3
+ description Enlace_a_SW3
+ switchport mode trunk
+ exit
+
+! 4. Puerto Enrutado hacia el Firewall
+interface FastEthernet0/24
+ description Enlace_a_Firewall1
+ no switchport
+ ip address 192.168.20.193 255.255.255.252 ! IP para el enlace
+ no shutdown
+ exit
+
+! 5. Configuración de SVIs y HSRP (ACTIVO)
+interface Vlan12
+ ip address 192.168.20.173 255.255.255.248
+ standby 4 ip 192.168.20.174
+ standby 4 priority 105
+ standby 4 preempt
+ exit
+interface Vlan22
+ ip address 192.168.20.165 255.255.255.248
+ standby 3 ip 192.168.20.166
+ standby 3 priority 105
+ standby 3 preempt
+ exit
+interface Vlan32
+ ip address 192.168.20.157 255.255.255.224
+ standby 2 ip 192.168.20.158
+ standby 2 priority 105
+ standby 2 preempt
+ exit
+interface Vlan42
+ ip address 192.168.20.125 255.255.255.128
+ standby 1 ip 192.168.20.126
+ standby 1 priority 105
+ standby 1 preempt
+ exit
+
+end
+write memory
+```
+
+##### 6.1.2.2 MS2
+
+```bash
+
+```
+
+
+#### 6.1.3 Configuración Firewall
+
+##### 6.1.3.1 firewal1
+```bash
+
+```
+
+
+
+
+
+#### 6.1.4 Conexiones entre los switches
 | Switch/Router | Puerto1 | Switch/Router2 | Puerto2 |
 |--------------|---------|---------------|---------|
 | SW6          | fa4     | SW5           | fa22    |
@@ -363,7 +656,7 @@ Para este edificio se usa VLSM:
 | firewall1    | gi2     | MS1           | fa24    |
 
 
-#### 6.1.2 Conexiones a dispositivos finales
+#### 6.1.5 Conexiones a dispositivos finales
 
 | Switch/Router | Puerto en Switch | Dispositivo Final |
 |--------------|------------------|-------------------|
