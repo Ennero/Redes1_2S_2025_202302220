@@ -23,7 +23,7 @@
       - [4.1.3. Edificio T4](#413-edificio-t4)
       - [4.1.4 Edificio S11](#414-edificio-s11)
       - [4.1.5 Edificio S12](#415-edificio-s12)
-    - [4.2 Direcciones de puertos de enlace](#42-direcciones-de-puertos-de-enlace)
+    - [4.2 Direcciones de Puertas de enlace](#42-direcciones-de-puertas-de-enlace)
       - [4.2.1 DIGA](#421-diga)
       - [4.2.2 Biblioteca](#422-biblioteca)
       - [4.2.3. Edificio T4](#423-edificio-t4)
@@ -47,7 +47,7 @@
         - [6.1.2.1 MS1](#6121-ms1)
         - [6.1.2.2 MS2](#6122-ms2)
       - [6.1.3 Configuración Firewall](#613-configuración-firewall)
-        - [6.1.3.1 firewal1](#6131-firewal1)
+        - [6.1.3.1 firewaLl1](#6131-firewall1)
       - [6.1.4 Conexiones entre los switches](#614-conexiones-entre-los-switches)
       - [6.1.5 Conexiones a dispositivos finales](#615-conexiones-a-dispositivos-finales)
     - [6.2 Biblioteca](#62-biblioteca)
@@ -125,99 +125,89 @@ A continuación, se presenta el diagrama de la topología de red implementada en
 
 ### 4.1 Direcciones de dispositivos
 
-| Nombre               | VLAN | Dirección IP     | Máscara de Red   | Puerto de Enlace  |
-|----------------------|------|------------------|------------------|-------------------|
-| estudiantes1         | 12   | 192.158.20.1     | 255.255.255.128  | 192.158.20.126    |
-| estudiantes2         | 12   | 192.158.20.2     | 255.255.255.128  | 192.158.20.126    |
-| estudiantes3         | 12   | 192.158.20.3     | 255.255.255.128  | 192.158.20.126    |
-| estudiantes4         | 12   | 172.148.20.1     | 255.255.255.128  | 172.148.20.126    |
-| estudiantes5         | 12   | 172.148.20.2     | 255.255.255.128  | 172.148.20.126    |
-| estudiantes6         | 12   | 192.128.20.1     | 255.255.255.128  | 192.128.20.126    |
-| estudiantes7         | 12   | 192.128.20.2     | 255.255.255.128  | 192.128.20.126    |
-| estudiantes10        | 12   | 172.16.20.129    | 255.255.255.192  | 172.16.20.190     |
-| estudiantes Server   | 12   | 192.168.20.169  | 255.255.255.248  | 192.168.20.174    |
-| docentes2             | 22   | 172.16.20.241    | 255.255.255.240  | 172.16.20.254     |
-| docentes3             | 22   | 172.148.20.193   | 255.255.255.224  | 172.148.20.222    |
-| docentes4             | 22   | 172.148.20.194   | 255.255.255.224  | 172.148.20.222    |
-| docentes5             | 22   | 192.128.20.129   | 255.255.255.192  | 192.128.20.190    |
-| docentes6             | 22   | 192.128.20.130   | 255.255.255.192  | 192.128.20.190    |
-| docentes Server       | 22   | 192.168.20.161  | 255.255.255.248  | 192.168.20.166    |
-| vigilancia1          | 32   | 192.158.20.129   | 255.255.255.224  | 192.168.20.158    |
-| vigilancia2          | 32   | 192.128.20.129   | 255.255.255.224  | 192.168.20.158    |
-| vigilancia3          | 32   | 192.128.20.130   | 255.255.255.224  | 192.168.20.158    |
-| vigilancia4          | 32   | 172.16.20.193    | 255.255.255.224  | 172.16.20.222     |
-| vigilancia5          | 32   | 172.148.20.225   | 255.255.255.240  | 172.148.20.238    |
-| vigilancia6          | 32   | 192.128.20.225   | 255.255.255.224  | 192.128.20.254    |
-| admin1               | 42   | 192.168.20.1     | 255.255.255.128  | 192.168.20.126    |
-| admin2               | 42   | 192.168.20.2     | 255.255.255.128  | 192.168.20.126    |
-| admin3               | 42   | 192.168.20.3     | 255.255.255.128  | 192.168.20.126    |
-| admin4               | 42   | 192.168.20.4     | 255.255.255.128  | 192.168.20.126    |
-| admin5               | 42   | 192.168.20.5     | 255.255.255.128  | 192.168.20.126    |
-| admin6               | 42   | 172.16.20.1      | 255.255.255.128  | 172.16.20.126     |
-| admin8               | 42   | 192.128.20.193   | 255.255.255.224  | 192.128.20.222    |
-| admin7               | 42   | 172.148.20.129   | 255.255.255.192  | 172.148.20.190    |
-| admin Server         | 42   | 192.168.20.6     | 255.255.255.128  | 192.168.20.126    |
-| biblioteca1          | 52   | 192.158.20.161   | 255.255.255.224  | 192.158.20.190    |
-| biblioteca3          | 52   | 192.158.20.162   | 255.255.255.224  | 192.158.20.190    |
-| biblioteca4          | 52   | 172.16.20.225    | 255.255.255.240  | 172.16.20.238     |
-| biblioteca5          | 52   | 172.16.20.225    | 255.255.255.240  | 172.16.20.238     |
-
-
 
 
 
 #### 4.1.1 DIGA
-| Nombre              | VLAN | Dirección IP     | Máscara de Red   | Puerto de Enlace  |
-|---------------------|------|------------------|------------------|-------------------|
-| estudiantes Server  | 12   | 192.168.20.169   | 255.255.255.248  | 192.168.20.174    |
-| docentes Server     | 22   | 192.168.20.161   | 255.255.255.248  | 192.168.20.166    |
-| vigilancia2         | 32   | 192.128.20.129   | 255.255.255.224  | 192.168.20.158    |
-| vigilancia3         | 32   | 192.128.20.130   | 255.255.255.224  | 192.168.20.158    |
-| admin1              | 42   | 192.168.20.1     | 255.255.255.128  | 192.168.20.126    |
-| admin2              | 42   | 192.168.20.2     | 255.255.255.128  | 192.168.20.126    |
-| admin3              | 42   | 192.168.20.3     | 255.255.255.128  | 192.168.20.126    |
-| admin4              | 42   | 192.168.20.4     | 255.255.255.128  | 192.168.20.126    |
-| admin5              | 42   | 192.168.20.5     | 255.255.255.128  | 192.168.20.126    |
-| admin Server        | 42   | 192.168.20.6     | 255.255.255.128  | 192.168.20.126    |
+| Nombre                    | VLAN | Dirección IP     | Máscara de Red   | Puerta de Enlace  |
+|---------------------------|------|------------------|------------------|-------------------|
+| estudiantes Server        | 12   | 192.168.20.169   | 255.255.255.248  | 192.168.20.174    |
+| docentes Server           | 22   | 192.168.20.161   | 255.255.255.248  | 192.168.20.166    |
+| vigilancia2               | 32   | 192.168.20.129   | 255.255.255.224  | 192.168.20.158    |
+| vigilancia3               | 32   | 192.168.20.130   | 255.255.255.224  | 192.168.20.158    |
+| admin1                    | 42   | 192.168.20.1     | 255.255.255.128  | 192.168.20.126    |
+| admin2                    | 42   | 192.168.20.2     | 255.255.255.128  | 192.168.20.126    |
+| admin3                    | 42   | 192.168.20.3     | 255.255.255.128  | 192.168.20.126    |
+| admin4                    | 42   | 192.168.20.4     | 255.255.255.128  | 192.168.20.126    |
+| admin5                    | 42   | 192.168.20.5     | 255.255.255.128  | 192.168.20.126    |
+| admin Server              | 42   | 192.168.20.6     | 255.255.255.128  | 192.168.20.126    |
+| SVI MS1 (DIGA)            | 12   | 192.168.20.173   | 255.255.255.248  | 192.168.20.174    |
+| SVI MS2 (DIGA)            | 12   | 192.168.20.172   | 255.255.255.248  | 192.168.20.174    |
+| SVI MS1 (DIGA)            | 22   | 192.168.20.165   | 255.255.255.248  | 192.168.20.166    |
+| SVI MS2 (DIGA)            | 22   | 192.168.20.164   | 255.255.255.248  | 192.168.20.166    |
+| SVI MS1 (DIGA)            | 32   | 192.168.20.157   | 255.255.255.224  | 192.168.20.158    |
+| SVI MS2 (DIGA)            | 32   | 192.168.20.156   | 255.255.255.224  | 192.168.20.158    |
+| SVI MS1 (DIGA)            | 42   | 192.168.20.125   | 255.255.255.128  | 192.168.20.126    |
+| SVI MS2 (DIGA)            | 42   | 192.168.20.124   | 255.255.255.128  | 192.168.20.126    |
+
+
 
 #### 4.1.2 Biblioteca
 
-| Nombre         | VLAN | Dirección IP    | Máscara de Red   | Puerto de Enlace  |
-|----------------|------|-----------------|------------------|-------------------|
-| estudiantes1   | 12   | 192.158.20.1    | 255.255.255.128  | 192.158.20.126    |
-| estudiantes2   | 12   | 192.158.20.2    | 255.255.255.128  | 192.158.20.126    |
-| estudiantes3   | 12   | 192.158.20.3    | 255.255.255.128  | 192.158.20.126    |
-| vigilancia1    | 32   | 192.158.20.129  | 255.255.255.224  | 192.168.20.158    |
-| biblioteca1    | 52   | 192.158.20.161  | 255.255.255.224  | 192.158.20.190    |
-| biblioteca3    | 52   | 192.158.20.162  | 255.255.255.224  | 192.158.20.190    |
+| Nombre                        | VLAN | Dirección IP    | Máscara de Red   | Puerta de Enlace  |
+|-------------------------------|------|-----------------|------------------|-------------------|
+| estudiantes1                  | 12   | 192.158.20.1    | 255.255.255.128  | 192.158.20.126    |
+| estudiantes2                  | 12   | 192.158.20.2    | 255.255.255.128  | 192.158.20.126    |
+| estudiantes3                  | 12   | 192.158.20.3    | 255.255.255.128  | 192.158.20.126    |
+| vigilancia1                   | 32   | 192.158.20.129  | 255.255.255.224  | 192.158.20.158    |
+| biblioteca1                   | 52   | 192.158.20.161  | 255.255.255.224  | 192.158.20.190    |
+| biblioteca3                   | 52   | 192.158.20.162  | 255.255.255.224  | 192.158.20.190    |
+| Sub-interfaz R0 (biblioteca)  | 12   | 192.158.20.125   | 255.255.255.128  | 192.158.20.126    |
+| Sub-interfaz R1 (biblioteca)  | 12   | 192.158.20.124   | 255.255.255.128  | 192.158.20.126    |
+| Sub-interfaz R0 (biblioteca)  | 32   | 192.158.20.157   | 255.255.255.224  | 192.158.20.158    |
+| Sub-interfaz R1 (biblioteca)  | 32   | 192.158.20.156   | 255.255.255.224  | 192.158.20.158    |
+| Sub-interfaz R0 (biblioteca)  | 42   | 192.158.20.189   | 255.255.255.224  | 192.158.20.190    |
+| Sub-interfaz R1 (biblioteca)  | 42   | 192.158.20.188   | 255.255.255.224  | 192.158.20.190    |
 
 
 #### 4.1.3. Edificio T4
-| Nombre           | VLAN | Dirección IP    | Máscara de Red   | Puerto de Enlace |
+| Nombre           | VLAN | Dirección IP    | Máscara de Red   | Puerta de Enlace |
 |------------------|------|-----------------|------------------|------------------|
 | estudiantes10    | 12   | 172.16.20.129   | 255.255.255.192  | 172.16.20.190    |
 | docentes2        | 22   | 172.16.20.241   | 255.255.255.240  | 172.16.20.254    |
 | vigilancia4      | 32   | 172.16.20.193   | 255.255.255.224  | 172.16.20.222    |
 | admin6           | 42   | 172.16.20.1     | 255.255.255.128  | 172.16.20.126    |
 | biblioteca4      | 52   | 172.16.20.225   | 255.255.255.240  | 172.16.20.238    |
-| biblioteca5      | 52   | 172.16.20.225   | 255.255.255.240  | 172.16.20.238    |
+| biblioteca5      | 52   | 172.16.20.226   | 255.255.255.240  | 172.16.20.238    |
+| SVI MS5 (T4)     | 12   | 172.16.20.189   | 255.255.255.192  | 172.16.20.190    |
+| SVI MS5 (T4)     | 22   | 172.16.20.253   | 255.255.255.240  | 172.16.20.254    |
+| SVI MS5 (T4)     | 32   | 172.16.20.221   | 255.255.255.224  | 172.16.20.222    |
+| SVI MS5 (T4)     | 42   | 172.16.20.125   | 255.255.255.128  | 172.16.20.126    |
+| SVI MS5 (T4)     | 52   | 172.16.20.237   | 255.255.255.240  | 172.16.20.238    |
 
 
 
 #### 4.1.4 Edificio S11
-| Nombre           | VLAN | Dirección IP    | Máscara de Red   | Puerto de Enlace |
-|------------------|------|-----------------|------------------|------------------|
-| estudiantes10    | 12   | 172.16.20.129   | 255.255.255.192  | 172.16.20.190    |
-| docentes2        | 22   | 172.16.20.241   | 255.255.255.240  | 172.16.20.254    |
-| vigilancia4      | 32   | 172.16.20.193   | 255.255.255.224  | 172.16.20.222    |
-| admin6           | 42   | 172.16.20.1     | 255.255.255.128  | 172.16.20.126    |
-| biblioteca4      | 52   | 172.16.20.225   | 255.255.255.240  | 172.16.20.238    |
-| biblioteca5      | 52   | 172.16.20.225   | 255.255.255.240  | 172.16.20.238    |
-
+| Nombre                    | VLAN | Dirección IP    | Máscara de Red   | Puerta de Enlace |
+|---------------------------|------|-----------------|------------------|------------------|
+| estudiantes4              | 12   | 172.148.20.1    | 255.255.255.128  | 172.148.20.126    |
+| estudiantes5              | 12   | 172.148.20.2    | 255.255.255.128  | 172.148.20.126    |
+| docentes3                 | 22   | 172.148.20.193  | 255.255.255.224  | 172.148.20.222    |
+| docentes4                 | 22   | 172.148.20.194  | 255.255.255.224  | 172.148.20.222    |
+| vigilancia5               | 32   | 172.148.20.225  | 255.255.255.240  | 172.148.20.238    |
+| admin7                    | 52   | 172.148.20.129  | 255.255.255.192  | 172.148.20.190    |
+| Sub-interfaz R10 (S11)    | 12   | 172.148.20.125  | 255.255.255.128  | 172.148.20.126    |
+| Sub-interfaz R11 (S11)    | 12   | 172.148.20.124  | 255.255.255.128  | 172.148.20.126    |
+| Sub-interfaz R10 (S11)    | 22   | 172.148.20.221  | 255.255.255.224  | 172.148.20.222    |
+| Sub-interfaz R11 (S11)    | 22   | 172.148.20.220  | 255.255.255.224  | 172.148.20.222    |
+| Sub-interfaz R10 (S11)    | 32   | 172.148.20.237  | 255.255.255.240  | 172.148.20.238    |
+| Sub-interfaz R11 (S11)    | 32   | 172.148.20.236  | 255.255.255.240  | 172.148.20.238    |
+| Sub-interfaz R10 (S11)    | 52   | 172.148.20.189  | 255.255.255.192  | 172.148.20.190    |
+| Sub-interfaz R11 (S11)    | 52   | 172.148.20.188  | 255.255.255.192  | 172.148.20.190    |
 
 
 #### 4.1.5 Edificio S12
-| Nombre         | VLAN | Dirección IP    | Máscara de Red   | Puerto de Enlace  |
+| Nombre         | VLAN | Dirección IP    | Máscara de Red   | Puerta de Enlace  |
 |----------------|------|-----------------|------------------|-------------------|
 | estudiantes6   | 12   | 192.128.20.1    | 255.255.255.128  | 192.128.20.126    |
 | estudiantes7   | 12   | 192.128.20.2    | 255.255.255.128  | 192.128.20.126    |
@@ -227,7 +217,7 @@ A continuación, se presenta el diagrama de la topología de red implementada en
 | admin8         | 42   | 192.128.20.193  | 255.255.255.224  | 192.128.20.222    |
 
 
-### 4.2 Direcciones de puertos de enlace
+### 4.2 Direcciones de Puertas de enlace
 
 #### 4.2.1 DIGA
 | Nombre      | VLAN | Dirección IP    | Máscara de Red   |
@@ -331,24 +321,34 @@ Para este edificio se usa VLSM:
 ### 5.6 BACKBONE
 
 | HOSTS NECESARIOS | Dispositivo A | Dispositivo B | ID RED     | MASCARA           | WILDCARD   | PRIMER HOST (Dispositivo A) | ULTIMO HOST (Dispositivo B) | BROADCAST    | HOST. UTILIZABLES | HOST UTILIZADOS | DESPERDICIO |
-|-----------------|---------------|---------------|------------|-------------------|------------|-----------------------------|-----------------------------|--------------|------------------|----------------|-------------|
-| 2               | firewall3     | R6            | 10.0.0.0   | 255.255.255.252   | 0.0.0.3    | 10.0.0.1                    | 10.0.0.2                     | 10.0.0.3     | 2                | 2              | 0           |
-| 2               | R6            | MS4           | 10.0.0.4   | 255.255.255.252   | 0.0.0.3    | 10.0.0.5                    | 10.0.0.6                     | 10.0.0.7     | 2                | 2              | 0           |
-| 2               | MS4           | MS6           | 10.0.0.8   | 255.255.255.252   | 0.0.0.3    | 10.0.0.9                    | 10.0.0.10                    | 10.0.0.11    | 2                | 2              | 0           |
-| 2               | MS6           | R7            | 10.0.0.12  | 255.255.255.252   | 0.0.0.3    | 10.0.0.13                   | 10.0.0.14                    | 10.0.0.15    | 2                | 2              | 0           |
-| 2               | R7            | R8            | 10.0.0.16  | 255.255.255.252   | 0.0.0.3    | 10.0.0.17                   | 10.0.0.18                    | 10.0.0.19    | 2                | 2              | 0           |
-| 2               | R8            | R9            | 10.0.0.20  | 255.255.255.252   | 0.0.0.3    | 10.0.0.21                   | 10.0.0.22                    | 10.0.0.23    | 2                | 2              | 0           |
-| 2               | R9            | firewall5     | 10.0.0.24  | 255.255.255.252   | 0.0.0.3    | 10.0.0.25                   | 10.0.0.26                    | 10.0.0.27    | 2                | 2              | 0           |
-| 2               | R9            | firewall4     | 10.0.0.28  | 255.255.255.252   | 0.0.0.3    | 10.0.0.29                   | 10.0.0.30                    | 10.0.0.31    | 2                | 2              | 0           |
-| 2               | MS6           | MS3           | 10.0.0.32  | 255.255.255.252   | 0.0.0.3    | 10.0.0.33                   | 10.0.0.34                    | 10.0.0.35    | 2                | 2              | 0           |
-| 2               | MS4           | MS3           | 10.0.0.36  | 255.255.255.252   | 0.0.0.3    | 10.0.0.37                   | 10.0.0.38                    | 10.0.0.39    | 2                | 2              | 0           |
-| 2               | MS3           | R5            | 10.0.0.40  | 255.255.255.252   | 0.0.0.3    | 10.0.0.41                   | 10.0.0.42                    | 10.0.0.43    | 2                | 2              | 0           |
-| 2               | R5            | R4            | 10.0.0.44  | 255.255.255.252   | 0.0.0.3    | 10.0.0.45                   | 10.0.0.46                    | 10.0.0.47    | 2                | 2              | 0           |
-| 2               | R4            | R2            | 10.0.0.48  | 255.255.255.252   | 0.0.0.3    | 10.0.0.49                   | 10.0.0.50                    | 10.0.0.51    | 2                | 2              | 0           |
-| 2               | R4            | R3            | 10.0.0.52  | 255.255.255.252   | 0.0.0.3    | 10.0.0.53                   | 10.0.0.54                    | 10.0.0.55    | 2                | 2              | 0           |
-| 2               | R2            | R3            | 10.0.0.56  | 255.255.255.252   | 0.0.0.3    | 10.0.0.57                   | 10.0.0.58                    | 10.0.0.59    | 2                | 2              | 0           |
-| 2               | R3            | firewall1     | 10.0.0.60  | 255.255.255.252   | 0.0.0.3    | 10.0.0.61                   | 10.0.0.62                    | 10.0.0.63    | 2                | 2              | 0           |
-| 2               | R3            | firewall2     | 10.0.0.64  | 255.255.255.252   | 0.0.0.3    | 10.0.0.65                   | 10.0.0.66                    | 10.0.0.67    | 2                | 2              | 0           |
+|------------------|---------------|---------------|------------|-------------------|------------|-----------------------------|-----------------------------|--------------|------------------|----------------|-------------|
+| 2                | firewall3     | R6            | 10.0.0.0   | 255.255.255.252   | 0.0.0.3    | 10.0.0.1                    | 10.0.0.2                     | 10.0.0.3     | 2                | 2              | 0           |
+| 2                | R6            | MS4           | 10.0.0.4   | 255.255.255.252   | 0.0.0.3    | 10.0.0.5                    | 10.0.0.6                     | 10.0.0.7     | 2                | 2              | 0           |
+| 2                | MS4           | MS6           | 10.0.0.8   | 255.255.255.252   | 0.0.0.3    | 10.0.0.9                    | 10.0.0.10                    | 10.0.0.11    | 2                | 2              | 0           |
+| 2                | MS6           | R7            | 10.0.0.12  | 255.255.255.252   | 0.0.0.3    | 10.0.0.13                   | 10.0.0.14                    | 10.0.0.15    | 2                | 2              | 0           |
+| 2                | R7            | R8            | 10.0.0.16  | 255.255.255.252   | 0.0.0.3    | 10.0.0.17                   | 10.0.0.18                    | 10.0.0.19    | 2                | 2              | 0           |
+| 2                | R8            | R9            | 10.0.0.20  | 255.255.255.252   | 0.0.0.3    | 10.0.0.21                   | 10.0.0.22                    | 10.0.0.23    | 2                | 2              | 0           |
+| 2                | R9            | firewall5     | 10.0.0.24  | 255.255.255.252   | 0.0.0.3    | 10.0.0.25                   | 10.0.0.26                    | 10.0.0.27    | 2                | 2              | 0           |
+| 2                | R9            | firewall4     | 10.0.0.28  | 255.255.255.252   | 0.0.0.3    | 10.0.0.29                   | 10.0.0.30                    | 10.0.0.31    | 2                | 2              | 0           |
+| 2                | MS6           | MS3           | 10.0.0.32  | 255.255.255.252   | 0.0.0.3    | 10.0.0.33                   | 10.0.0.34                    | 10.0.0.35    | 2                | 2              | 0           |
+| 2                | MS4           | MS3           | 10.0.0.36  | 255.255.255.252   | 0.0.0.3    | 10.0.0.37                   | 10.0.0.38                    | 10.0.0.39    | 2                | 2              | 0           |
+| 2                | MS3           | R5            | 10.0.0.40  | 255.255.255.252   | 0.0.0.3    | 10.0.0.41                   | 10.0.0.42                    | 10.0.0.43    | 2                | 2              | 0           |
+| 2                | R5            | R4            | 10.0.0.44  | 255.255.255.252   | 0.0.0.3    | 10.0.0.45                   | 10.0.0.46                    | 10.0.0.47    | 2                | 2              | 0           |
+| 2                | R4            | R2            | 10.0.0.48  | 255.255.255.252   | 0.0.0.3    | 10.0.0.49                   | 10.0.0.50                    | 10.0.0.51    | 2                | 2              | 0           |
+| 2                | R4            | R3            | 10.0.0.52  | 255.255.255.252   | 0.0.0.3    | 10.0.0.53                   | 10.0.0.54                    | 10.0.0.55    | 2                | 2              | 0           |
+| 2                | R2            | R3            | 10.0.0.56  | 255.255.255.252   | 0.0.0.3    | 10.0.0.57                   | 10.0.0.58                    | 10.0.0.59    | 2                | 2              | 0           |
+| 2                | R3            | firewall1     | 10.0.0.60  | 255.255.255.252   | 0.0.0.3    | 10.0.0.61                   | 10.0.0.62                    | 10.0.0.63    | 2                | 2              | 0           |
+| 2                | R3            | firewall2     | 10.0.0.64  | 255.255.255.252   | 0.0.0.3    | 10.0.0.65                   | 10.0.0.66                    | 10.0.0.67    | 2                | 2              | 0           |
+| 2                | MS1           | firewall1     | 10.0.0.68  | 255.255.255.252   | 0.0.0.3    | 10.0.0.69                   | 10.0.0.70                    | 10.0.0.71    | 2                | 2              | 0           |
+| 2                | MS2           | firewall1     | 10.0.0.72  | 255.255.255.252   | 0.0.0.3    | 10.0.0.73                   | 10.0.0.74                    | 10.0.0.75    | 2                | 2              | 0           |
+| 2                | R1            | firewall2     | 10.0.0.76  | 255.255.255.252   | 0.0.0.3    | 10.0.0.77                   | 10.0.0.78                    | 10.0.0.79    | 2                | 2              | 0           |
+| 2                | R0            | firewall2     | 10.0.0.80  | 255.255.255.252   | 0.0.0.3    | 10.0.0.81                   | 10.0.0.82                    | 10.0.0.83    | 2                | 2              | 0           |
+| 2                | MS5           | firewall3     | 10.0.0.84  | 255.255.255.252   | 0.0.0.3    | 10.0.0.85                   | 10.0.0.86                    | 10.0.0.87    | 2                | 2              | 0           |
+| 2                | R10           | firewall4     | 10.0.0.88  | 255.255.255.252   | 0.0.0.3    | 10.0.0.89                   | 10.0.0.90                    | 10.0.0.91    | 2                | 2              | 0           |
+| 2                | R11           | firewall4     | 10.0.0.92  | 255.255.255.252   | 0.0.0.3    | 10.0.0.93                   | 10.0.0.94                    | 10.0.0.95    | 2                | 2              | 0           |
+| 2                | MS7           | firewall5     | 10.0.0.96  | 255.255.255.252   | 0.0.0.3    | 10.0.0.97                   | 10.0.0.98                    | 10.0.0.99    | 2                | 2              | 0           |
+| 2                | MS8           | firewall5     | 10.0.0.100 | 255.255.255.252   | 0.0.0.3    | 10.0.0.101                  | 10.0.0.102                   | 10.0.0.103   | 2                | 2              | 0           |
+
 
 
 ## 6. Configuraciones de Dispositivos
@@ -369,7 +369,7 @@ vtp mode client
 vtp domain #202302220
 vtp password usac2025
 
-! 2. Configuración de Puertos Troncales
+! 2. Configuración de Puertas Troncales
 interface FastEthernet0/23
  description Enlace_a_SW4
  switchport mode trunk
@@ -379,7 +379,7 @@ interface FastEthernet0/24
  switchport mode trunk
  exit
 
-! 3. Configuración de Puertos de Acceso
+! 3. Configuración de Puertas de Acceso
 interface FastEthernet0/1
  description admin_Server
  switchport mode access
@@ -414,7 +414,7 @@ vtp mode client
 vtp domain #202302220
 vtp password usac2025
 
-! 2. Configuración de Puertos Troncales
+! 2. Configuración de Puertas Troncales
 interface FastEthernet0/22
  description Enlace_a_SW5
  switchport mode trunk
@@ -432,7 +432,7 @@ interface FastEthernet0/23
  switchport mode trunk
  exit
 
-! 3. Configuración de Puertos de Acceso
+! 3. Configuración de Puertas de Acceso
 interface FastEthernet0/1
  description PC_admin2
  switchport mode access
@@ -471,7 +471,7 @@ vlan 32
 vlan 42
  name Admin
 
-! 3. Configuración de Puertos Troncales
+! 3. Configuración de Puertas Troncales
 interface FastEthernet0/22
  description Enlace_a_SW6
  switchport mode trunk
@@ -489,7 +489,7 @@ interface FastEthernet0/23
  switchport mode trunk
  exit
 
-! 4. Configuración de Puertos de Acceso
+! 4. Configuración de Puertas de Acceso
 interface FastEthernet0/1
  description PC_admin4
  switchport mode access
@@ -518,7 +518,7 @@ vtp mode client
 vtp domain #202302220
 vtp password usac2025
 
-! 2. Configuración de Puertos Troncales
+! 2. Configuración de Puertas Troncales
 interface FastEthernet0/4
  description Enlace_a_SW5
  switchport mode trunk
@@ -528,7 +528,7 @@ interface FastEthernet0/24
  switchport mode trunk
  exit
 
-! 3. Configuración de Puertos de Acceso
+! 3. Configuración de Puertas de Acceso
 interface FastEthernet0/1
  description PC_vigilancia2
  switchport mode access
@@ -570,7 +570,7 @@ vtp mode client
 vtp domain #202302220
 vtp password usac2025
 
-! 3. Configuración de Puertos Troncales
+! 3. Configuración de Puertas Troncales
 interface FastEthernet0/1
  description Enlace_a_SW5
  switchport mode trunk
@@ -584,11 +584,11 @@ interface FastEthernet0/3
  switchport mode trunk
  exit
 
-! 4. Puerto Enrutado hacia el Firewall
+! 4. Puerta Enrutado hacia el Firewall 
 interface FastEthernet0/24
- description Enlace_a_Firewall1
+ description Enlace_hacia_Firewall1
  no switchport
- ip address 192.168.20.193 255.255.255.252 ! IP para el enlace
+ ip address 10.0.0.69 255.255.255.252 ! IP actualizada de tu tabla de backbone
  no shutdown
  exit
 
@@ -599,6 +599,7 @@ interface Vlan12
  standby 4 priority 105
  standby 4 preempt
  exit
+
 interface Vlan22
  ip address 192.168.20.165 255.255.255.248
  standby 3 ip 192.168.20.166
@@ -625,13 +626,74 @@ write memory
 ##### 6.1.2.2 MS2
 
 ```bash
+enable
+configure terminal
 
+! 1. Habilitar Enrutamiento de Capa 3
+ip routing
+
+! 2. Configuración Básica y VTP
+hostname MS2
+vtp mode client
+vtp domain #202302220
+vtp password usac2025
+
+! 3. Configuración de Puertas Troncales
+interface FastEthernet0/1
+ description Enlace_a_SW6
+ switchport mode trunk
+ exit
+interface FastEthernet0/2
+ description Enlace_a_SW5
+ switchport mode trunk
+ exit
+interface FastEthernet0/3
+ description Enlace_a_SW4
+ switchport mode trunk
+ exit
+
+! 4. Puerta Enrutado hacia el Firewall
+interface FastEthernet0/24
+ description Enlace_hacia_Firewall1
+ no switchport
+ ip address 10.0.0.73 255.255.255.252 ! IP actualizada de tu tabla de backbone
+ no shutdown
+ exit
+
+! 5. Configuración de SVIs y HSRP (RESPALDO)
+interface Vlan12
+ ip address 192.168.20.172 255.255.255.248
+ standby 4 ip 192.168.20.174
+ standby 4 priority 100
+ standby 4 preempt
+ exit
+interface Vlan22
+ ip address 192.168.20.164 255.255.255.248
+ standby 3 ip 192.168.20.166
+ standby 3 priority 100
+ standby 3 preempt
+ exit
+interface Vlan32
+ ip address 192.168.20.156 255.255.255.224
+ standby 2 ip 192.168.20.158
+ standby 2 priority 100
+ standby 2 preempt
+ exit
+interface Vlan42
+ ip address 192.168.20.124 255.255.255.128
+ standby 1 ip 192.168.20.126
+ standby 1 priority 100
+ standby 1 preempt
+ exit
+
+end
+write memory
 ```
 
 
 #### 6.1.3 Configuración Firewall
 
-##### 6.1.3.1 firewal1
+##### 6.1.3.1 firewaLl1
 ```bash
 
 ```
@@ -641,7 +703,7 @@ write memory
 
 
 #### 6.1.4 Conexiones entre los switches
-| Switch/Router | Puerto1 | Switch/Router2 | Puerto2 |
+| Switch/Router | Puerta1 | Switch/Router2 | Puerta2 |
 |--------------|---------|---------------|---------|
 | SW6          | fa4     | SW5           | fa22    |
 | SW5          | fa3     | SW4           | fa22    |
@@ -658,7 +720,7 @@ write memory
 
 #### 6.1.5 Conexiones a dispositivos finales
 
-| Switch/Router | Puerto en Switch | Dispositivo Final |
+| Switch/Router | Puerta en Switch | Dispositivo Final |
 |--------------|------------------|-------------------|
 | SW6          | fa1              | vigilancia2       |
 | SW6          | fa2              | vigilancia3       |
@@ -677,7 +739,7 @@ write memory
 
 
 #### 6.2.1 Conexiones entre los switches
-| Switch/Router | Puerto1 | Switch/Router2 | Puerto2 |
+| Switch/Router | Puerta1 | Switch/Router2 | Puerta2 |
 |--------------|---------|---------------|---------|
 | MS0          | fa1     | SW0           | fa24    |
 | MS0          | fa2     | Switch6       | fa24    |
@@ -691,7 +753,7 @@ write memory
 
 #### 6.2.2 Conexiones a dispositivos finales
 
-| Switch/Router | Puerto en Switch | Dispositivo Final |
+| Switch/Router | Puerta en Switch | Dispositivo Final |
 |--------------|------------------|-------------------|
 | SW0          | fa1              | vigilancia1       |
 | SW0          | fa2              | biblioteca3        |
@@ -708,7 +770,7 @@ write memory
 
 #### 6.3.1 Conexiones entre los switches
 
-| Switch/Router | Puerto1 | Switch/Router2 | Puerto2 |
+| Switch/Router | Puerta1 | Switch/Router2 | Puerta2 |
 |--------------|---------|---------------|---------|
 | SW9          | fa3     | SW8           | fa23    |
 | SW8          | fa3     | SW7           | fa23    |
@@ -719,7 +781,7 @@ write memory
 
 #### 6.3.2 Conexiones a dispositivos finales
 
-| Switch/Router | Puerto en Switch | Dispositivo Final |
+| Switch/Router | Puerta en Switch | Dispositivo Final |
 |--------------|------------------|-------------------|
 | SW9          | fa1              | vigilancia4       |
 | SW9          | fa2              | docentes2         |
@@ -736,7 +798,7 @@ write memory
 
 
 #### 6.4.1 Conexiones entre los switches
-| Switch/Router | Puerto1 | Switch/Router2 | Puerto2 |
+| Switch/Router | Puerta1 | Switch/Router2 | Puerta2 |
 |--------------|---------|---------------|---------|
 | SW10         | fa3     | SW11          | fa22    |
 | SW11         | fa3     | SW12          | fa24    |
@@ -748,7 +810,7 @@ write memory
 
 
 #### 6.4.2 Conexiones a dispositivos finales
-| Switch/Router | Puerto en Switch | Dispositivo Final |
+| Switch/Router | Puerta en Switch | Dispositivo Final |
 |--------------|------------------|-------------------|
 | SW10         | fa1              | admin7            |
 | SW10         | fa2              | docentes3         |
@@ -765,7 +827,7 @@ write memory
 
 #### 6.5.1 Conexiones entre los switches
 
-| Switch/Router | Puerto1 | Switch/Router2 | Puerto2 |
+| Switch/Router | Puerta1 | Switch/Router2 | Puerta2 |
 |--------------|---------|---------------|---------|
 | SW13         | fa1     | SW15          | fa24    |
 | SW13         | fa2     | SW16          | fa24    |
@@ -782,7 +844,7 @@ write memory
 
 
 #### 6.5.2 Conexiones a dispositivos finales
-| Switch/Router | Puerto en Switch | Dispositivo Final |
+| Switch/Router | Puerta en Switch | Dispositivo Final |
 |--------------|------------------|-------------------|
 | SW15         | fa1              | vigilancia6       |
 | SW15         | fa2              | estudiantes7      |
@@ -797,7 +859,7 @@ write memory
 
 
 #### 6.6.1 RIP (Routing Information Protocol)
-| Switch/Router (DCE) | Puerto1 | Switch/Router2 | Puerto2 |
+| Switch/Router (DCE) | Puerta1 | Switch/Router2 | Puerta2 |
 |-------------------|---------|---------------|---------|
 | R3                | gi0     | firewall1     | gi8     |
 | R3                | gi1     | firewall2     | gi8     |
@@ -809,7 +871,7 @@ write memory
 
 
 #### 6.6.2 OSPF (Open Shortest Path First)
-| Switch/Router | Puerto1 | Switch/Router2 | Puerto2 |
+| Switch/Router | Puerta1 | Switch/Router2 | Puerta2 |
 |--------------|---------|---------------|---------|
 | R7           | gi0     | R8            | g1      |
 | R8           | g0      | R9            | gi1     |
@@ -818,7 +880,7 @@ write memory
 
 
 #### 6.6.3 EIGRP (Enhances Interior Gateway Routing Protocol)
-| Switch/Router | Puerto1 | Switch/Router2 | Puerto2 |
+| Switch/Router | Puerta1 | Switch/Router2 | Puerta2 |
 |--------------|---------|---------------|---------|
 | MS4          | fa1-3   | MS3           | fa1-3   |
 | MS4          | fa4-6   | MS6           | fa4-6   |
@@ -831,7 +893,7 @@ write memory
 
 #### 6.6.4 Rutas Estáticas
 
-| Switch/Router | Puerto1 | Switch/Router2 | Puerto2 |
+| Switch/Router | Puerta1 | Switch/Router2 | Puerta2 |
 |--------------|---------|---------------|---------|
 | R6           | gi0     | firewall4     | gi8     |
 
