@@ -657,6 +657,14 @@ interface Vlan42
  standby 1 preempt
  exit
 
+! 6. Configuración del Protocolo de Enrutamiento (RIP)
+router rip
+ version 2
+ no auto-summary
+ network 192.168.20.0
+ network 10.0.0.0
+ exit
+
 end
 write memory
 ```
@@ -724,6 +732,14 @@ interface Vlan42
  standby 1 preempt
  exit
 
+! 6. Configuración del Protocolo de Enrutamiento (RIP)
+router rip
+ version 2
+ no auto-summary
+ network 192.168.20.0
+ network 10.0.0.0
+ exit
+
 end
 write memory
 ```
@@ -732,9 +748,98 @@ write memory
 #### 6.1.3 Configuración Firewall1
 
 ```bash
+enable
+! La contraseña de enable en un ASA por defecto está en blanco
+configure terminal
 
+hostname Firewall1
 
+! 1. Definir Grupos de Objetos para CADA tipo de VLAN de TODO el campus
+!======================================================================
+object-group network VLAN_ESTUDIANTES_TODAS
+ description Contiene todas las subredes de Estudiantes
+ network-object 192.168.20.168 255.255.255.248  ! Estudiantes DIGA
+ network-object 192.158.20.0 255.255.255.128    ! Estudiantes Biblioteca
+ network-object 172.16.20.128 255.255.255.192   ! Estudiantes T4
+ network-object 172.148.20.0 255.255.255.128    ! Estudiantes S11
+ network-object 192.128.20.0 255.255.255.128    ! Estudiantes S12
 
+object-group network VLAN_DOCENTES_TODAS
+ description Contiene todas las subredes de Docentes
+ network-object 192.168.20.160 255.255.255.248 ! Docentes DIGA
+ network-object 172.16.20.240 255.255.255.240  ! Docentes T4
+ network-object 172.148.20.192 255.255.255.224 ! Docentes S11
+ network-object 192.128.20.128 255.255.255.192 ! Docentes S12
+
+object-group network VLAN_VIGILANCIA_TODAS
+ description Contiene todas las subredes de Vigilancia
+ network-object 192.168.20.128 255.255.255.224 ! Vigilancia DIGA
+ network-object 192.158.20.128 255.255.255.224 ! Vigilancia Biblioteca
+ network-object 172.16.20.192 255.255.255.224  ! Vigilancia T4
+ network-object 172.148.20.224 255.255.255.240 ! Vigilancia S11
+ network-object 192.128.20.224 255.255.255.224 ! Vigilancia S12
+
+object-group network VLAN_ADMIN_TODAS
+ description Contiene todas las subredes de Admin
+ network-object 192.168.20.0 255.255.255.128   ! Admin DIGA
+ network-object 172.16.20.0 255.255.255.128    ! Admin T4
+ network-object 172.148.20.128 255.255.255.192 ! Admin S11 
+ network-object 192.128.20.192 255.255.255.224 ! Admin S12
+
+object-group network VLAN_BIBLIOTECA_TODAS
+ description Contiene todas las subredes de Biblioteca
+ network-object 192.158.20.160 255.255.255.224 ! Biblioteca (edificio)
+ network-object 172.16.20.224 255.255.255.240  ! Biblioteca (en T4)
+
+! 2. Crear la Lista de Acceso (ACL) Global
+!=============================================
+access-list ACL_SEGURIDAD extended permit ip object-group VLAN_ESTUDIANTES_TODAS object-group VLAN_ESTUDIANTES_TODAS
+access-list ACL_SEGURIDAD extended permit ip object-group VLAN_DOCENTES_TODAS object-group VLAN_DOCENTES_TODAS
+access-list ACL_SEGURIDAD extended permit ip object-group VLAN_VIGILANCIA_TODAS object-group VLAN_VIGILANCIA_TODAS
+access-list ACL_SEGURIDAD extended permit ip object-group VLAN_ADMIN_TODAS object-group VLAN_ADMIN_TODAS
+access-list ACL_SEGURIDAD extended permit ip object-group VLAN_BIBLIOTECA_TODAS object-group VLAN_BIBLIOTECA_TODAS
+! (El "deny ip any any" está implícito al final, bloqueando todo lo demás)
+
+! 3. Configurar Interfaces 
+!=============================
+interface GigabitEthernet1/1
+ description Enlace_a_MS2
+ nameif inside_ms2
+ security-level 100
+ ip address 10.0.0.74 255.255.255.252
+ no shutdown
+
+interface GigabitEthernet1/2
+ description Enlace_a_MS1
+ nameif inside_ms1
+ security-level 100
+ ip address 10.0.0.70 255.255.255.252
+ no shutdown
+
+interface GigabitEthernet1/8
+ description Enlace_a_R3
+ nameif outside
+ security-level 0
+ ip address 10.0.0.62 255.255.255.252
+ no shutdown
+
+! 4. Aplicar la ACL a las interfaces internas
+!=============================================
+access-group ACL_SEGURIDAD in interface inside_ms1
+access-group ACL_SEGURIDAD in interface inside_ms2
+
+! 5. Configurar RIP
+!=============================
+router rip
+ version 2
+ no auto-summary
+ network 10.0.0.0
+ passive-interface inside_ms1
+ passive-interface inside_ms2
+ redistribute connected
+exit
+
+write memory
 ```
 
 
@@ -1272,6 +1377,9 @@ interface Vlan52
  description Gateway_Biblioteca
  ip address 172.16.20.238 255.255.255.240
  exit
+
+! 6. RUTA POR DEFECTO HACIA EL FIREWALL
+ip route 0.0.0.0 0.0.0.0 10.0.0.86
 
 end
 write memory
