@@ -46,22 +46,40 @@
       - [6.1.2 Configuración Multiswitches](#612-configuración-multiswitches)
         - [6.1.2.1 MS1](#6121-ms1)
         - [6.1.2.2 MS2](#6122-ms2)
-      - [6.1.3 Configuración Firewall](#613-configuración-firewall)
+      - [6.1.3 Configuración Firewall1](#613-configuración-firewall1)
         - [6.1.3.1 firewaLl1](#6131-firewall1)
       - [6.1.4 Conexiones entre los switches](#614-conexiones-entre-los-switches)
       - [6.1.5 Conexiones a dispositivos finales](#615-conexiones-a-dispositivos-finales)
     - [6.2 Biblioteca](#62-biblioteca)
-      - [6.2.1 Conexiones entre los switches](#621-conexiones-entre-los-switches)
-      - [6.2.2 Conexiones a dispositivos finales](#622-conexiones-a-dispositivos-finales)
+      - [6.2.1 Configuraciones Switches](#621-configuraciones-switches)
+        - [6.2.1.1 SW0](#6211-sw0)
+        - [6.2.1.2 SW1](#6212-sw1)
+        - [6.2.1.3 Switch6](#6213-switch6)
+      - [6.2.2 Configuración Multiswitch MS0](#622-configuración-multiswitch-ms0)
+      - [6.2.3 Configuración Routers](#623-configuración-routers)
+        - [6.2.3.1 R0](#6231-r0)
+        - [6.2.3.2 R1](#6232-r1)
+      - [6.2.4 Configuración Firewall](#624-configuración-firewall)
+      - [6.2.5 Conexiones entre los switches](#625-conexiones-entre-los-switches)
+      - [6.2.6 Conexiones a dispositivos finales](#626-conexiones-a-dispositivos-finales)
     - [6.3 Edificio T4](#63-edificio-t4)
-      - [6.3.1 Conexiones entre los switches](#631-conexiones-entre-los-switches)
-      - [6.3.2 Conexiones a dispositivos finales](#632-conexiones-a-dispositivos-finales)
+      - [6.3.1 Configuraciones Switches](#631-configuraciones-switches)
+      - [6.3.2 Configuración Multiswitch](#632-configuración-multiswitch)
+      - [6.3.3 Configuración Firewall](#633-configuración-firewall)
+      - [6.3.4 Conexiones entre los switches](#634-conexiones-entre-los-switches)
+      - [6.3.5 Conexiones a dispositivos finales](#635-conexiones-a-dispositivos-finales)
     - [6.4 Edificio S11](#64-edificio-s11)
-      - [6.4.1 Conexiones entre los switches](#641-conexiones-entre-los-switches)
-      - [6.4.2 Conexiones a dispositivos finales](#642-conexiones-a-dispositivos-finales)
+      - [6.4.1 Configuraciones Switches](#641-configuraciones-switches)
+      - [6.4.2 Configuración Routers](#642-configuración-routers)
+      - [6.4.3 Configuración Firewall](#643-configuración-firewall)
+      - [6.4.4 Conexiones entre los switches](#644-conexiones-entre-los-switches)
+      - [6.4.5 Conexiones a dispositivos finales](#645-conexiones-a-dispositivos-finales)
     - [6.5 Edificio S12](#65-edificio-s12)
-      - [6.5.1 Conexiones entre los switches](#651-conexiones-entre-los-switches)
-      - [6.5.2 Conexiones a dispositivos finales](#652-conexiones-a-dispositivos-finales)
+      - [6.5.1 Configuraciones Switches](#651-configuraciones-switches)
+      - [6.5.2 Configuración Multiswitch](#652-configuración-multiswitch)
+      - [6.5.3 Configuración Firewall](#653-configuración-firewall)
+      - [6.5.4 Conexiones entre los switches](#654-conexiones-entre-los-switches)
+      - [6.5.5 Conexiones a dispositivos finales](#655-conexiones-a-dispositivos-finales)
     - [6.6 BACKBONE](#66-backbone)
       - [6.6.1 RIP (Routing Information Protocol)](#661-rip-routing-information-protocol)
       - [6.6.2 OSPF (Open Shortest Path First)](#662-ospf-open-shortest-path-first)
@@ -163,8 +181,8 @@ A continuación, se presenta el diagrama de la topología de red implementada en
 | Sub-interfaz R1 (biblioteca)  | 12   | 192.158.20.124   | 255.255.255.128  | 192.158.20.126    |
 | Sub-interfaz R0 (biblioteca)  | 32   | 192.158.20.157   | 255.255.255.224  | 192.158.20.158    |
 | Sub-interfaz R1 (biblioteca)  | 32   | 192.158.20.156   | 255.255.255.224  | 192.158.20.158    |
-| Sub-interfaz R0 (biblioteca)  | 42   | 192.158.20.189   | 255.255.255.224  | 192.158.20.190    |
-| Sub-interfaz R1 (biblioteca)  | 42   | 192.158.20.188   | 255.255.255.224  | 192.158.20.190    |
+| Sub-interfaz R0 (biblioteca)  | 52   | 192.158.20.189   | 255.255.255.224  | 192.158.20.190    |
+| Sub-interfaz R1 (biblioteca)  | 52   | 192.158.20.188   | 255.255.255.224  | 192.158.20.190    |
 
 
 #### 4.1.3. Edificio T4
@@ -696,10 +714,12 @@ write memory
 ```
 
 
-#### 6.1.3 Configuración Firewall
+#### 6.1.3 Configuración Firewall1
 
 ##### 6.1.3.1 firewaLl1
 ```bash
+
+
 
 ```
 
@@ -743,7 +763,278 @@ write memory
 ### 6.2 Biblioteca
 
 
-#### 6.2.1 Conexiones entre los switches
+#### 6.2.1 Configuraciones Switches
+
+##### 6.2.1.1 SW0
+
+```bash
+enable
+configure terminal
+hostname SW0
+vtp mode client
+vtp domain #202302220
+vtp password usac2025
+
+! Puerto Troncal
+interface FastEthernet0/24
+ description Enlace_a_MS0
+ switchport mode trunk
+ exit
+
+! Puertos de Acceso
+interface FastEthernet0/1
+ description PC_vigilancia1
+ switchport mode access
+ switchport access vlan 32
+ spanning-tree portfast
+ exit
+interface FastEthernet0/2
+ description PC_biblioteca3
+ switchport mode access
+ switchport access vlan 52
+ spanning-tree portfast
+ exit
+end
+write memory
+```
+
+##### 6.2.1.2 SW1
+
+```bash
+enable
+configure terminal
+hostname SW1
+vtp mode client
+vtp domain #202302220
+vtp password usac2025
+
+! Puerto Troncal
+interface FastEthernet0/24
+ description Enlace_a_MS0
+ switchport mode trunk
+ exit
+
+! Puertos de Acceso
+interface FastEthernet0/1
+ description PC_estudiantes1
+ switchport mode access
+ switchport access vlan 12
+ spanning-tree portfast
+ exit
+interface FastEthernet0/2
+ description Laptop_estudiantes2
+ switchport mode access
+ switchport access vlan 12
+ spanning-tree portfast
+ exit
+end
+write memory
+```
+
+
+##### 6.2.1.3 Switch6
+```bash
+enable
+configure terminal
+hostname Switch6
+vtp mode client
+vtp domain #202302220
+vtp password usac2025
+
+! Puerto Troncal
+interface FastEthernet0/24
+ description Enlace_a_MS0
+ switchport mode trunk
+ exit
+
+! Puertos de Acceso
+interface FastEthernet0/1
+ description PC_estudiantes3
+ switchport mode access
+ switchport access vlan 12
+ spanning-tree portfast
+ exit
+interface FastEthernet0/2
+ description PC_biblioteca1
+ switchport mode access
+ switchport access vlan 52
+ spanning-tree portfast
+ exit
+end
+write memory
+```
+
+
+#### 6.2.2 Configuración Multiswitch MS0
+```bash
+enable
+configure terminal
+
+! 1. Configuración Básica y VTP
+hostname MS0
+vtp mode server
+vtp domain #202302220
+vtp password usac2025
+
+! 2. Creación de VLANs (Solo se hace aquí)
+vlan 12
+ name Estudiantes
+vlan 32
+ name Vigilancia
+vlan 52
+ name Biblioteca
+
+! 3. Configuración de Puertos Troncales
+interface FastEthernet0/1
+ description Enlace_a_SW0
+ switchport mode trunk
+ exit
+interface FastEthernet0/2
+ description Enlace_a_Switch6
+ switchport mode trunk
+ exit
+interface FastEthernet0/3
+ description Enlace_a_SW1
+ switchport mode trunk
+ exit
+interface FastEthernet0/24
+ description Enlace_a_Router_R1
+ switchport mode trunk
+ exit
+interface FastEthernet0/23
+ description Enlace_a_Router_R0
+ switchport mode trunk
+ exit
+
+end
+write memory
+```
+
+
+#### 6.2.3 Configuración Routers
+
+##### 6.2.3.1 R0
+```bash
+enable
+configure terminal
+hostname R0
+
+! 1. Configuración de Sub-interfaces (Gateways de VLANs)
+! --- VLAN 12 (Estudiantes) ---
+interface GigabitEthernet0/0.12
+ description Gateway_VLAN_12
+ encapsulation dot1Q 12
+ ip address 192.158.20.125 255.255.255.128
+ standby 1 ip 192.158.20.126
+ standby 1 priority 105
+ standby 1 preempt
+! --- VLAN 32 (Vigilancia) ---
+interface GigabitEthernet0/0.32
+ description Gateway_VLAN_32
+ encapsulation dot1Q 32
+ ip address 192.158.20.157 255.255.255.224
+ standby 2 ip 192.158.20.158
+ standby 2 priority 105
+ standby 2 preempt
+! --- VLAN 52 (Biblioteca) ---
+interface GigabitEthernet0/0.52
+ description Gateway_VLAN_52
+ encapsulation dot1Q 52
+ ip address 192.158.20.189 255.255.255.224
+ standby 3 ip 192.158.20.190
+ standby 3 priority 105
+ standby 3 preempt
+! Encender la interfaz física
+interface GigabitEthernet0/0
+ no shutdown
+ exit
+
+! 2. Configuración del Backbone (hacia Firewall2)
+interface GigabitEthernet0/1
+ description Enlace_Backbone_a_Firewall2
+ ip address 10.0.0.81 255.255.255.252 
+ no shutdown
+ exit
+
+! 3. Configuración del Protocolo de Enrutamiento (RIP)
+router rip
+ version 2
+ no auto-summary
+ network 192.158.20.0
+ network 10.0.0.0
+ exit
+
+end
+write memory
+
+
+```
+
+
+##### 6.2.3.2 R1
+```bash
+enable
+configure terminal
+hostname R1
+
+! 1. Configuración de Sub-interfaces (Gateways de VLANs)
+! --- VLAN 12 (Estudiantes) ---
+interface GigabitEthernet0/0.12
+ description Gateway_VLAN_12
+ encapsulation dot1Q 12
+ ip address 192.158.20.124 255.255.255.128
+ standby 1 ip 192.158.20.126
+ standby 1 priority 100
+ standby 1 preempt
+! --- VLAN 32 (Vigilancia) ---
+interface GigabitEthernet0/0.32
+ description Gateway_VLAN_32
+ encapsulation dot1Q 32
+ ip address 192.158.20.156 255.255.255.224
+ standby 2 ip 192.158.20.158
+ standby 2 priority 100
+ standby 2 preempt
+! --- VLAN 52 (Biblioteca) ---
+interface GigabitEthernet0/0.52
+ description Gateway_VLAN_52
+ encapsulation dot1Q 52
+ ip address 192.158.20.188 255.255.255.224
+ standby 3 ip 192.158.20.190
+ standby 3 priority 100
+ standby 3 preempt
+! Encender la interfaz física
+interface GigabitEthernet0/0
+ no shutdown
+ exit
+
+! 2. Configuración del Backbone (hacia Firewall2)
+interface GigabitEthernet0/1
+ description Enlace_Backbone_a_Firewall2
+ ip address 10.0.0.77 255.255.255.252 ! IP de tu tabla de backbone
+ no shutdown
+ exit
+
+! 3. Configuración del Protocolo de Enrutamiento (RIP)
+router rip
+ version 2
+ no auto-summary
+ network 192.158.20.0
+ network 10.0.0.0
+ exit
+
+end
+write memory
+```
+
+#### 6.2.4 Configuración Firewall
+```bash
+
+
+
+```
+
+
+#### 6.2.5 Conexiones entre los switches
 | Switch/Router | Puerta1 | Switch/Router2 | Puerta2 |
 |--------------|---------|---------------|---------|
 | MS0          | fa1     | SW0           | fa24    |
@@ -756,7 +1047,7 @@ write memory
 
 
 
-#### 6.2.2 Conexiones a dispositivos finales
+#### 6.2.6 Conexiones a dispositivos finales
 
 | Switch/Router | Puerta en Switch | Dispositivo Final |
 |--------------|------------------|-------------------|
@@ -772,8 +1063,33 @@ write memory
 ### 6.3 Edificio T4
 
 
+#### 6.3.1 Configuraciones Switches
 
-#### 6.3.1 Conexiones entre los switches
+
+
+```bash
+
+
+
+```
+
+#### 6.3.2 Configuración Multiswitch
+```bash
+
+
+
+```
+
+
+#### 6.3.3 Configuración Firewall
+```bash
+
+
+
+```
+
+
+#### 6.3.4 Conexiones entre los switches
 
 | Switch/Router | Puerta1 | Switch/Router2 | Puerta2 |
 |--------------|---------|---------------|---------|
@@ -784,7 +1100,7 @@ write memory
 | MS5          | fa3     | SW7           | fa24    |
 | firewall3    | gi1     | MS5           | fa24    |
 
-#### 6.3.2 Conexiones a dispositivos finales
+#### 6.3.5 Conexiones a dispositivos finales
 
 | Switch/Router | Puerta en Switch | Dispositivo Final |
 |--------------|------------------|-------------------|
@@ -802,7 +1118,37 @@ write memory
 
 
 
-#### 6.4.1 Conexiones entre los switches
+
+
+#### 6.4.1 Configuraciones Switches
+
+
+
+```bash
+
+
+
+```
+
+
+#### 6.4.2 Configuración Routers
+```bash
+
+
+
+```
+
+#### 6.4.3 Configuración Firewall
+```bash
+
+
+
+```
+
+
+
+
+#### 6.4.4 Conexiones entre los switches
 | Switch/Router | Puerta1 | Switch/Router2 | Puerta2 |
 |--------------|---------|---------------|---------|
 | SW10         | fa3     | SW11          | fa22    |
@@ -814,7 +1160,7 @@ write memory
 
 
 
-#### 6.4.2 Conexiones a dispositivos finales
+#### 6.4.5 Conexiones a dispositivos finales
 | Switch/Router | Puerta en Switch | Dispositivo Final |
 |--------------|------------------|-------------------|
 | SW10         | fa1              | admin7            |
@@ -830,7 +1176,37 @@ write memory
 ### 6.5 Edificio S12
 
 
-#### 6.5.1 Conexiones entre los switches
+
+
+#### 6.5.1 Configuraciones Switches
+
+
+
+```bash
+
+
+
+```
+
+#### 6.5.2 Configuración Multiswitch
+```bash
+
+
+
+```
+
+
+#### 6.5.3 Configuración Firewall
+```bash
+
+
+
+```
+
+
+
+
+#### 6.5.4 Conexiones entre los switches
 
 | Switch/Router | Puerta1 | Switch/Router2 | Puerta2 |
 |--------------|---------|---------------|---------|
@@ -848,7 +1224,7 @@ write memory
 | firewall5    | gi2     | MS8           | fa24    |
 
 
-#### 6.5.2 Conexiones a dispositivos finales
+#### 6.5.5 Conexiones a dispositivos finales
 | Switch/Router | Puerta en Switch | Dispositivo Final |
 |--------------|------------------|-------------------|
 | SW15         | fa1              | vigilancia6       |
