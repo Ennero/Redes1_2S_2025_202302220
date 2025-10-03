@@ -83,7 +83,15 @@
       - [6.4.5 Conexiones a dispositivos finales](#645-conexiones-a-dispositivos-finales)
     - [6.5 Edificio S12](#65-edificio-s12)
       - [6.5.1 Configuraciones Switches](#651-configuraciones-switches)
-      - [6.5.2 Configuración Multiswitch](#652-configuración-multiswitch)
+        - [6.5.1.1 SW13](#6511-sw13)
+        - [6.5.1.2 SW14](#6512-sw14)
+        - [6.5.1.3 SW15](#6513-sw15)
+        - [6.5.1.4 SW16](#6514-sw16)
+        - [6.5.1.5 SW17](#6515-sw17)
+      - [6.5.2 Configuración Multiswitches](#652-configuración-multiswitches)
+        - [6.5.1.3 MS7](#6513-ms7)
+        - [6.5.1.3 MS8](#6513-ms8)
+        - [6.5.1.3 MS9 (Servidor VTP)](#6513-ms9-servidor-vtp)
       - [6.5.3 Configuración Firewall](#653-configuración-firewall)
       - [6.5.4 Conexiones entre los switches](#654-conexiones-entre-los-switches)
       - [6.5.5 Conexiones a dispositivos finales](#655-conexiones-a-dispositivos-finales)
@@ -237,14 +245,14 @@ A continuación, se presenta el diagrama de la topología de red implementada en
 | docentes6      | 22   | 192.128.20.130   | 255.255.255.192  | 192.128.20.190    |
 | vigilancia6    | 32   | 192.128.20.225   | 255.255.255.224  | 192.128.20.254    |
 | admin8         | 42   | 192.128.20.193   | 255.255.255.224  | 192.128.20.222    |
-| SVI MS7 (T4)   | 12   | 192.128.20.125   | 255.255.255.128  | 192.128.20.126    |
-| SVI MS8 (T4)   | 12   | 192.128.20.124   | 255.255.255.128  | 192.128.20.126    |
-| SVI MS7 (T4)   | 22   | 192.128.20.189   | 255.255.255.192  | 192.128.20.190    |
-| SVI MS8 (T4)   | 22   | 192.128.20.188   | 255.255.255.192  | 192.128.20.190    |
-| SVI MS7 (T4)   | 32   | 192.128.20.253   | 255.255.255.224  | 192.128.20.254    |
-| SVI MS8 (T4)   | 32   | 192.128.20.252   | 255.255.255.224  | 192.128.20.254    |
-| SVI MS7 (T4)   | 42   | 192.128.20.221   | 255.255.255.224  | 192.128.20.222    |
-| SVI MS8 (T4)   | 42   | 192.128.20.220   | 255.255.255.224  | 192.128.20.222    |
+| SVI MS7 (S12)   | 12   | 192.128.20.125   | 255.255.255.128  | 192.128.20.126    |
+| SVI MS8 (S12)   | 12   | 192.128.20.124   | 255.255.255.128  | 192.128.20.126    |
+| SVI MS7 (S12)   | 22   | 192.128.20.189   | 255.255.255.192  | 192.128.20.190    |
+| SVI MS8 (S12)   | 22   | 192.128.20.188   | 255.255.255.192  | 192.128.20.190    |
+| SVI MS7 (S12)   | 32   | 192.128.20.253   | 255.255.255.224  | 192.128.20.254    |
+| SVI MS8 (S12)   | 32   | 192.128.20.252   | 255.255.255.224  | 192.128.20.254    |
+| SVI MS7 (S12)   | 42   | 192.128.20.221   | 255.255.255.224  | 192.128.20.222    |
+| SVI MS8 (S12)   | 42   | 192.128.20.220   | 255.255.255.224  | 192.128.20.222    |
 
 
 ### 4.2 Direcciones de Puertas de enlace
@@ -1503,9 +1511,62 @@ write memory
 ##### 6.4.2.2 R11
 
 ```bash
+enable
+configure terminal
+hostname R11
 
+! 1. Configuración de Sub-interfaces (Gateways)
+interface GigabitEthernet0/0
+ no shutdown
+ exit
+! --- VLAN 12 ---
+interface GigabitEthernet0/0.12
+ encapsulation dot1Q 12
+ ip address 172.148.20.124 255.255.255.128
+ standby 1 ip 172.148.20.126
+ standby 1 priority 100
+ standby 1 preempt
+! --- VLAN 22 ---
+interface GigabitEthernet0/0.22
+ encapsulation dot1Q 22
+ ip address 172.148.20.220 255.255.255.224
+ standby 2 ip 172.148.20.222
+ standby 2 priority 100
+ standby 2 preempt
+! --- VLAN 32 ---
+interface GigabitEthernet0/0.32
+ encapsulation dot1Q 32
+ ip address 172.148.20.236 255.255.255.240
+ standby 3 ip 172.148.20.238
+ standby 3 priority 100
+ standby 3 preempt
+! --- VLAN 42 ---
+interface GigabitEthernet0/0.42
+ encapsulation dot1Q 42
+ ip address 172.148.20.188 255.255.255.192
+ standby 4 ip 172.148.20.190
+ standby 4 priority 100
+ standby 4 preempt
+ exit
 
+! 2. Configuración del Backbone (hacia Firewall4)
+interface GigabitEthernet0/1
+ description Enlace_Backbone_a_Firewall4
+ ip address 10.0.0.93 255.255.255.252
+ no shutdown
+ exit
 
+! 3. Configuración del Protocolo de Enrutamiento (OSPF)
+router ospf 1
+ router-id 11.11.11.11
+ ! Anunciar la red del backbone
+ network 10.0.0.92 0.0.0.3 area 0
+ ! Anunciar todas las redes de las VLANs
+ network 172.148.20.0 0.0.0.255 area 0
+ exit
+
+end
+write memory
 ```
 
 
@@ -1551,19 +1612,360 @@ write memory
 
 #### 6.5.1 Configuraciones Switches
 
-
+##### 6.5.1.1 SW13
 
 ```bash
+enable
+configure terminal
+hostname SW13
+vtp mode client
+vtp domain #202302220
+vtp password usac2025
 
-
-
+! Puertos Troncales
+interface FastEthernet0/1
+ description Enlace_a_SW15
+ switchport mode trunk
+ exit
+interface FastEthernet0/2
+ description Enlace_a_SW16
+ switchport mode trunk
+ exit
+interface FastEthernet0/3
+ description Enlace_a_SW17
+ switchport mode trunk
+ exit
+interface FastEthernet0/24
+ description Enlace_a_MS9
+ switchport mode trunk
+ exit
+end
+write memory
 ```
 
-#### 6.5.2 Configuración Multiswitch
+##### 6.5.1.2 SW14
+
 ```bash
+enable
+configure terminal
+hostname SW14
+vtp mode client
+vtp domain #202302220
+vtp password usac2025
+
+! Puertos Troncales
+interface FastEthernet0/1
+ description Enlace_a_SW15
+ switchport mode trunk
+ exit
+interface FastEthernet0/2
+ description Enlace_a_SW16
+ switchport mode trunk
+ exit
+interface FastEthernet0/3
+ description Enlace_a_SW17
+ switchport mode trunk
+ exit
+interface FastEthernet0/24
+ description Enlace_a_MS9
+ switchport mode trunk
+ exit
+end
+write memory
+```
+
+##### 6.5.1.3 SW15
+
+```bash
+enable
+configure terminal
+hostname SW15
+vtp mode client
+vtp domain #202302220
+vtp password usac2025
+
+! Puertos Troncales
+interface FastEthernet0/24
+ description Enlace_a_SW13
+ switchport mode trunk
+ exit
+interface FastEthernet0/23
+ description Enlace_a_SW14
+ switchport mode trunk
+ exit
+
+! Puertos de Acceso
+interface FastEthernet0/1
+ description PC_vigilancia6
+ switchport mode access
+ switchport access vlan 32
+ spanning-tree portfast
+ exit
+interface FastEthernet0/2
+ description PC_estudiantes7
+ switchport mode access
+ switchport access vlan 12
+ spanning-tree portfast
+ exit
+end
+write memory
+```
+
+##### 6.5.1.4 SW16
+
+```bash
+enable
+configure terminal
+hostname SW16
+vtp mode client
+vtp domain #202302220
+vtp password usac2025
+
+! Puertos Troncales
+interface FastEthernet0/24
+ description Enlace_a_SW13
+ switchport mode trunk
+ exit
+interface FastEthernet0/23
+ description Enlace_a_SW14
+ switchport mode trunk
+ exit
+
+! Puertos de Acceso
+interface FastEthernet0/1
+ description PC_docentes6
+ switchport mode access
+ switchport access vlan 22
+ spanning-tree portfast
+ exit
+interface FastEthernet0/2
+ description PC_estudiantes6
+ switchport mode access
+ switchport access vlan 12
+ spanning-tree portfast
+ exit
+end
+write memory
+```
 
 
+##### 6.5.1.5 SW17
 
+```bash
+enable
+configure terminal
+hostname SW17
+vtp mode client
+vtp domain #202302220
+vtp password usac2025
+
+! Puertos Troncales
+interface FastEthernet0/24
+ description Enlace_a_SW13
+ switchport mode trunk
+ exit
+interface FastEthernet0/23
+ description Enlace_a_SW14
+ switchport mode trunk
+ exit
+
+! Puertos de Acceso
+interface FastEthernet0/1
+ description PC_docentes5
+ switchport mode access
+ switchport access vlan 22
+ spanning-tree portfast
+ exit
+interface FastEthernet0/2
+ description PC_admin8
+ switchport mode access
+ switchport access vlan 42
+ spanning-tree portfast
+ exit
+end
+write memory
+```
+
+#### 6.5.2 Configuración Multiswitches
+
+##### 6.5.1.3 MS7
+
+```bash
+enable
+configure terminal
+
+! 1. Habilitar Enrutamiento de Capa 3
+ip routing
+
+! 2. Configuración Básica y VTP
+hostname MS7
+vtp mode client
+vtp domain #202302220
+vtp password usac2025
+
+! 3. Configuración de Puerto Troncal
+interface FastEthernet0/1
+ description Enlace_a_MS9
+ switchport mode trunk
+ exit
+
+! 4. Puerto Enrutado hacia el Firewall5
+interface FastEthernet0/24
+ description Enlace_Backbone_a_Firewall5
+ no switchport
+ ip address 10.0.0.97 255.255.255.252
+ no shutdown
+ exit
+
+! 5. Configuración de SVIs y HSRP (ACTIVO)
+interface Vlan12
+ ip address 192.128.20.125 255.255.255.128
+ standby 1 ip 192.128.20.126
+ standby 1 priority 105
+ standby 1 preempt
+ exit
+interface Vlan22
+ ip address 192.128.20.189 255.255.255.192
+ standby 2 ip 192.128.20.190
+ standby 2 priority 105
+ standby 2 preempt
+ exit
+interface Vlan32
+ ip address 192.128.20.253 255.255.255.224
+ standby 3 ip 192.128.20.254
+ standby 3 priority 105
+ standby 3 preempt
+ exit
+interface Vlan42
+ ip address 192.128.20.221 255.255.255.224
+ standby 4 ip 192.128.20.222
+ standby 4 priority 105
+ standby 4 preempt
+ exit
+
+! 6. CONFIGURACIÓN DE OSPF
+router ospf 1
+ router-id 7.7.7.7 ! ID único para este switch/router
+ ! Anunciar la red del backbone para hablar con los vecinos
+ network 10.0.0.96 0.0.0.3 area 0
+ ! Anunciar las redes de las VLANs al resto del campus
+ network 192.128.20.0 0.0.0.255 area 0
+ exit
+
+end
+write memory
+```
+
+##### 6.5.1.3 MS8
+
+```bash
+enable
+configure terminal
+
+! 1. Habilitar Enrutamiento de Capa 3
+ip routing
+
+! 2. Configuración Básica y VTP
+hostname MS8
+vtp mode client
+vtp domain #202302220
+vtp password usac2025
+
+! 3. Configuración de Puerto Troncal
+interface FastEthernet0/1
+ description Enlace_a_MS9
+ switchport mode trunk
+ exit
+
+! 4. Puerto Enrutado hacia el Firewall5
+interface FastEthernet0/24
+ description Enlace_Backbone_a_Firewall5
+ no switchport
+ ip address 10.0.0.101 255.255.255.252
+ no shutdown
+ exit
+
+! 5. Configuración de SVIs y HSRP (RESPALDO)
+interface Vlan12
+ ip address 192.128.20.124 255.255.255.128
+ standby 1 ip 192.128.20.126
+ standby 1 priority 100
+ standby 1 preempt
+ exit
+interface Vlan22
+ ip address 192.128.20.188 255.255.255.192
+ standby 2 ip 192.128.20.190
+ standby 2 priority 100
+ standby 2 preempt
+ exit
+interface Vlan32
+ ip address 192.128.20.252 255.255.255.224
+ standby 3 ip 192.128.20.254
+ standby 3 priority 100
+ standby 3 preempt
+ exit
+interface Vlan42
+ ip address 192.128.20.220 255.255.255.224
+ standby 4 ip 192.128.20.222
+ standby 4 priority 100
+ standby 4 preempt
+ exit
+
+! 6. CONFIGURACIÓN DE OSPF
+router ospf 1
+ router-id 8.8.8.8 ! ID único para este switch/router
+ ! Anunciar la red del backbone para hablar con los vecinos
+ network 10.0.0.100 0.0.0.3 area 0
+ ! Anunciar las redes de las VLANs al resto del campus
+ network 192.128.20.0 0.0.0.255 area 0
+ exit
+
+end
+write memory
+```
+
+##### 6.5.1.3 MS9 (Servidor VTP)
+
+```bash
+enable
+configure terminal
+
+! 1. Configuración Básica y VTP
+hostname MS9
+vtp mode server
+vtp domain #202302220
+vtp password usac2025
+
+! 2. Creación de VLANs
+vlan 12
+ name Estudiantes
+vlan 22
+ name Docentes
+vlan 32
+ name Vigilancia
+vlan 42
+ name Admin
+
+! 3. Configuración de Puertos Troncales
+interface FastEthernet0/1
+ description Enlace_a_SW13
+ switchport mode trunk
+ exit
+interface FastEthernet0/2
+ description Enlace_a_SW14
+ switchport mode trunk
+ exit
+interface FastEthernet0/24
+ description Enlace_a_MS7
+ switchport mode trunk
+ exit
+interface FastEthernet0/23
+ description Enlace_a_MS8
+ switchport mode trunk
+ exit
+
+end
+write memory
 ```
 
 
