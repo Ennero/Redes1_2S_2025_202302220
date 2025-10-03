@@ -41,13 +41,12 @@
       - [6.1.1 Configuración Switches](#611-configuración-switches)
         - [6.1.1.1 SW3](#6111-sw3)
         - [6.1.1.2 SW4](#6112-sw4)
-        - [6.1.1.2 SW5 (Servidor vtp de esta área)](#6112-sw5-servidor-vtp-de-esta-área)
+        - [6.1.1.2 SW5 (Servidor VTP)](#6112-sw5-servidor-vtp)
         - [6.1.1.2 SW6](#6112-sw6)
       - [6.1.2 Configuración Multiswitches](#612-configuración-multiswitches)
         - [6.1.2.1 MS1](#6121-ms1)
         - [6.1.2.2 MS2](#6122-ms2)
       - [6.1.3 Configuración Firewall1](#613-configuración-firewall1)
-        - [6.1.3.1 firewaLl1](#6131-firewall1)
       - [6.1.4 Conexiones entre los switches](#614-conexiones-entre-los-switches)
       - [6.1.5 Conexiones a dispositivos finales](#615-conexiones-a-dispositivos-finales)
     - [6.2 Biblioteca](#62-biblioteca)
@@ -55,23 +54,31 @@
         - [6.2.1.1 SW0](#6211-sw0)
         - [6.2.1.2 SW1](#6212-sw1)
         - [6.2.1.3 Switch6](#6213-switch6)
-      - [6.2.2 Configuración Multiswitch MS0](#622-configuración-multiswitch-ms0)
+      - [6.2.2 Configuración Multiswitch MS0 (Servidor VTP)](#622-configuración-multiswitch-ms0-servidor-vtp)
       - [6.2.3 Configuración Routers](#623-configuración-routers)
         - [6.2.3.1 R0](#6231-r0)
         - [6.2.3.2 R1](#6232-r1)
-      - [6.2.4 Configuración Firewall](#624-configuración-firewall)
-      - [6.2.5 Conexiones entre los switches](#625-conexiones-entre-los-switches)
+      - [6.2.4 Configuración Firewall2](#624-configuración-firewall2)
+      - [6.2.5 Conexiones entre los switches y routers](#625-conexiones-entre-los-switches-y-routers)
       - [6.2.6 Conexiones a dispositivos finales](#626-conexiones-a-dispositivos-finales)
     - [6.3 Edificio T4](#63-edificio-t4)
       - [6.3.1 Configuraciones Switches](#631-configuraciones-switches)
-      - [6.3.2 Configuración Multiswitch](#632-configuración-multiswitch)
-      - [6.3.3 Configuración Firewall](#633-configuración-firewall)
+        - [6.3.1.1 SW7](#6311-sw7)
+        - [6.3.1.2 SW8 (Servidor VTP)](#6312-sw8-servidor-vtp)
+        - [6.3.1.3 SW9](#6313-sw9)
+      - [6.3.2 Configuración Multiswitch MS5](#632-configuración-multiswitch-ms5)
+      - [6.3.3 Configuración Firewall3](#633-configuración-firewall3)
       - [6.3.4 Conexiones entre los switches](#634-conexiones-entre-los-switches)
       - [6.3.5 Conexiones a dispositivos finales](#635-conexiones-a-dispositivos-finales)
     - [6.4 Edificio S11](#64-edificio-s11)
       - [6.4.1 Configuraciones Switches](#641-configuraciones-switches)
+        - [6.4.1.1 SW10](#6411-sw10)
+        - [6.4.1.1 SW11 (Servidor VTP)](#6411-sw11-servidor-vtp)
+        - [6.4.1.1 SW12](#6411-sw12)
       - [6.4.2 Configuración Routers](#642-configuración-routers)
-      - [6.4.3 Configuración Firewall](#643-configuración-firewall)
+        - [6.4.2.1 R10](#6421-r10)
+        - [6.4.2.2 R11](#6422-r11)
+      - [6.4.3 Configuración Firewall4](#643-configuración-firewall4)
       - [6.4.4 Conexiones entre los switches](#644-conexiones-entre-los-switches)
       - [6.4.5 Conexiones a dispositivos finales](#645-conexiones-a-dispositivos-finales)
     - [6.5 Edificio S12](#65-edificio-s12)
@@ -473,7 +480,7 @@ end
 write memory
 ```
 
-##### 6.1.1.2 SW5 (Servidor vtp de esta área)
+##### 6.1.1.2 SW5 (Servidor VTP)
 ```bash
 enable
 configure terminal
@@ -611,7 +618,7 @@ interface FastEthernet0/3
 interface FastEthernet0/24
  description Enlace_hacia_Firewall1
  no switchport
- ip address 10.0.0.69 255.255.255.252 ! IP actualizada de tu tabla de backbone
+ ip address 10.0.0.69 255.255.255.252 
  no shutdown
  exit
 
@@ -679,7 +686,7 @@ interface FastEthernet0/3
 interface FastEthernet0/24
  description Enlace_hacia_Firewall1
  no switchport
- ip address 10.0.0.73 255.255.255.252 ! IP actualizada de tu tabla de backbone
+ ip address 10.0.0.73 255.255.255.252
  no shutdown
  exit
 
@@ -716,13 +723,11 @@ write memory
 
 #### 6.1.3 Configuración Firewall1
 
-##### 6.1.3.1 firewaLl1
 ```bash
 
 
 
 ```
-
 
 
 
@@ -865,7 +870,7 @@ write memory
 ```
 
 
-#### 6.2.2 Configuración Multiswitch MS0
+#### 6.2.2 Configuración Multiswitch MS0 (Servidor VTP)
 ```bash
 enable
 configure terminal
@@ -966,8 +971,6 @@ router rip
 
 end
 write memory
-
-
 ```
 
 
@@ -1010,7 +1013,7 @@ interface GigabitEthernet0/0
 ! 2. Configuración del Backbone (hacia Firewall2)
 interface GigabitEthernet0/1
  description Enlace_Backbone_a_Firewall2
- ip address 10.0.0.77 255.255.255.252 ! IP de tu tabla de backbone
+ ip address 10.0.0.77 255.255.255.252 
  no shutdown
  exit
 
@@ -1026,7 +1029,7 @@ end
 write memory
 ```
 
-#### 6.2.4 Configuración Firewall
+#### 6.2.4 Configuración Firewall2
 ```bash
 
 
@@ -1034,7 +1037,7 @@ write memory
 ```
 
 
-#### 6.2.5 Conexiones entre los switches
+#### 6.2.5 Conexiones entre los switches y routers
 | Switch/Router | Puerta1 | Switch/Router2 | Puerta2 |
 |--------------|---------|---------------|---------|
 | MS0          | fa1     | SW0           | fa24    |
@@ -1065,23 +1068,209 @@ write memory
 
 #### 6.3.1 Configuraciones Switches
 
-
+##### 6.3.1.1 SW7
 
 ```bash
+enable
+configure terminal
 
+! 1. Configuración Básica y VTP
+hostname SW7
+vtp mode client
+vtp domain #202302220
+vtp password usac2025
 
+! 2. Configuración de Puertos Troncales
+interface FastEthernet0/23
+ description Enlace_a_SW8
+ switchport mode trunk
+ exit
+interface FastEthernet0/24
+ description Enlace_a_MS5
+ switchport mode trunk
+ exit
 
+! 3. Configuración de Puertos de Acceso
+interface FastEthernet0/1
+ description PC_biblioteca5
+ switchport mode access
+ switchport access vlan 52
+ spanning-tree portfast
+ exit
+interface FastEthernet0/2
+ description PC_biblioteca4
+ switchport mode access
+ switchport access vlan 52
+ spanning-tree portfast
+ exit
+
+end
+write memory
 ```
 
-#### 6.3.2 Configuración Multiswitch
+##### 6.3.1.2 SW8 (Servidor VTP)
+
 ```bash
+enable
+configure terminal
 
+! 1. Configuración Básica y VTP
+hostname SW8
+vtp mode server
+vtp domain #202302220
+vtp password usac2025
 
+! 2. Creación de VLANs (Solo se hace aquí)
+vlan 12
+ name Estudiantes
+vlan 22
+ name Docentes
+vlan 32
+ name Vigilancia
+vlan 42
+ name Admin
+vlan 52
+ name Biblioteca
 
+! 3. Configuración de Puertos Troncales
+interface FastEthernet0/23
+ description Enlace_a_SW9
+ switchport mode trunk
+ exit
+interface FastEthernet0/3
+ description Enlace_a_SW7
+ switchport mode trunk
+ exit
+interface FastEthernet0/24
+ description Enlace_a_MS5
+ switchport mode trunk
+ exit
+
+! 4. Configuración de Puertos de Acceso
+interface FastEthernet0/1
+ description PC_estudiantes10
+ switchport mode access
+ switchport access vlan 12
+ spanning-tree portfast
+ exit
+interface FastEthernet0/2
+ description PC_admin6
+ switchport mode access
+ switchport access vlan 42
+ spanning-tree portfast
+ exit
+
+end
+write memory
 ```
 
 
-#### 6.3.3 Configuración Firewall
+##### 6.3.1.3 SW9
+
+```bash
+enable
+configure terminal
+
+! 1. Configuración Básica y VTP
+hostname SW9
+vtp mode client
+vtp domain #202302220
+vtp password usac2025
+
+! 2. Configuración de Puertos Troncales
+interface FastEthernet0/3
+ description Enlace_a_SW8
+ switchport mode trunk
+ exit
+interface FastEthernet0/24
+ description Enlace_a_MS5
+ switchport mode trunk
+ exit
+
+! 3. Configuración de Puertos de Acceso
+interface FastEthernet0/1
+ description PC_vigilancia4
+ switchport mode access
+ switchport access vlan 32
+ spanning-tree portfast
+ exit
+interface FastEthernet0/2
+ description PC_docentes2
+ switchport mode access
+ switchport access vlan 22
+ spanning-tree portfast
+ exit
+
+end
+write memory
+```
+
+
+
+#### 6.3.2 Configuración Multiswitch MS5
+```bash
+enable
+configure terminal
+
+! 1. Habilitar Enrutamiento de Capa 3 
+ip routing
+
+! 2. Configuración Básica y VTP
+hostname MS5
+vtp mode client
+vtp domain #202302220
+vtp password usac2025
+
+! 3. Configuración de Puertos Troncales
+interface FastEthernet0/1
+ description Enlace_a_SW9
+ switchport mode trunk
+ exit
+interface FastEthernet0/2
+ description Enlace_a_SW8
+ switchport mode trunk
+ exit
+interface FastEthernet0/3
+ description Enlace_a_SW7
+ switchport mode trunk
+ exit
+
+! 4. Puerto Enrutado hacia el Firewall3
+interface FastEthernet0/24
+ description Enlace_Backbone_a_Firewall3
+ no switchport
+ ip address 10.0.0.85 255.255.255.252
+ no shutdown
+ exit
+
+! 5. Configuración de SVIs (Gateways para cada VLAN)
+interface Vlan12
+ description Gateway_Estudiantes
+ ip address 172.16.20.190 255.255.255.192
+ exit
+interface Vlan22
+ description Gateway_Docentes
+ ip address 172.16.20.254 255.255.255.240
+ exit
+interface Vlan32
+ description Gateway_Vigilancia
+ ip address 172.16.20.222 255.255.255.224
+ exit
+interface Vlan42
+ description Gateway_Admin
+ ip address 172.16.20.126 255.255.255.128
+ exit
+interface Vlan52
+ description Gateway_Biblioteca
+ ip address 172.16.20.238 255.255.255.240
+ exit
+
+end
+write memory
+```
+
+
+#### 6.3.3 Configuración Firewall3
 ```bash
 
 
@@ -1122,23 +1311,205 @@ write memory
 
 #### 6.4.1 Configuraciones Switches
 
-
+##### 6.4.1.1 SW10
 
 ```bash
+enable
+configure terminal
+hostname SW10
+vtp mode client
+vtp domain #202302220
+vtp password usac2025
 
+! Puerto Troncal
+interface FastEthernet0/3
+ description Enlace_a_SW11
+ switchport mode trunk
+ exit
 
+! Puertos de Acceso
+interface FastEthernet0/1
+ description PC_admin7
+ switchport mode access
+ switchport access vlan 42
+ spanning-tree portfast
+ exit
+interface FastEthernet0/2
+ description PC_docentes3
+ switchport mode access
+ switchport access vlan 22
+ spanning-tree portfast
+ exit
+end
+write memory
+```
 
+##### 6.4.1.1 SW11 (Servidor VTP)
+
+```bash
+enable
+configure terminal
+
+! 1. Configuración Básica y VTP
+hostname SW11
+vtp mode server
+vtp domain #202302220
+vtp password usac2025
+
+! 2. Creación de VLANs
+vlan 12
+ name Estudiantes
+vlan 22
+ name Docentes
+vlan 32
+ name Vigilancia
+vlan 42
+ name Admin
+
+! 3. Configuración de Puertos Troncales
+interface FastEthernet0/22
+ description Enlace_a_SW10
+ switchport mode trunk
+ exit
+interface FastEthernet0/3
+ description Enlace_a_SW12
+ switchport mode trunk
+ exit
+! Puertos hacia los routers
+interface FastEthernet0/24
+ description Enlace_a_Router_R10
+ switchport mode trunk
+ exit
+interface FastEthernet0/23
+ description Enlace_a_Router_R11
+ switchport mode trunk
+ exit
+
+! 4. Configuración de Puertos de Acceso
+interface FastEthernet0/1
+ description PC_docentes4
+ switchport mode access
+ switchport access vlan 22
+ spanning-tree portfast
+ exit
+interface FastEthernet0/2
+ description PC_estudiantes4
+ switchport mode access
+ switchport access vlan 12
+ spanning-tree portfast
+ exit
+
+end
+write memory
+```
+
+##### 6.4.1.1 SW12
+
+```bash
+enable
+configure terminal
+hostname SW12
+vtp mode client
+vtp domain #202302220
+vtp password usac2025
+
+! Puerto Troncal
+interface FastEthernet0/24
+ description Enlace_a_SW11
+ switchport mode trunk
+ exit
+
+! Puertos de Acceso
+interface FastEthernet0/1
+ description PC_estudiantes5
+ switchport mode access
+ switchport access vlan 12
+ spanning-tree portfast
+ exit
+interface FastEthernet0/2
+ description Laptop_vigilancia5
+ switchport mode access
+ switchport access vlan 32
+ spanning-tree portfast
+ exit
+end
+write memory
 ```
 
 
 #### 6.4.2 Configuración Routers
+
+##### 6.4.2.1 R10
+
+```bash
+enable
+configure terminal
+hostname R10
+
+! 1. Configuración de Sub-interfaces (Gateways)
+interface GigabitEthernet0/0
+ no shutdown
+ exit
+! --- VLAN 12 ---
+interface GigabitEthernet0/0.12
+ encapsulation dot1Q 12
+ ip address 172.148.20.125 255.255.255.128
+ standby 1 ip 172.148.20.126
+ standby 1 priority 105
+ standby 1 preempt
+! --- VLAN 22 ---
+interface GigabitEthernet0/0.22
+ encapsulation dot1Q 22
+ ip address 172.148.20.221 255.255.255.224
+ standby 2 ip 172.148.20.222
+ standby 2 priority 105
+ standby 2 preempt
+! --- VLAN 32 ---
+interface GigabitEthernet0/0.32
+ encapsulation dot1Q 32
+ ip address 172.148.20.237 255.255.255.240
+ standby 3 ip 172.148.20.238
+ standby 3 priority 105
+ standby 3 preempt
+! --- VLAN 42 ---
+interface GigabitEthernet0/0.42
+ encapsulation dot1Q 42
+ ip address 172.148.20.189 255.255.255.192
+ standby 4 ip 172.148.20.190
+ standby 4 priority 105
+ standby 4 preempt
+ exit
+
+! 2. Configuración del Backbone (hacia Firewall4)
+interface GigabitEthernet0/1
+ description Enlace_Backbone_a_Firewall4
+ ip address 10.0.0.89 255.255.255.252
+ no shutdown
+ exit
+
+! 3. Configuración del Protocolo de Enrutamiento (OSPF)
+router ospf 1
+ router-id 10.10.10.10
+ ! Anunciar la red del backbone
+ network 10.0.0.88 0.0.0.3 area 0
+ ! Anunciar todas las redes de las VLANs
+ network 172.148.20.0 0.0.0.255 area 0
+ exit
+
+end
+write memory
+```
+
+##### 6.4.2.2 R11
+
 ```bash
 
 
 
 ```
 
-#### 6.4.3 Configuración Firewall
+
+#### 6.4.3 Configuración Firewall4
 ```bash
 
 
@@ -1245,7 +1616,7 @@ write memory
 | R3                | gi0     | firewall1     | gi8     |
 | R3                | gi1     | firewall2     | gi8     |
 | R4                | serial0 | R3            | serial0 |
-| R4                | serial1 | R2            | serial1 |
+| R4                | serial1 | R2            | serial0 |
 | R2                | serial1 | R3            | serial1 |
 | R5                | gi0     | R4            | gi1     |
 
@@ -1255,7 +1626,7 @@ write memory
 | Switch/Router | Puerta1 | Switch/Router2 | Puerta2 |
 |--------------|---------|---------------|---------|
 | R7           | gi0     | R8            | g1      |
-| R8           | g0      | R9            | gi1     |
+| R8           | g0      | R9            | fa1     |
 | R9           | fa6     | firewall5     | gi8     |
 | R9           | fa7     | firewall4     | gi8     |
 
@@ -1276,7 +1647,7 @@ write memory
 
 | Switch/Router | Puerta1 | Switch/Router2 | Puerta2 |
 |--------------|---------|---------------|---------|
-| R6           | gi0     | firewall4     | gi8     |
+| R6           | gi0     | firewall3     | gi8     |
 
 
 
