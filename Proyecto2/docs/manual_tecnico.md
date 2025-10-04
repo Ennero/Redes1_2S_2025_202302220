@@ -46,9 +46,8 @@
       - [6.1.2 Configuración Multiswitches](#612-configuración-multiswitches)
         - [6.1.2.1 MS1](#6121-ms1)
         - [6.1.2.2 MS2](#6122-ms2)
-      - [6.1.3 Configuración Firewall1](#613-configuración-firewall1)
-      - [6.1.4 Conexiones entre los switches](#614-conexiones-entre-los-switches)
-      - [6.1.5 Conexiones a dispositivos finales](#615-conexiones-a-dispositivos-finales)
+      - [6.1.3 Conexiones entre los switches](#613-conexiones-entre-los-switches)
+      - [6.1.4 Conexiones a dispositivos finales](#614-conexiones-a-dispositivos-finales)
     - [6.2 Biblioteca](#62-biblioteca)
       - [6.2.1 Configuraciones Switches](#621-configuraciones-switches)
         - [6.2.1.1 SW0](#6211-sw0)
@@ -58,18 +57,16 @@
       - [6.2.3 Configuración Routers](#623-configuración-routers)
         - [6.2.3.1 R0](#6231-r0)
         - [6.2.3.2 R1](#6232-r1)
-      - [6.2.4 Configuración Firewall2](#624-configuración-firewall2)
-      - [6.2.5 Conexiones entre los switches y routers](#625-conexiones-entre-los-switches-y-routers)
-      - [6.2.6 Conexiones a dispositivos finales](#626-conexiones-a-dispositivos-finales)
+      - [6.2.4 Conexiones entre los switches y routers](#624-conexiones-entre-los-switches-y-routers)
+      - [6.2.5 Conexiones a dispositivos finales](#625-conexiones-a-dispositivos-finales)
     - [6.3 Edificio T4](#63-edificio-t4)
       - [6.3.1 Configuraciones Switches](#631-configuraciones-switches)
         - [6.3.1.1 SW7](#6311-sw7)
         - [6.3.1.2 SW8 (Servidor VTP)](#6312-sw8-servidor-vtp)
         - [6.3.1.3 SW9](#6313-sw9)
       - [6.3.2 Configuración Multiswitch MS5](#632-configuración-multiswitch-ms5)
-      - [6.3.3 Configuración Firewall3](#633-configuración-firewall3)
-      - [6.3.4 Conexiones entre los switches](#634-conexiones-entre-los-switches)
-      - [6.3.5 Conexiones a dispositivos finales](#635-conexiones-a-dispositivos-finales)
+      - [6.3.3 Conexiones entre los switches](#633-conexiones-entre-los-switches)
+      - [6.3.4 Conexiones a dispositivos finales](#634-conexiones-a-dispositivos-finales)
     - [6.4 Edificio S11](#64-edificio-s11)
       - [6.4.1 Configuraciones Switches](#641-configuraciones-switches)
         - [6.4.1.1 SW10](#6411-sw10)
@@ -78,9 +75,8 @@
       - [6.4.2 Configuración Routers](#642-configuración-routers)
         - [6.4.2.1 R10](#6421-r10)
         - [6.4.2.2 R11](#6422-r11)
-      - [6.4.3 Configuración Firewall4](#643-configuración-firewall4)
-      - [6.4.4 Conexiones entre los switches](#644-conexiones-entre-los-switches)
-      - [6.4.5 Conexiones a dispositivos finales](#645-conexiones-a-dispositivos-finales)
+      - [6.4.3 Conexiones entre los switches](#643-conexiones-entre-los-switches)
+      - [6.4.4 Conexiones a dispositivos finales](#644-conexiones-a-dispositivos-finales)
     - [6.5 Edificio S12](#65-edificio-s12)
       - [6.5.1 Configuraciones Switches](#651-configuraciones-switches)
         - [6.5.1.1 SW13](#6511-sw13)
@@ -92,14 +88,26 @@
         - [6.5.1.3 MS7](#6513-ms7)
         - [6.5.1.3 MS8](#6513-ms8)
         - [6.5.1.3 MS9 (Servidor VTP)](#6513-ms9-servidor-vtp)
-      - [6.5.3 Configuración Firewall](#653-configuración-firewall)
-      - [6.5.4 Conexiones entre los switches](#654-conexiones-entre-los-switches)
-      - [6.5.5 Conexiones a dispositivos finales](#655-conexiones-a-dispositivos-finales)
+      - [6.5.3 Conexiones entre los switches](#653-conexiones-entre-los-switches)
+      - [6.5.4 Conexiones a dispositivos finales](#654-conexiones-a-dispositivos-finales)
     - [6.6 BACKBONE](#66-backbone)
-      - [6.6.1 RIP (Routing Information Protocol)](#661-rip-routing-information-protocol)
-      - [6.6.2 OSPF (Open Shortest Path First)](#662-ospf-open-shortest-path-first)
-      - [6.6.3 EIGRP (Enhances Interior Gateway Routing Protocol)](#663-eigrp-enhances-interior-gateway-routing-protocol)
-      - [6.6.4 Rutas Estáticas](#664-rutas-estáticas)
+    - [6.6.1 Configuración Routers](#661-configuración-routers)
+      - [6.6.1.1 R2](#6611-r2)
+      - [6.6.1.2 R3](#6612-r3)
+      - [6.6.1.3 R4](#6613-r4)
+      - [6.6.1.4 R5](#6614-r5)
+      - [6.6.1.5 R6](#6615-r6)
+      - [6.6.1.6 R7](#6616-r7)
+      - [6.6.1.7 R8](#6617-r8)
+      - [6.6.1.7 R9](#6617-r9)
+    - [6.6.2 Configuración de MultiSwitches](#662-configuración-de-multiswitches)
+      - [6.6.2.1 MS3](#6621-ms3)
+      - [6.6.2.1 MS4](#6621-ms4)
+      - [6.6.2.1 MS6](#6621-ms6)
+      - [6.6.3 RIP (Routing Information Protocol)](#663-rip-routing-information-protocol)
+      - [6.6.4 OSPF (Open Shortest Path First)](#664-ospf-open-shortest-path-first)
+      - [6.6.5 EIGRP (Enhances Interior Gateway Routing Protocol)](#665-eigrp-enhances-interior-gateway-routing-protocol)
+      - [6.6.6 Rutas Estáticas](#666-rutas-estáticas)
 
 
 
@@ -269,8 +277,8 @@ A continuación, se presenta el diagrama de la topología de red implementada en
 #### 4.2.2 Biblioteca
 | Nombre      | VLAN | Dirección IP    | Máscara de Red   |
 |-------------|------|-----------------|------------------|
-| Estudiantes | 12   | 192.158.20.126  | 255.255.255.248  |
-| Vigilancia  | 32   | 192.168.20.158  | 255.255.255.224  |
+| Estudiantes | 12   | 192.158.20.126  | 255.255.255.128  |
+| Vigilancia  | 32   | 192.158.20.158  | 255.255.255.224  |
 | Biblioteca  | 52   | 192.158.20.190  | 255.255.255.224  |
 
 
@@ -311,8 +319,8 @@ A continuación, se presenta el diagrama de la topología de red implementada en
 Para este edificio se usa VLSM:
 | HOSTS NECESARIOS | VLAN | OFICINA    | ID RED        | MASCARA           | WILDCARD     | PRIMER HOST    | ULTIMO HOST     | BROADCAST      | HOST. UTILIZABLES |
 |-----------------|------|------------|---------------|-------------------|--------------|----------------|-----------------|----------------|------------------|
-| 120             | 42   | Admin      | 192.168.20.0  | 255.255.255.128   | 0.0.0.127    | 192.168.20.1   | 192.168.20.126  | 192.128.20.127  | 126              |
-| 20              | 32   | Vigilancia | 192.168.20.128| 255.255.255.224   | 0.0.0.31     | 192.128.20.129 | 192.168.20.158  | 192.168.20.159  | 30               |
+| 120             | 42   | Admin      | 192.168.20.0  | 255.255.255.128   | 0.0.0.127    | 192.168.20.1   | 192.168.20.126  | 192.168.20.127  | 126              |
+| 20              | 32   | Vigilancia | 192.168.20.128| 255.255.255.224   | 0.0.0.31     | 192.168.20.129 | 192.168.20.158  | 192.168.20.159  | 30               |
 | 5               | 22   | Docentes   | 192.168.20.160| 255.255.255.248   | 0.0.0.7      | 192.168.20.161 | 192.168.20.166  | 192.168.20.167  | 6                |
 | 5               | 12   | Estudiantes| 192.168.20.168| 255.255.255.248   | 0.0.0.7      | 192.168.20.169 | 192.168.20.174  | 192.168.20.175  | 6                |
 
@@ -358,34 +366,34 @@ Para este edificio se usa VLSM:
 
 ### 5.6 BACKBONE
 
-| HOSTS NECESARIOS | Dispositivo A | Dispositivo B | ID RED     | MASCARA           | WILDCARD   | PRIMER HOST (Dispositivo A) | ULTIMO HOST (Dispositivo B) | BROADCAST    | HOST. UTILIZABLES | HOST UTILIZADOS | DESPERDICIO |
-|------------------|---------------|---------------|------------|-------------------|------------|-----------------------------|-----------------------------|--------------|------------------|----------------|-------------|
-| 2                | firewall3     | R6            | 10.0.0.0   | 255.255.255.252   | 0.0.0.3    | 10.0.0.1                    | 10.0.0.2                     | 10.0.0.3     | 2                | 2              | 0           |
-| 2                | R6            | MS4           | 10.0.0.4   | 255.255.255.252   | 0.0.0.3    | 10.0.0.5                    | 10.0.0.6                     | 10.0.0.7     | 2                | 2              | 0           |
-| 2                | MS4           | MS6           | 10.0.0.8   | 255.255.255.252   | 0.0.0.3    | 10.0.0.9                    | 10.0.0.10                    | 10.0.0.11    | 2                | 2              | 0           |
-| 2                | MS6           | R7            | 10.0.0.12  | 255.255.255.252   | 0.0.0.3    | 10.0.0.13                   | 10.0.0.14                    | 10.0.0.15    | 2                | 2              | 0           |
-| 2                | R7            | R8            | 10.0.0.16  | 255.255.255.252   | 0.0.0.3    | 10.0.0.17                   | 10.0.0.18                    | 10.0.0.19    | 2                | 2              | 0           |
-| 2                | R8            | R9            | 10.0.0.20  | 255.255.255.252   | 0.0.0.3    | 10.0.0.21                   | 10.0.0.22                    | 10.0.0.23    | 2                | 2              | 0           |
-| 2                | R9            | firewall5     | 10.0.0.24  | 255.255.255.252   | 0.0.0.3    | 10.0.0.25                   | 10.0.0.26                    | 10.0.0.27    | 2                | 2              | 0           |
-| 2                | R9            | firewall4     | 10.0.0.28  | 255.255.255.252   | 0.0.0.3    | 10.0.0.29                   | 10.0.0.30                    | 10.0.0.31    | 2                | 2              | 0           |
-| 2                | MS6           | MS3           | 10.0.0.32  | 255.255.255.252   | 0.0.0.3    | 10.0.0.33                   | 10.0.0.34                    | 10.0.0.35    | 2                | 2              | 0           |
-| 2                | MS4           | MS3           | 10.0.0.36  | 255.255.255.252   | 0.0.0.3    | 10.0.0.37                   | 10.0.0.38                    | 10.0.0.39    | 2                | 2              | 0           |
-| 2                | MS3           | R5            | 10.0.0.40  | 255.255.255.252   | 0.0.0.3    | 10.0.0.41                   | 10.0.0.42                    | 10.0.0.43    | 2                | 2              | 0           |
-| 2                | R5            | R4            | 10.0.0.44  | 255.255.255.252   | 0.0.0.3    | 10.0.0.45                   | 10.0.0.46                    | 10.0.0.47    | 2                | 2              | 0           |
-| 2                | R4            | R2            | 10.0.0.48  | 255.255.255.252   | 0.0.0.3    | 10.0.0.49                   | 10.0.0.50                    | 10.0.0.51    | 2                | 2              | 0           |
-| 2                | R4            | R3            | 10.0.0.52  | 255.255.255.252   | 0.0.0.3    | 10.0.0.53                   | 10.0.0.54                    | 10.0.0.55    | 2                | 2              | 0           |
-| 2                | R2            | R3            | 10.0.0.56  | 255.255.255.252   | 0.0.0.3    | 10.0.0.57                   | 10.0.0.58                    | 10.0.0.59    | 2                | 2              | 0           |
-| 2                | R3            | firewall1     | 10.0.0.60  | 255.255.255.252   | 0.0.0.3    | 10.0.0.61                   | 10.0.0.62                    | 10.0.0.63    | 2                | 2              | 0           |
-| 2                | R3            | firewall2     | 10.0.0.64  | 255.255.255.252   | 0.0.0.3    | 10.0.0.65                   | 10.0.0.66                    | 10.0.0.67    | 2                | 2              | 0           |
-| 2                | MS1           | firewall1     | 10.0.0.68  | 255.255.255.252   | 0.0.0.3    | 10.0.0.69                   | 10.0.0.70                    | 10.0.0.71    | 2                | 2              | 0           |
-| 2                | MS2           | firewall1     | 10.0.0.72  | 255.255.255.252   | 0.0.0.3    | 10.0.0.73                   | 10.0.0.74                    | 10.0.0.75    | 2                | 2              | 0           |
-| 2                | R1            | firewall2     | 10.0.0.76  | 255.255.255.252   | 0.0.0.3    | 10.0.0.77                   | 10.0.0.78                    | 10.0.0.79    | 2                | 2              | 0           |
-| 2                | R0            | firewall2     | 10.0.0.80  | 255.255.255.252   | 0.0.0.3    | 10.0.0.81                   | 10.0.0.82                    | 10.0.0.83    | 2                | 2              | 0           |
-| 2                | MS5           | firewall3     | 10.0.0.84  | 255.255.255.252   | 0.0.0.3    | 10.0.0.85                   | 10.0.0.86                    | 10.0.0.87    | 2                | 2              | 0           |
-| 2                | R10           | firewall4     | 10.0.0.88  | 255.255.255.252   | 0.0.0.3    | 10.0.0.89                   | 10.0.0.90                    | 10.0.0.91    | 2                | 2              | 0           |
-| 2                | R11           | firewall4     | 10.0.0.92  | 255.255.255.252   | 0.0.0.3    | 10.0.0.93                   | 10.0.0.94                    | 10.0.0.95    | 2                | 2              | 0           |
-| 2                | MS7           | firewall5     | 10.0.0.96  | 255.255.255.252   | 0.0.0.3    | 10.0.0.97                   | 10.0.0.98                    | 10.0.0.99    | 2                | 2              | 0           |
-| 2                | MS8           | firewall5     | 10.0.0.100 | 255.255.255.252   | 0.0.0.3    | 10.0.0.101                  | 10.0.0.102                   | 10.0.0.103   | 2                | 2              | 0           |
+| HOSTS NECESARIOS | Dispositivo A | Dispositivo B | ID RED | MASCARA | WILDCARD | PRIMER HOST (Dispositivo A) | ULTIMO HOST (Dispositivo B) | BROADCAST | HOST. UTILIZABLES | HOST UTILIZADOS | DESPERDICIO |
+|------------------|---------------|---------------|--------|---------|----------|-----------------------------|-----------------------------|-----------|-------------------|-----------------|-------------|
+| 2 | | | 10.0.0.0 | 255.255.255.252 | 0.0.0.3 | 10.0.0.1 | 10.0.0.2 | 10.0.0.3 | 2 | 2 | 0 |
+| 2 | R6 | MS4 | 10.0.0.4 | 255.255.255.252 | 0.0.0.3 | 10.0.0.5 | 10.0.0.6 | 10.0.0.7 | 2 | 2 | 0 |
+| 2 | MS4 | MS6 | 10.0.0.8 | 255.255.255.252 | 0.0.0.3 | 10.0.0.9 | 10.0.0.10 | 10.0.0.11 | 2 | 2 | 0 |
+| 2 | MS6 | R7 | 10.0.0.12 | 255.255.255.252 | 0.0.0.3 | 10.0.0.13 | 10.0.0.14 | 10.0.0.15 | 2 | 2 | 0 |
+| 2 | R7 | R8 | 10.0.0.16 | 255.255.255.252 | 0.0.0.3 | 10.0.0.17 | 10.0.0.18 | 10.0.0.19 | 2 | 2 | 0 |
+| 2 | R8 | R9 | 10.0.0.20 | 255.255.255.252 | 0.0.0.3 | 10.0.0.21 | 10.0.0.22 | 10.0.0.23 | 2 | 2 | 0 |
+| 2 | | | 10.0.0.24 | 255.255.255.252 | 0.0.0.3 | 10.0.0.25 | 10.0.0.26 | 10.0.0.27 | 2 | 2 | 0 |
+| 2 | | | 10.0.0.28 | 255.255.255.252 | 0.0.0.3 | 10.0.0.29 | 10.0.0.30 | 10.0.0.31 | 2 | 2 | 0 |
+| 2 | MS6 | MS3 | 10.0.0.32 | 255.255.255.252 | 0.0.0.3 | 10.0.0.33 | 10.0.0.34 | 10.0.0.35 | 2 | 2 | 0 |
+| 2 | MS4 | MS3 | 10.0.0.36 | 255.255.255.252 | 0.0.0.3 | 10.0.0.37 | 10.0.0.38 | 10.0.0.39 | 2 | 2 | 0 |
+| 2 | MS3 | R5 | 10.0.0.40 | 255.255.255.252 | 0.0.0.3 | 10.0.0.41 | 10.0.0.42 | 10.0.0.43 | 2 | 2 | 0 |
+| 2 | R5 | R4 | 10.0.0.44 | 255.255.255.252 | 0.0.0.3 | 10.0.0.45 | 10.0.0.46 | 10.0.0.47 | 2 | 2 | 0 |
+| 2 | R4 | R2 | 10.0.0.48 | 255.255.255.252 | 0.0.0.3 | 10.0.0.49 | 10.0.0.50 | 10.0.0.51 | 2 | 2 | 0 |
+| 2 | R4 | R3 | 10.0.0.52 | 255.255.255.252 | 0.0.0.3 | 10.0.0.53 | 10.0.0.54 | 10.0.0.55 | 2 | 2 | 0 |
+| 2 | R2 | R3 | 10.0.0.56 | 255.255.255.252 | 0.0.0.3 | 10.0.0.57 | 10.0.0.58 | 10.0.0.59 | 2 | 2 | 0 |
+| 2 | | | 10.0.0.60 | 255.255.255.252 | 0.0.0.3 | 10.0.0.61 | 10.0.0.62 | 10.0.0.63 | 2 | 2 | 0 |
+| 2 | | | 10.0.0.64 | 255.255.255.252 | 0.0.0.3 | 10.0.0.65 | 10.0.0.66 | 10.0.0.67 | 2 | 2 | 0 |
+| 2 | MS1 | R3 | 10.0.0.68 | 255.255.255.252 | 0.0.0.3 | 10.0.0.69 | 10.0.0.70 | 10.0.0.71 | 2 | 2 | 0 |
+| 2 | MS2 | R3 | 10.0.0.72 | 255.255.255.252 | 0.0.0.3 | 10.0.0.73 | 10.0.0.74 | 10.0.0.75 | 2 | 2 | 0 |
+| 2 | R1 | R3 | 10.0.0.76 | 255.255.255.252 | 0.0.0.3 | 10.0.0.77 | 10.0.0.78 | 10.0.0.79 | 2 | 2 | 0 |
+| 2 | R0 | R3 | 10.0.0.80 | 255.255.255.252 | 0.0.0.3 | 10.0.0.81 | 10.0.0.82 | 10.0.0.83 | 2 | 2 | 0 |
+| 2 | MS5 | R6 | 10.0.0.84 | 255.255.255.252 | 0.0.0.3 | 10.0.0.85 | 10.0.0.86 | 10.0.0.87 | 2 | 2 | 0 |
+| 2 | R10 | R9 | 10.0.0.88 | 255.255.255.252 | 0.0.0.3 | 10.0.0.89 | 10.0.0.90 | 10.0.0.91 | 2 | 2 | 0 |
+| 2 | R11 | R9 | 10.0.0.92 | 255.255.255.252 | 0.0.0.3 | 10.0.0.93 | 10.0.0.94 | 10.0.0.95 | 2 | 2 | 0 |
+| 2 | MS7 | R9 | 10.0.0.96 | 255.255.255.252 | 0.0.0.3 | 10.0.0.97 | 10.0.0.98 | 10.0.0.99 | 2 | 2 | 0 |
+| 2 | MS8 | R9 | 10.0.0.100 | 255.255.255.252 | 0.0.0.3 | 10.0.0.101 | 10.0.0.102 | 10.0.0.103 | 2 | 2 | 0 |
 
 
 
@@ -622,9 +630,9 @@ interface FastEthernet0/3
  switchport mode trunk
  exit
 
-! 4. Puerta Enrutado hacia el Firewall 
+! 4. Puerta Enrutado hacia el R3
 interface FastEthernet0/24
- description Enlace_hacia_Firewall1
+ description Enlace_hacia_R3
  no switchport
  ip address 10.0.0.69 255.255.255.252 
  no shutdown
@@ -698,9 +706,9 @@ interface FastEthernet0/3
  switchport mode trunk
  exit
 
-! 4. Puerta Enrutado hacia el Firewall
+! 4. Puerta Enrutado hacia el R3
 interface FastEthernet0/24
- description Enlace_hacia_Firewall1
+ description Enlace_hacia_R3
  no switchport
  ip address 10.0.0.73 255.255.255.252
  no shutdown
@@ -745,107 +753,9 @@ write memory
 ```
 
 
-#### 6.1.3 Configuración Firewall1
-
-```bash
-enable
-! La contraseña de enable en un ASA por defecto está en blanco
-configure terminal
-
-hostname Firewall1
-
-! 1. Definir Grupos de Objetos para CADA tipo de VLAN de TODO el campus
-!======================================================================
-object-group network VLAN_ESTUDIANTES_TODAS
- description Contiene todas las subredes de Estudiantes
- network-object 192.168.20.168 255.255.255.248  ! Estudiantes DIGA
- network-object 192.158.20.0 255.255.255.128    ! Estudiantes Biblioteca
- network-object 172.16.20.128 255.255.255.192   ! Estudiantes T4
- network-object 172.148.20.0 255.255.255.128    ! Estudiantes S11
- network-object 192.128.20.0 255.255.255.128    ! Estudiantes S12
-
-object-group network VLAN_DOCENTES_TODAS
- description Contiene todas las subredes de Docentes
- network-object 192.168.20.160 255.255.255.248 ! Docentes DIGA
- network-object 172.16.20.240 255.255.255.240  ! Docentes T4
- network-object 172.148.20.192 255.255.255.224 ! Docentes S11
- network-object 192.128.20.128 255.255.255.192 ! Docentes S12
-
-object-group network VLAN_VIGILANCIA_TODAS
- description Contiene todas las subredes de Vigilancia
- network-object 192.168.20.128 255.255.255.224 ! Vigilancia DIGA
- network-object 192.158.20.128 255.255.255.224 ! Vigilancia Biblioteca
- network-object 172.16.20.192 255.255.255.224  ! Vigilancia T4
- network-object 172.148.20.224 255.255.255.240 ! Vigilancia S11
- network-object 192.128.20.224 255.255.255.224 ! Vigilancia S12
-
-object-group network VLAN_ADMIN_TODAS
- description Contiene todas las subredes de Admin
- network-object 192.168.20.0 255.255.255.128   ! Admin DIGA
- network-object 172.16.20.0 255.255.255.128    ! Admin T4
- network-object 172.148.20.128 255.255.255.192 ! Admin S11 
- network-object 192.128.20.192 255.255.255.224 ! Admin S12
-
-object-group network VLAN_BIBLIOTECA_TODAS
- description Contiene todas las subredes de Biblioteca
- network-object 192.158.20.160 255.255.255.224 ! Biblioteca (edificio)
- network-object 172.16.20.224 255.255.255.240  ! Biblioteca (en T4)
-
-! 2. Crear la Lista de Acceso (ACL) Global
-!=============================================
-access-list ACL_SEGURIDAD extended permit ip object-group VLAN_ESTUDIANTES_TODAS object-group VLAN_ESTUDIANTES_TODAS
-access-list ACL_SEGURIDAD extended permit ip object-group VLAN_DOCENTES_TODAS object-group VLAN_DOCENTES_TODAS
-access-list ACL_SEGURIDAD extended permit ip object-group VLAN_VIGILANCIA_TODAS object-group VLAN_VIGILANCIA_TODAS
-access-list ACL_SEGURIDAD extended permit ip object-group VLAN_ADMIN_TODAS object-group VLAN_ADMIN_TODAS
-access-list ACL_SEGURIDAD extended permit ip object-group VLAN_BIBLIOTECA_TODAS object-group VLAN_BIBLIOTECA_TODAS
-! (El "deny ip any any" está implícito al final, bloqueando todo lo demás)
-
-! 3. Configurar Interfaces 
-!=============================
-interface GigabitEthernet1/1
- description Enlace_a_MS2
- nameif inside_ms2
- security-level 100
- ip address 10.0.0.74 255.255.255.252
- no shutdown
-
-interface GigabitEthernet1/2
- description Enlace_a_MS1
- nameif inside_ms1
- security-level 100
- ip address 10.0.0.70 255.255.255.252
- no shutdown
-
-interface GigabitEthernet1/8
- description Enlace_a_R3
- nameif outside
- security-level 0
- ip address 10.0.0.62 255.255.255.252
- no shutdown
-
-! 4. Aplicar la ACL a las interfaces internas
-!=============================================
-access-group ACL_SEGURIDAD in interface inside_ms1
-access-group ACL_SEGURIDAD in interface inside_ms2
-
-! 5. Configurar RIP
-!=============================
-router rip
- version 2
- no auto-summary
- network 10.0.0.0
- passive-interface inside_ms1
- passive-interface inside_ms2
- redistribute connected
-exit
-
-write memory
-```
 
 
-
-
-#### 6.1.4 Conexiones entre los switches
+#### 6.1.3 Conexiones entre los switches
 | Switch/Router | Puerta1 | Switch/Router2 | Puerta2 |
 |--------------|---------|---------------|---------|
 | SW6          | fa4     | SW5           | fa22    |
@@ -857,11 +767,11 @@ write memory
 | MS1          | fa1     | SW5           | fa23    |
 | MS1          | fa2     | SW4           | fa23    |
 | MS1          | fa3     | SW3           | fa24    |
-| firewall1    | gi1     | MS2           | fa24    |
-| firewall1    | gi2     | MS1           | fa24    |
+| R3           | fa1     | MS2           | fa24    |
+| R3           | fa0     | MS1           | fa24    |
 
 
-#### 6.1.5 Conexiones a dispositivos finales
+#### 6.1.4 Conexiones a dispositivos finales
 
 | Switch/Router | Puerta en Switch | Dispositivo Final |
 |--------------|------------------|-------------------|
@@ -1067,9 +977,9 @@ interface GigabitEthernet0/0
  no shutdown
  exit
 
-! 2. Configuración del Backbone (hacia Firewall2)
+! 2. Configuración del Backbone (hacia R3)
 interface GigabitEthernet0/1
- description Enlace_Backbone_a_Firewall2
+ description Enlace_Backbone_a_R3
  ip address 10.0.0.81 255.255.255.252 
  no shutdown
  exit
@@ -1123,9 +1033,9 @@ interface GigabitEthernet0/0
  no shutdown
  exit
 
-! 2. Configuración del Backbone (hacia Firewall2)
+! 2. Configuración del Backbone (hacia R3)
 interface GigabitEthernet0/1
- description Enlace_Backbone_a_Firewall2
+ description Enlace_Backbone_a_R3
  ip address 10.0.0.77 255.255.255.252 
  no shutdown
  exit
@@ -1142,15 +1052,8 @@ end
 write memory
 ```
 
-#### 6.2.4 Configuración Firewall2
-```bash
 
-
-
-```
-
-
-#### 6.2.5 Conexiones entre los switches y routers
+#### 6.2.4 Conexiones entre los switches y routers
 | Switch/Router | Puerta1 | Switch/Router2 | Puerta2 |
 |--------------|---------|---------------|---------|
 | MS0          | fa1     | SW0           | fa24    |
@@ -1158,12 +1061,12 @@ write memory
 | MS0          | fa3     | SW1           | fa24    |
 | R1           | gi0     | MS0           | fa24    |
 | R0           | gi0     | MS0           | fa23    |
-| firewall2    | gi1     | R1            | gi1     |
-| firewall2    | gi2     | R0            | gi1     |
+| R3           | fa3     | R1            | gi1     |
+| R3           | fa2     | R0            | gi1     |
 
 
 
-#### 6.2.6 Conexiones a dispositivos finales
+#### 6.2.5 Conexiones a dispositivos finales
 
 | Switch/Router | Puerta en Switch | Dispositivo Final |
 |--------------|------------------|-------------------|
@@ -1348,9 +1251,9 @@ interface FastEthernet0/3
  switchport mode trunk
  exit
 
-! 4. Puerto Enrutado hacia el Firewall3
+! 4. Puerto Enrutado hacia el R6
 interface FastEthernet0/24
- description Enlace_Backbone_a_Firewall3
+ description Enlace_Backbone_a_R6
  no switchport
  ip address 10.0.0.85 255.255.255.252
  no shutdown
@@ -1378,7 +1281,7 @@ interface Vlan52
  ip address 172.16.20.238 255.255.255.240
  exit
 
-! 6. RUTA POR DEFECTO HACIA EL FIREWALL
+! 6. RUTA POR DEFECTO HACIA R6
 ip route 0.0.0.0 0.0.0.0 10.0.0.86
 
 end
@@ -1386,15 +1289,7 @@ write memory
 ```
 
 
-#### 6.3.3 Configuración Firewall3
-```bash
-
-
-
-```
-
-
-#### 6.3.4 Conexiones entre los switches
+#### 6.3.3 Conexiones entre los switches
 
 | Switch/Router | Puerta1 | Switch/Router2 | Puerta2 |
 |--------------|---------|---------------|---------|
@@ -1403,9 +1298,9 @@ write memory
 | MS5          | fa1     | SW9           | fa24    |
 | MS5          | fa2     | SW8           | fa24    |
 | MS5          | fa3     | SW7           | fa24    |
-| firewall3    | gi1     | MS5           | fa24    |
+| R6           | gi0     | MS5           | fa24    |
 
-#### 6.3.5 Conexiones a dispositivos finales
+#### 6.3.4 Conexiones a dispositivos finales
 
 | Switch/Router | Puerta en Switch | Dispositivo Final |
 |--------------|------------------|-------------------|
@@ -1596,9 +1491,9 @@ interface GigabitEthernet0/0.42
  standby 4 preempt
  exit
 
-! 2. Configuración del Backbone (hacia Firewall4)
+! 2. Configuración del Backbone (hacia R9)
 interface GigabitEthernet0/1
- description Enlace_Backbone_a_Firewall4
+ description Enlace_Backbone_a_R9
  ip address 10.0.0.89 255.255.255.252
  no shutdown
  exit
@@ -1657,9 +1552,9 @@ interface GigabitEthernet0/0.42
  standby 4 preempt
  exit
 
-! 2. Configuración del Backbone (hacia Firewall4)
+! 2. Configuración del Backbone (hacia R9)
 interface GigabitEthernet0/1
- description Enlace_Backbone_a_Firewall4
+ description Enlace_Backbone_a_R9
  ip address 10.0.0.93 255.255.255.252
  no shutdown
  exit
@@ -1678,29 +1573,20 @@ write memory
 ```
 
 
-#### 6.4.3 Configuración Firewall4
-```bash
 
-
-
-```
-
-
-
-
-#### 6.4.4 Conexiones entre los switches
+#### 6.4.3 Conexiones entre los switches
 | Switch/Router | Puerta1 | Switch/Router2 | Puerta2 |
 |--------------|---------|---------------|---------|
 | SW10         | fa3     | SW11          | fa22    |
 | SW11         | fa3     | SW12          | fa24    |
 | R10          | gi0     | SW1           | fa24    |
 | R11          | gi0     | MS0           | fa23    |
-| firewall4    | gi1     | R10           | gi1     |
-| firewall4    | gi2     | R11           | gi1     |
+| R9           | fa8     | R10           | gi1     |
+| R9           | fa9     | R11           | gi1     |
 
 
 
-#### 6.4.5 Conexiones a dispositivos finales
+#### 6.4.4 Conexiones a dispositivos finales
 | Switch/Router | Puerta en Switch | Dispositivo Final |
 |--------------|------------------|-------------------|
 | SW10         | fa1              | admin7            |
@@ -1917,9 +1803,9 @@ interface FastEthernet0/1
  switchport mode trunk
  exit
 
-! 4. Puerto Enrutado hacia el Firewall5
+! 4. Puerto Enrutado hacia el R9
 interface FastEthernet0/24
- description Enlace_Backbone_a_Firewall5
+ description Enlace_Backbone_a_R9
  no switchport
  ip address 10.0.0.97 255.255.255.252
  no shutdown
@@ -1985,9 +1871,9 @@ interface FastEthernet0/1
  switchport mode trunk
  exit
 
-! 4. Puerto Enrutado hacia el Firewall5
+! 4. Puerto Enrutado hacia el R9
 interface FastEthernet0/24
- description Enlace_Backbone_a_Firewall5
+ description Enlace_Backbone_a_R9
  no switchport
  ip address 10.0.0.101 255.255.255.252
  no shutdown
@@ -2077,17 +1963,8 @@ write memory
 ```
 
 
-#### 6.5.3 Configuración Firewall
-```bash
 
-
-
-```
-
-
-
-
-#### 6.5.4 Conexiones entre los switches
+#### 6.5.3 Conexiones entre los switches
 
 | Switch/Router | Puerta1 | Switch/Router2 | Puerta2 |
 |--------------|---------|---------------|---------|
@@ -2101,11 +1978,11 @@ write memory
 | MS9          | fa2     | SW14          | fa24    |
 | MS7          | fa1     | MS9           | fa24    |
 | MS8          | fa1     | MS9           | fa23    |
-| firewall5    | gi1     | MS7           | fa24    |
-| firewall5    | gi2     | MS8           | fa24    |
+| R9           | fa6     | MS7           | fa24    |
+| R9           | fa7     | MS8           | fa24    |
 
 
-#### 6.5.5 Conexiones a dispositivos finales
+#### 6.5.4 Conexiones a dispositivos finales
 | Switch/Router | Puerta en Switch | Dispositivo Final |
 |--------------|------------------|-------------------|
 | SW15         | fa1              | vigilancia6       |
@@ -2119,29 +1996,872 @@ write memory
 
 ### 6.6 BACKBONE
 
+### 6.6.1 Configuración Routers
 
-#### 6.6.1 RIP (Routing Information Protocol)
+#### 6.6.1.1 R2
+```bash
+enable
+configure terminal
+hostname R2
+
+! Interfaces del Backbone
+interface Serial0/1/0
+ description Enlace_a_R4
+ ip address 10.0.0.50 255.255.255.252
+ no shutdown
+ exit
+interface Serial0/1/1
+ description Enlace_a_R3
+ ip address 10.0.0.57 255.255.255.252
+ clock rate 64000
+ no shutdown
+ exit
+
+! Protocolo de Enrutamiento
+router rip
+ version 2
+ no auto-summary
+ network 10.0.0.0
+ exit
+
+end
+write memory
+```
+
+#### 6.6.1.2 R3
+```bash
+
+enable
+configure terminal
+hostname R3
+
+! 1. Crear la Lista de Acceso de Seguridad Global (ACL)
+!=======================================================
+ip access-list extended ACL_SEGURIDAD_GLOBAL
+
+ ! --- Reglas para ESTUDIANTES (VLAN 12) ---
+ description ### Reglas de comunicacion para ESTUDIANTES ###
+ permit ip 192.168.20.168 0.0.0.7 192.158.20.0 0.0.0.127
+ permit ip 192.168.20.168 0.0.0.7 172.16.20.128 0.0.0.63
+ permit ip 192.168.20.168 0.0.0.7 172.148.20.0 0.0.0.127
+ permit ip 192.168.20.168 0.0.0.7 192.128.20.0 0.0.0.127
+ permit ip 192.158.20.0 0.0.0.127 192.168.20.168 0.0.0.7
+ permit ip 192.158.20.0 0.0.0.127 172.16.20.128 0.0.0.63
+ permit ip 192.158.20.0 0.0.0.127 172.148.20.0 0.0.0.127
+ permit ip 192.158.20.0 0.0.0.127 192.128.20.0 0.0.0.127
+ permit ip 172.16.20.128 0.0.0.63 192.168.20.168 0.0.0.7
+ permit ip 172.16.20.128 0.0.0.63 192.158.20.0 0.0.0.127
+ permit ip 172.16.20.128 0.0.0.63 172.148.20.0 0.0.0.127
+ permit ip 172.16.20.128 0.0.0.63 192.128.20.0 0.0.0.127
+ permit ip 172.148.20.0 0.0.0.127 192.168.20.168 0.0.0.7
+ permit ip 172.148.20.0 0.0.0.127 192.158.20.0 0.0.0.127
+ permit ip 172.148.20.0 0.0.0.127 172.16.20.128 0.0.0.63
+ permit ip 172.148.20.0 0.0.0.127 192.128.20.0 0.0.0.127
+ permit ip 192.128.20.0 0.0.0.127 192.168.20.168 0.0.0.7
+ permit ip 192.128.20.0 0.0.0.127 192.158.20.0 0.0.0.127
+ permit ip 192.128.20.0 0.0.0.127 172.16.20.128 0.0.0.63
+ permit ip 192.128.20.0 0.0.0.127 172.148.20.0 0.0.0.127
+ ! Permite tráfico dentro de la misma subred
+ permit ip 192.168.20.168 0.0.0.7 192.168.20.168 0.0.0.7
+ permit ip 192.158.20.0 0.0.0.127 192.158.20.0 0.0.0.127
+ permit ip 172.16.20.128 0.0.0.63 172.16.20.128 0.0.0.63
+ permit ip 172.148.20.0 0.0.0.127 172.148.20.0 0.0.0.127
+ permit ip 192.128.20.0 0.0.0.127 192.128.20.0 0.0.0.127
+
+ ! --- Reglas para DOCENTES (VLAN 22) ---
+ description ### Reglas de comunicacion para DOCENTES ###
+ permit ip 192.168.20.160 0.0.0.7 172.16.20.240 0.0.0.15
+ permit ip 192.168.20.160 0.0.0.7 172.148.20.192 0.0.0.31
+ permit ip 192.168.20.160 0.0.0.7 192.128.20.128 0.0.0.63
+ permit ip 172.16.20.240 0.0.0.15 192.168.20.160 0.0.0.7
+ permit ip 172.16.20.240 0.0.0.15 172.148.20.192 0.0.0.31
+ permit ip 172.16.20.240 0.0.0.15 192.128.20.128 0.0.0.63
+ permit ip 172.148.20.192 0.0.0.31 192.168.20.160 0.0.0.7
+ permit ip 172.148.20.192 0.0.0.31 172.16.20.240 0.0.0.15
+ permit ip 172.148.20.192 0.0.0.31 192.128.20.128 0.0.0.63
+ permit ip 192.128.20.128 0.0.0.63 192.168.20.160 0.0.0.7
+ permit ip 192.128.20.128 0.0.0.63 172.16.20.240 0.0.0.15
+ permit ip 192.128.20.128 0.0.0.63 172.148.20.192 0.0.0.31
+ ! Permite tráfico dentro de la misma subred
+ permit ip 192.168.20.160 0.0.0.7 192.168.20.160 0.0.0.7
+ permit ip 172.16.20.240 0.0.0.15 172.16.20.240 0.0.0.15
+ permit ip 172.148.20.192 0.0.0.31 172.148.20.192 0.0.0.31
+ permit ip 192.128.20.128 0.0.0.63 192.128.20.128 0.0.0.63
+
+ ! --- Reglas para VIGILANCIA (VLAN 32) ---
+ description ### Reglas de comunicacion para VIGILANCIA ###
+ ! DIGA 192.168.20.128/27 con todas las demás subredes de Vigilancia
+ permit ip 192.168.20.128 0.0.0.31 192.158.20.128 0.0.0.31
+ permit ip 192.168.20.128 0.0.0.31 172.16.20.192 0.0.0.31
+ permit ip 192.168.20.128 0.0.0.31 172.148.20.224 0.0.0.15
+ permit ip 192.168.20.128 0.0.0.31 192.128.20.224 0.0.0.31
+ ! Biblioteca 192.158.20.128/27 con todas las demás
+ permit ip 192.158.20.128 0.0.0.31 192.168.20.128 0.0.0.31
+ permit ip 192.158.20.128 0.0.0.31 172.16.20.192 0.0.0.31
+ permit ip 192.158.20.128 0.0.0.31 172.148.20.224 0.0.0.15
+ permit ip 192.158.20.128 0.0.0.31 192.128.20.224 0.0.0.31
+ ! Edificio T4 172.16.20.192/27 con todas las demás
+ permit ip 172.16.20.192 0.0.0.31 192.168.20.128 0.0.0.31
+ permit ip 172.16.20.192 0.0.0.31 192.158.20.128 0.0.0.31
+ permit ip 172.16.20.192 0.0.0.31 172.148.20.224 0.0.0.15
+ permit ip 172.16.20.192 0.0.0.31 192.128.20.224 0.0.0.31
+ ! Edificio S11 172.148.20.224/28 con todas las demás
+ permit ip 172.148.20.224 0.0.0.15 192.168.20.128 0.0.0.31
+ permit ip 172.148.20.224 0.0.0.15 192.158.20.128 0.0.0.31
+ permit ip 172.148.20.224 0.0.0.15 172.16.20.192 0.0.0.31
+ permit ip 172.148.20.224 0.0.0.15 192.128.20.224 0.0.0.31
+ ! Edificio S12 192.128.20.224/27 con todas las demás
+ permit ip 192.128.20.224 0.0.0.31 192.168.20.128 0.0.0.31
+ permit ip 192.128.20.224 0.0.0.31 192.158.20.128 0.0.0.31
+ permit ip 192.128.20.224 0.0.0.31 172.16.20.192 0.0.0.31
+ permit ip 192.128.20.224 0.0.0.31 172.148.20.224 0.0.0.15
+ ! Permite tráfico dentro de la misma subred
+ permit ip 192.168.20.128 0.0.0.31 192.168.20.128 0.0.0.31
+ permit ip 192.158.20.128 0.0.0.31 192.158.20.128 0.0.0.31
+ permit ip 172.16.20.192 0.0.0.31 172.16.20.192 0.0.0.31
+ permit ip 172.148.20.224 0.0.0.15 172.148.20.224 0.0.0.15
+ permit ip 192.128.20.224 0.0.0.31 192.128.20.224 0.0.0.31
+
+ ! --- Reglas para ADMIN (VLAN 42) ---
+ description ### Reglas de comunicacion para ADMIN ###
+ ! DIGA 192.168.20.0/25 con todas las demás subredes de Admin
+ permit ip 192.168.20.0 0.0.0.127 172.16.20.0 0.0.0.127
+ permit ip 192.168.20.0 0.0.0.127 172.148.20.128 0.0.0.63
+ permit ip 192.168.20.0 0.0.0.127 192.128.20.192 0.0.0.31
+ ! Edificio T4 172.16.20.0/25 con todas las demás
+ permit ip 172.16.20.0 0.0.0.127 192.168.20.0 0.0.0.127
+ permit ip 172.16.20.0 0.0.0.127 172.148.20.128 0.0.0.63
+ permit ip 172.16.20.0 0.0.0.127 192.128.20.192 0.0.0.31
+ ! Edificio S11 172.148.20.128/26 con todas las demás
+ permit ip 172.148.20.128 0.0.0.63 192.168.20.0 0.0.0.127
+ permit ip 172.148.20.128 0.0.0.63 172.16.20.0 0.0.0.127
+ permit ip 172.148.20.128 0.0.0.63 192.128.20.192 0.0.0.31
+ ! Edificio S12 192.128.20.192/27 con todas las demás
+ permit ip 192.128.20.192 0.0.0.31 192.168.20.0 0.0.0.127
+ permit ip 192.128.20.192 0.0.0.31 172.16.20.0 0.0.0.127
+ permit ip 192.128.20.192 0.0.0.31 172.148.20.128 0.0.0.63
+ ! Permite tráfico dentro de la misma subred
+ permit ip 192.168.20.0 0.0.0.127 192.168.20.0 0.0.0.127
+ permit ip 172.16.20.0 0.0.0.127 172.16.20.0 0.0.0.127
+ permit ip 172.148.20.128 0.0.0.63 172.148.20.128 0.0.0.63
+ permit ip 192.128.20.192 0.0.0.31 192.128.20.192 0.0.0.31
+ 
+ ! --- Reglas para BIBLIOTECA (VLAN 52) ---
+ description ### Reglas de comunicacion para BIBLIOTECA ###
+ permit ip 192.158.20.160 0.0.0.31 172.16.20.224 0.0.0.15
+ permit ip 172.16.20.224 0.0.0.15 192.158.20.160 0.0.0.31
+ ! Permite tráfico dentro de la misma subred
+ permit ip 192.158.20.160 0.0.0.31 192.158.20.160 0.0.0.31
+ permit ip 172.16.20.224 0.0.0.15 172.16.20.224 0.0.0.15
+exit
+
+! 2. Configurar Interfaces del Backbone
+!==========================================
+! Conexiones a DIGA
+interface FastEthernet0/0
+ description Enlace_a_MS1
+ ip address 10.0.0.70 255.255.255.252
+ ip access-group ACL_SEGURIDAD_GLOBAL in
+ no shutdown
+ exit
+interface FastEthernet0/1
+ description Enlace_a_MS2
+ ip address 10.0.0.74 255.255.255.252
+ ip access-group ACL_SEGURIDAD_GLOBAL in
+ no shutdown
+ exit
+
+! Conexiones a Biblioteca
+interface FastEthernet0/2
+ description Enlace_a_R0
+ ip address 10.0.0.82 255.255.255.252
+ ip access-group ACL_SEGURIDAD_GLOBAL in
+ no shutdown
+ exit
+interface FastEthernet0/3
+ description Enlace_a_R1
+ ip address 10.0.0.78 255.255.255.252
+ ip access-group ACL_SEGURIDAD_GLOBAL in
+ no shutdown
+ exit
+
+! Conexiones Seriales a otros Routers del Backbone
+interface Serial0/1/0
+ description Enlace_a_R4
+ ip address 10.0.0.54 255.255.255.252
+ no shutdown
+ exit
+interface Serial0/1/1
+ description Enlace_a_R2
+ ip address 10.0.0.58 255.255.255.252
+ ! R2 es el DCE, R3 no lleva clock rate
+ no shutdown
+ exit
+
+! 3. Configurar Protocolo de Enrutamiento
+!==========================================
+router rip
+ version 2
+ no auto-summary
+ network 10.0.0.0
+ exit
+
+end
+write memory
+```
+
+#### 6.6.1.3 R4
+```bash
+enable
+configure terminal
+hostname R4
+
+! Interfaces del Backbone
+interface Serial0/1/0
+ description Enlace_a_R3
+ ip address 10.0.0.53 255.255.255.252
+ clock rate 64000 
+ no shutdown
+ exit
+interface Serial0/1/1
+ description Enlace_a_R2
+ ip address 10.0.0.49 255.255.255.252
+ clock rate 64000 
+ no shutdown
+ exit
+interface GigabitEthernet0/1
+ description Enlace_a_R5_EIGRP
+ ip address 10.0.0.46 255.255.255.252
+ no shutdown
+ exit
+
+! Protocolo de Enrutamiento
+router rip
+ version 2
+ no auto-summary
+ network 10.0.0.0
+ ! No queremos enviar actualizaciones RIP hacia la zona EIGRP
+ passive-interface GigabitEthernet0/1
+ ! Traducir rutas de EIGRP a RIP
+ redistribute eigrp 100 metric 5
+ exit
+ 
+! --- Configuración EIGRP ---
+router eigrp 100
+ no auto-summary
+ network 10.0.0.0
+ passive-interface Serial0/1/0
+ passive-interface Serial0/1/1
+ ! Traducir rutas de RIP a EIGRP (con métricas iniciales)
+ redistribute rip metric 10000 100 255 1 1500
+ exit
+
+end
+write memory
+```
+
+#### 6.6.1.4 R5
+```bash
+enable
+configure terminal
+hostname R5
+
+! Interfaces del Backbone
+interface GigabitEthernet0/1
+ description Enlace_a_MS3
+ ip address 10.0.0.42 255.255.255.252
+ no shutdown
+ exit
+interface GigabitEthernet0/0
+ description Enlace_a_R4_RIP
+ ip address 10.0.0.45 255.255.255.252
+ no shutdown
+ exit
+
+! Protocolo de Enrutamiento
+router eigrp 100
+ no auto-summary
+ network 10.0.0.0
+ exit
+
+end
+write memory
+```
+#### 6.6.1.5 R6
+```bash
+enable
+configure terminal
+hostname R6
+
+! 1. Crear la Lista de Acceso de Seguridad Global (ACL)
+!=======================================================
+ip access-list extended ACL_SEGURIDAD_GLOBAL
+
+ ! --- Reglas para ESTUDIANTES (VLAN 12) ---
+ description ### Reglas de comunicacion para ESTUDIANTES ###
+ permit ip 192.168.20.168 0.0.0.7 192.158.20.0 0.0.0.127
+ permit ip 192.168.20.168 0.0.0.7 172.16.20.128 0.0.0.63
+ permit ip 192.168.20.168 0.0.0.7 172.148.20.0 0.0.0.127
+ permit ip 192.168.20.168 0.0.0.7 192.128.20.0 0.0.0.127
+ permit ip 192.158.20.0 0.0.0.127 192.168.20.168 0.0.0.7
+ permit ip 192.158.20.0 0.0.0.127 172.16.20.128 0.0.0.63
+ permit ip 192.158.20.0 0.0.0.127 172.148.20.0 0.0.0.127
+ permit ip 192.158.20.0 0.0.0.127 192.128.20.0 0.0.0.127
+ permit ip 172.16.20.128 0.0.0.63 192.168.20.168 0.0.0.7
+ permit ip 172.16.20.128 0.0.0.63 192.158.20.0 0.0.0.127
+ permit ip 172.16.20.128 0.0.0.63 172.148.20.0 0.0.0.127
+ permit ip 172.16.20.128 0.0.0.63 192.128.20.0 0.0.0.127
+ permit ip 172.148.20.0 0.0.0.127 192.168.20.168 0.0.0.7
+ permit ip 172.148.20.0 0.0.0.127 192.158.20.0 0.0.0.127
+ permit ip 172.148.20.0 0.0.0.127 172.16.20.128 0.0.0.63
+ permit ip 172.148.20.0 0.0.0.127 192.128.20.0 0.0.0.127
+ permit ip 192.128.20.0 0.0.0.127 192.168.20.168 0.0.0.7
+ permit ip 192.128.20.0 0.0.0.127 192.158.20.0 0.0.0.127
+ permit ip 192.128.20.0 0.0.0.127 172.16.20.128 0.0.0.63
+ permit ip 192.128.20.0 0.0.0.127 172.148.20.0 0.0.0.127
+ ! Permite tráfico dentro de la misma subred
+ permit ip 192.168.20.168 0.0.0.7 192.168.20.168 0.0.0.7
+ permit ip 192.158.20.0 0.0.0.127 192.158.20.0 0.0.0.127
+ permit ip 172.16.20.128 0.0.0.63 172.16.20.128 0.0.0.63
+ permit ip 172.148.20.0 0.0.0.127 172.148.20.0 0.0.0.127
+ permit ip 192.128.20.0 0.0.0.127 192.128.20.0 0.0.0.127
+
+ ! --- Reglas para DOCENTES (VLAN 22) ---
+ description ### Reglas de comunicacion para DOCENTES ###
+ permit ip 192.168.20.160 0.0.0.7 172.16.20.240 0.0.0.15
+ permit ip 192.168.20.160 0.0.0.7 172.148.20.192 0.0.0.31
+ permit ip 192.168.20.160 0.0.0.7 192.128.20.128 0.0.0.63
+ permit ip 172.16.20.240 0.0.0.15 192.168.20.160 0.0.0.7
+ permit ip 172.16.20.240 0.0.0.15 172.148.20.192 0.0.0.31
+ permit ip 172.16.20.240 0.0.0.15 192.128.20.128 0.0.0.63
+ permit ip 172.148.20.192 0.0.0.31 192.168.20.160 0.0.0.7
+ permit ip 172.148.20.192 0.0.0.31 172.16.20.240 0.0.0.15
+ permit ip 172.148.20.192 0.0.0.31 192.128.20.128 0.0.0.63
+ permit ip 192.128.20.128 0.0.0.63 192.168.20.160 0.0.0.7
+ permit ip 192.128.20.128 0.0.0.63 172.16.20.240 0.0.0.15
+ permit ip 192.128.20.128 0.0.0.63 172.148.20.192 0.0.0.31
+ ! Permite tráfico dentro de la misma subred
+ permit ip 192.168.20.160 0.0.0.7 192.168.20.160 0.0.0.7
+ permit ip 172.16.20.240 0.0.0.15 172.16.20.240 0.0.0.15
+ permit ip 172.148.20.192 0.0.0.31 172.148.20.192 0.0.0.31
+ permit ip 192.128.20.128 0.0.0.63 192.128.20.128 0.0.0.63
+
+ ! --- Reglas para VIGILANCIA (VLAN 32) ---
+ description ### Reglas de comunicacion para VIGILANCIA ###
+ ! DIGA 192.168.20.128/27 con todas las demás subredes de Vigilancia
+ permit ip 192.168.20.128 0.0.0.31 192.158.20.128 0.0.0.31
+ permit ip 192.168.20.128 0.0.0.31 172.16.20.192 0.0.0.31
+ permit ip 192.168.20.128 0.0.0.31 172.148.20.224 0.0.0.15
+ permit ip 192.168.20.128 0.0.0.31 192.128.20.224 0.0.0.31
+ ! Biblioteca 192.158.20.128/27 con todas las demás
+ permit ip 192.158.20.128 0.0.0.31 192.168.20.128 0.0.0.31
+ permit ip 192.158.20.128 0.0.0.31 172.16.20.192 0.0.0.31
+ permit ip 192.158.20.128 0.0.0.31 172.148.20.224 0.0.0.15
+ permit ip 192.158.20.128 0.0.0.31 192.128.20.224 0.0.0.31
+ ! Edificio T4 172.16.20.192/27 con todas las demás
+ permit ip 172.16.20.192 0.0.0.31 192.168.20.128 0.0.0.31
+ permit ip 172.16.20.192 0.0.0.31 192.158.20.128 0.0.0.31
+ permit ip 172.16.20.192 0.0.0.31 172.148.20.224 0.0.0.15
+ permit ip 172.16.20.192 0.0.0.31 192.128.20.224 0.0.0.31
+ ! Edificio S11 172.148.20.224/28 con todas las demás
+ permit ip 172.148.20.224 0.0.0.15 192.168.20.128 0.0.0.31
+ permit ip 172.148.20.224 0.0.0.15 192.158.20.128 0.0.0.31
+ permit ip 172.148.20.224 0.0.0.15 172.16.20.192 0.0.0.31
+ permit ip 172.148.20.224 0.0.0.15 192.128.20.224 0.0.0.31
+ ! Edificio S12 192.128.20.224/27 con todas las demás
+ permit ip 192.128.20.224 0.0.0.31 192.168.20.128 0.0.0.31
+ permit ip 192.128.20.224 0.0.0.31 192.158.20.128 0.0.0.31
+ permit ip 192.128.20.224 0.0.0.31 172.16.20.192 0.0.0.31
+ permit ip 192.128.20.224 0.0.0.31 172.148.20.224 0.0.0.15
+ ! Permite tráfico dentro de la misma subred
+ permit ip 192.168.20.128 0.0.0.31 192.168.20.128 0.0.0.31
+ permit ip 192.158.20.128 0.0.0.31 192.158.20.128 0.0.0.31
+ permit ip 172.16.20.192 0.0.0.31 172.16.20.192 0.0.0.31
+ permit ip 172.148.20.224 0.0.0.15 172.148.20.224 0.0.0.15
+ permit ip 192.128.20.224 0.0.0.31 192.128.20.224 0.0.0.31
+
+ ! --- Reglas para ADMIN (VLAN 42) ---
+ description ### Reglas de comunicacion para ADMIN ###
+ ! DIGA 192.168.20.0/25 con todas las demás subredes de Admin
+ permit ip 192.168.20.0 0.0.0.127 172.16.20.0 0.0.0.127
+ permit ip 192.168.20.0 0.0.0.127 172.148.20.128 0.0.0.63
+ permit ip 192.168.20.0 0.0.0.127 192.128.20.192 0.0.0.31
+ ! Edificio T4 172.16.20.0/25 con todas las demás
+ permit ip 172.16.20.0 0.0.0.127 192.168.20.0 0.0.0.127
+ permit ip 172.16.20.0 0.0.0.127 172.148.20.128 0.0.0.63
+ permit ip 172.16.20.0 0.0.0.127 192.128.20.192 0.0.0.31
+ ! Edificio S11 172.148.20.128/26 con todas las demás
+ permit ip 172.148.20.128 0.0.0.63 192.168.20.0 0.0.0.127
+ permit ip 172.148.20.128 0.0.0.63 172.16.20.0 0.0.0.127
+ permit ip 172.148.20.128 0.0.0.63 192.128.20.192 0.0.0.31
+ ! Edificio S12 192.128.20.192/27 con todas las demás
+ permit ip 192.128.20.192 0.0.0.31 192.168.20.0 0.0.0.127
+ permit ip 192.128.20.192 0.0.0.31 172.16.20.0 0.0.0.127
+ permit ip 192.128.20.192 0.0.0.31 172.148.20.128 0.0.0.63
+ ! Permite tráfico dentro de la misma subred
+ permit ip 192.168.20.0 0.0.0.127 192.168.20.0 0.0.0.127
+ permit ip 172.16.20.0 0.0.0.127 172.16.20.0 0.0.0.127
+ permit ip 172.148.20.128 0.0.0.63 172.148.20.128 0.0.0.63
+ permit ip 192.128.20.192 0.0.0.31 192.128.20.192 0.0.0.31
+ 
+ ! --- Reglas para BIBLIOTECA (VLAN 52) ---
+ description ### Reglas de comunicacion para BIBLIOTECA ###
+ permit ip 192.158.20.160 0.0.0.31 172.16.20.224 0.0.0.15
+ permit ip 172.16.20.224 0.0.0.15 192.158.20.160 0.0.0.31
+ ! Permite tráfico dentro de la misma subred
+ permit ip 192.158.20.160 0.0.0.31 192.158.20.160 0.0.0.31
+ permit ip 172.16.20.224 0.0.0.15 172.16.20.224 0.0.0.15
+exit
+
+! Interfaces
+interface GigabitEthernet0/1
+ description Enlace_a_MS4
+ ip address 10.0.0.6 255.255.255.252
+ no shutdown
+ exit
+interface GigabitEthernet0/0
+ description Enlace_a_MS5_T4
+ ip address 10.0.0.86 255.255.255.252
+ ! APLICAR LA ACL AQUÍ, en el tráfico que entra desde T4
+ ip access-group ACL_SEGURIDAD_GLOBAL in
+ no shutdown
+ exit
+
+! Ruta Estática para llegar a todo el edificio T4
+ip route 172.16.20.0 255.255.255.0 10.0.0.85 
+
+! Protocolo de Enrutamiento
+router eigrp 100
+ no auto-summary
+ network 10.0.0.0
+ ! Anunciar la ruta estática en EIGRP
+ redistribute static metric 10000 100 255 1 1500
+ exit
+
+end
+write memory
+```
+
+
+#### 6.6.1.6 R7
+```bash
+enable
+configure terminal
+hostname R7
+
+! Interfaces
+interface GigabitEthernet0/1
+ description Enlace_a_MS6
+ ip address 10.0.0.14 255.255.255.252
+ no shutdown
+ exit
+interface GigabitEthernet0/0
+ description Enlace_a_R8_OSPF
+ ip address 10.0.0.17 255.255.255.252
+ no shutdown
+ exit
+
+! --- Configuración OSPF ---
+router ospf 1
+ router-id 7.7.7.7
+ network 10.0.0.16 0.0.0.3 area 0
+ passive-interface GigabitEthernet0/1
+ ! Traducir rutas de EIGRP a OSPF
+ redistribute eigrp 100 subnets
+ exit
+
+! --- Configuración EIGRP ---
+router eigrp 100
+ no auto-summary
+ network 10.0.0.0
+ passive-interface GigabitEthernet0/0
+ ! Traducir rutas de OSPF a EIGRP
+ redistribute ospf 1 metric 10000 100 255 1 1500
+ exit
+
+end
+write memory
+```
+
+#### 6.6.1.7 R8
+```bash
+enable
+configure terminal
+hostname R8
+
+! 1. Configurar Interfaces del Backbone
+!==========================================
+! --- Interfaz hacia R9 ---
+interface GigabitEthernet0/0
+ description Enlace_a_R9
+ ip address 10.0.0.21 255.255.255.252 
+ no shutdown
+ exit
+
+! --- Interfaz hacia R7 (Borde con EIGRP) ---
+interface GigabitEthernet0/1
+ description Enlace_a_R7_EIGRP
+ ip address 10.0.0.18 255.255.255.252 
+ no shutdown
+ exit
+
+! 2. Configurar Protocolo de Enrutamiento OSPF
+!===============================================
+router ospf 1
+ router-id 8.8.8.8
+ ! Anunciar las dos redes conectadas en la zona OSPF
+ network 10.0.0.16 0.0.0.3 area 0
+ network 10.0.0.20 0.0.0.3 area 0
+ exit
+
+end
+write memory
+```
+
+#### 6.6.1.7 R9
+```bash
+enable
+configure terminal
+hostname R9
+! 1. Crear la Lista de Acceso de Seguridad Global (ACL)
+!=======================================================
+ip access-list extended ACL_SEGURIDAD_GLOBAL
+
+ ! --- Reglas para ESTUDIANTES (VLAN 12) ---
+ description ### Reglas de comunicacion para ESTUDIANTES ###
+ permit ip 192.168.20.168 0.0.0.7 192.158.20.0 0.0.0.127
+ permit ip 192.168.20.168 0.0.0.7 172.16.20.128 0.0.0.63
+ permit ip 192.168.20.168 0.0.0.7 172.148.20.0 0.0.0.127
+ permit ip 192.168.20.168 0.0.0.7 192.128.20.0 0.0.0.127
+ permit ip 192.158.20.0 0.0.0.127 192.168.20.168 0.0.0.7
+ permit ip 192.158.20.0 0.0.0.127 172.16.20.128 0.0.0.63
+ permit ip 192.158.20.0 0.0.0.127 172.148.20.0 0.0.0.127
+ permit ip 192.158.20.0 0.0.0.127 192.128.20.0 0.0.0.127
+ permit ip 172.16.20.128 0.0.0.63 192.168.20.168 0.0.0.7
+ permit ip 172.16.20.128 0.0.0.63 192.158.20.0 0.0.0.127
+ permit ip 172.16.20.128 0.0.0.63 172.148.20.0 0.0.0.127
+ permit ip 172.16.20.128 0.0.0.63 192.128.20.0 0.0.0.127
+ permit ip 172.148.20.0 0.0.0.127 192.168.20.168 0.0.0.7
+ permit ip 172.148.20.0 0.0.0.127 192.158.20.0 0.0.0.127
+ permit ip 172.148.20.0 0.0.0.127 172.16.20.128 0.0.0.63
+ permit ip 172.148.20.0 0.0.0.127 192.128.20.0 0.0.0.127
+ permit ip 192.128.20.0 0.0.0.127 192.168.20.168 0.0.0.7
+ permit ip 192.128.20.0 0.0.0.127 192.158.20.0 0.0.0.127
+ permit ip 192.128.20.0 0.0.0.127 172.16.20.128 0.0.0.63
+ permit ip 192.128.20.0 0.0.0.127 172.148.20.0 0.0.0.127
+ ! Permite tráfico dentro de la misma subred
+ permit ip 192.168.20.168 0.0.0.7 192.168.20.168 0.0.0.7
+ permit ip 192.158.20.0 0.0.0.127 192.158.20.0 0.0.0.127
+ permit ip 172.16.20.128 0.0.0.63 172.16.20.128 0.0.0.63
+ permit ip 172.148.20.0 0.0.0.127 172.148.20.0 0.0.0.127
+ permit ip 192.128.20.0 0.0.0.127 192.128.20.0 0.0.0.127
+
+ ! --- Reglas para DOCENTES (VLAN 22) ---
+ description ### Reglas de comunicacion para DOCENTES ###
+ permit ip 192.168.20.160 0.0.0.7 172.16.20.240 0.0.0.15
+ permit ip 192.168.20.160 0.0.0.7 172.148.20.192 0.0.0.31
+ permit ip 192.168.20.160 0.0.0.7 192.128.20.128 0.0.0.63
+ permit ip 172.16.20.240 0.0.0.15 192.168.20.160 0.0.0.7
+ permit ip 172.16.20.240 0.0.0.15 172.148.20.192 0.0.0.31
+ permit ip 172.16.20.240 0.0.0.15 192.128.20.128 0.0.0.63
+ permit ip 172.148.20.192 0.0.0.31 192.168.20.160 0.0.0.7
+ permit ip 172.148.20.192 0.0.0.31 172.16.20.240 0.0.0.15
+ permit ip 172.148.20.192 0.0.0.31 192.128.20.128 0.0.0.63
+ permit ip 192.128.20.128 0.0.0.63 192.168.20.160 0.0.0.7
+ permit ip 192.128.20.128 0.0.0.63 172.16.20.240 0.0.0.15
+ permit ip 192.128.20.128 0.0.0.63 172.148.20.192 0.0.0.31
+ ! Permite tráfico dentro de la misma subred
+ permit ip 192.168.20.160 0.0.0.7 192.168.20.160 0.0.0.7
+ permit ip 172.16.20.240 0.0.0.15 172.16.20.240 0.0.0.15
+ permit ip 172.148.20.192 0.0.0.31 172.148.20.192 0.0.0.31
+ permit ip 192.128.20.128 0.0.0.63 192.128.20.128 0.0.0.63
+
+ ! --- Reglas para VIGILANCIA (VLAN 32) ---
+ description ### Reglas de comunicacion para VIGILANCIA ###
+ ! DIGA 192.168.20.128/27 con todas las demás subredes de Vigilancia
+ permit ip 192.168.20.128 0.0.0.31 192.158.20.128 0.0.0.31
+ permit ip 192.168.20.128 0.0.0.31 172.16.20.192 0.0.0.31
+ permit ip 192.168.20.128 0.0.0.31 172.148.20.224 0.0.0.15
+ permit ip 192.168.20.128 0.0.0.31 192.128.20.224 0.0.0.31
+ ! Biblioteca 192.158.20.128/27 con todas las demás
+ permit ip 192.158.20.128 0.0.0.31 192.168.20.128 0.0.0.31
+ permit ip 192.158.20.128 0.0.0.31 172.16.20.192 0.0.0.31
+ permit ip 192.158.20.128 0.0.0.31 172.148.20.224 0.0.0.15
+ permit ip 192.158.20.128 0.0.0.31 192.128.20.224 0.0.0.31
+ ! Edificio T4 172.16.20.192/27 con todas las demás
+ permit ip 172.16.20.192 0.0.0.31 192.168.20.128 0.0.0.31
+ permit ip 172.16.20.192 0.0.0.31 192.158.20.128 0.0.0.31
+ permit ip 172.16.20.192 0.0.0.31 172.148.20.224 0.0.0.15
+ permit ip 172.16.20.192 0.0.0.31 192.128.20.224 0.0.0.31
+ ! Edificio S11 172.148.20.224/28 con todas las demás
+ permit ip 172.148.20.224 0.0.0.15 192.168.20.128 0.0.0.31
+ permit ip 172.148.20.224 0.0.0.15 192.158.20.128 0.0.0.31
+ permit ip 172.148.20.224 0.0.0.15 172.16.20.192 0.0.0.31
+ permit ip 172.148.20.224 0.0.0.15 192.128.20.224 0.0.0.31
+ ! Edificio S12 192.128.20.224/27 con todas las demás
+ permit ip 192.128.20.224 0.0.0.31 192.168.20.128 0.0.0.31
+ permit ip 192.128.20.224 0.0.0.31 192.158.20.128 0.0.0.31
+ permit ip 192.128.20.224 0.0.0.31 172.16.20.192 0.0.0.31
+ permit ip 192.128.20.224 0.0.0.31 172.148.20.224 0.0.0.15
+ ! Permite tráfico dentro de la misma subred
+ permit ip 192.168.20.128 0.0.0.31 192.168.20.128 0.0.0.31
+ permit ip 192.158.20.128 0.0.0.31 192.158.20.128 0.0.0.31
+ permit ip 172.16.20.192 0.0.0.31 172.16.20.192 0.0.0.31
+ permit ip 172.148.20.224 0.0.0.15 172.148.20.224 0.0.0.15
+ permit ip 192.128.20.224 0.0.0.31 192.128.20.224 0.0.0.31
+
+ ! --- Reglas para ADMIN (VLAN 42) ---
+ description ### Reglas de comunicacion para ADMIN ###
+ ! DIGA 192.168.20.0/25 con todas las demás subredes de Admin
+ permit ip 192.168.20.0 0.0.0.127 172.16.20.0 0.0.0.127
+ permit ip 192.168.20.0 0.0.0.127 172.148.20.128 0.0.0.63
+ permit ip 192.168.20.0 0.0.0.127 192.128.20.192 0.0.0.31
+ ! Edificio T4 172.16.20.0/25 con todas las demás
+ permit ip 172.16.20.0 0.0.0.127 192.168.20.0 0.0.0.127
+ permit ip 172.16.20.0 0.0.0.127 172.148.20.128 0.0.0.63
+ permit ip 172.16.20.0 0.0.0.127 192.128.20.192 0.0.0.31
+ ! Edificio S11 172.148.20.128/26 con todas las demás
+ permit ip 172.148.20.128 0.0.0.63 192.168.20.0 0.0.0.127
+ permit ip 172.148.20.128 0.0.0.63 172.16.20.0 0.0.0.127
+ permit ip 172.148.20.128 0.0.0.63 192.128.20.192 0.0.0.31
+ ! Edificio S12 192.128.20.192/27 con todas las demás
+ permit ip 192.128.20.192 0.0.0.31 192.168.20.0 0.0.0.127
+ permit ip 192.128.20.192 0.0.0.31 172.16.20.0 0.0.0.127
+ permit ip 192.128.20.192 0.0.0.31 172.148.20.128 0.0.0.63
+ ! Permite tráfico dentro de la misma subred
+ permit ip 192.168.20.0 0.0.0.127 192.168.20.0 0.0.0.127
+ permit ip 172.16.20.0 0.0.0.127 172.16.20.0 0.0.0.127
+ permit ip 172.148.20.128 0.0.0.63 172.148.20.128 0.0.0.63
+ permit ip 192.128.20.192 0.0.0.31 192.128.20.192 0.0.0.31
+ 
+ ! --- Reglas para BIBLIOTECA (VLAN 52) ---
+ description ### Reglas de comunicacion para BIBLIOTECA ###
+ permit ip 192.158.20.160 0.0.0.31 172.16.20.224 0.0.0.15
+ permit ip 172.16.20.224 0.0.0.15 192.158.20.160 0.0.0.31
+ ! Permite tráfico dentro de la misma subred
+ permit ip 192.158.20.160 0.0.0.31 192.158.20.160 0.0.0.31
+ permit ip 172.16.20.224 0.0.0.15 172.16.20.224 0.0.0.15
+exit
+
+
+! 2. Configurar Interfaces del Backbone
+!==========================================
+! --- Conexiones a Edificio S11 ---
+interface FastEthernet8/0 ! 
+ description Enlace_a_R10
+ ip address 10.0.0.90 255.255.255.252 ! La IP par de la de R10
+ ip access-group ACL_SEGURIDAD_GLOBAL in
+ no shutdown
+ exit
+interface FastEthernet9/0 
+ description Enlace_a_R11
+ ip address 10.0.0.94 255.255.255.252 ! La IP par de la de R11
+ ip access-group ACL_SEGURIDAD_GLOBAL in
+ no shutdown
+ exit
+
+! --- Conexiones a Edificio S12 ---
+interface FastEthernet0/6 ! 
+ description Enlace_a_MS7
+ ip address 10.0.0.98 255.255.255.252 ! La IP par de la de MS7
+ ip access-group ACL_SEGURIDAD_GLOBAL in
+ no shutdown
+ exit
+interface FastEthernet0/7 !
+ description Enlace_a_MS8
+ ip address 10.0.0.102 255.255.255.252 ! La IP par de la de MS8
+ ip access-group ACL_SEGURIDAD_GLOBAL in
+ no shutdown
+ exit
+
+ ! --- Conexión a R8 ---
+interface FastEthernet1/0
+ description Enlace_a_R8
+ ip address 10.0.0.22 255.255.255.252
+ no shutdown
+ exit
+
+
+! 3. Configurar Protocolo de Enrutamiento OSPF
+!==========================================
+router ospf 1
+ router-id 9.9.9.9
+ ! Anunciar todas las redes conectadas al backbone
+ network 10.0.0.88 0.0.0.3 area 0  ! Red hacia R10
+ network 10.0.0.92 0.0.0.3 area 0  ! Red hacia R11
+ network 10.0.0.96 0.0.0.3 area 0  ! Red hacia MS7
+ network 10.0.0.100 0.0.0.3 area 0 ! Red hacia MS8
+ network 10.0.0.20 0.0.0.3 area 0  ! Red hacia R8
+ exit
+
+end
+write memory
+```
+
+
+
+
+### 6.6.2 Configuración de MultiSwitches
+
+#### 6.6.2.1 MS3
+
+```bash
+enable
+configure terminal
+hostname MS3
+ip routing
+
+! 1. Configuración de EtherChannel de Capa 3
+! --- Hacia MS4 ---
+interface range FastEthernet0/1 - 3
+ no shutdown
+ channel-group 1 mode on
+ exit
+interface Port-channel1
+ description Enlace_Agregado_a_MS4
+ no switchport
+ ip address 10.0.0.38 255.255.255.252
+ exit
+! --- Hacia MS6 ---
+interface range FastEthernet0/7 - 9
+ no shutdown
+ channel-group 2 mode on
+ exit
+interface Port-channel2
+ description Enlace_Agregado_a_MS6
+ no switchport
+ ip address 10.0.0.34 255.255.255.252
+ exit
+
+! 2. Interfaz hacia R5
+interface GigabitEthernet0/1
+ description Enlace_a_R5
+ ip address 10.0.0.41 255.255.255.252
+ no shutdown
+ exit
+
+! 3. Configuración de EIGRP
+router eigrp 100
+ no auto-summary
+ network 10.0.0.0
+ exit
+
+end
+write memory
+```
+
+#### 6.6.2.1 MS4
+
+```bash
+enable
+configure terminal
+hostname MS4
+ip routing
+
+! 1. Configuración de EtherChannel de Capa 3
+! --- Hacia MS3 ---
+interface range FastEthernet0/1 - 3
+ no shutdown
+ channel-group 1 mode on
+ exit
+interface Port-channel1
+ description Enlace_Agregado_a_MS3
+ no switchport
+ ip address 10.0.0.37 255.255.255.252
+ exit
+! --- Hacia MS6 ---
+interface range FastEthernet0/4 - 6
+ no shutdown
+ channel-group 2 mode on
+ exit
+interface Port-channel2
+ description Enlace_Agregado_a_MS6
+ no switchport
+ ip address 10.0.0.9 255.255.255.252
+ exit
+
+! 2. Interfaz hacia R6
+interface GigabitEthernet0/1
+ description Enlace_a_R6
+ ip address 10.0.0.5 255.255.255.252
+ no shutdown
+ exit
+
+! 3. Configuración de EIGRP
+router eigrp 100
+ no auto-summary
+ network 10.0.0.0
+ exit
+
+end
+write memory
+```
+
+#### 6.6.2.1 MS6
+
+```bash
+enable
+configure terminal
+hostname MS6
+ip routing
+
+! 1. Configuración de EtherChannel de Capa 3
+! --- Hacia MS4 ---
+interface range FastEthernet0/4 - 6
+ no shutdown
+ channel-group 2 mode on
+ exit
+interface Port-channel2
+ description Enlace_Agregado_a_MS4
+ no switchport
+ ip address 10.0.0.10 255.255.255.252
+ exit
+! --- Hacia MS3 ---
+interface range FastEthernet0/7 - 9
+ no shutdown
+ channel-group 1 mode on
+ exit
+interface Port-channel1
+ description Enlace_Agregado_a_MS3
+ no switchport
+ ip address 10.0.0.33 255.255.255.252
+ exit
+
+! 2. Interfaz hacia R7
+interface GigabitEthernet0/1
+ description Enlace_a_R7_OSPF
+ ip address 10.0.0.13 255.255.255.252
+ no shutdown
+ exit
+
+! 3. Configuración de EIGRP
+router eigrp 100
+ no auto-summary
+ network 10.0.0.0
+ exit
+
+end
+write memory
+```
+
+#### 6.6.3 RIP (Routing Information Protocol)
 | Switch/Router (DCE) | Puerta1 | Switch/Router2 | Puerta2 |
 |-------------------|---------|---------------|---------|
-| R3                | gi0     | firewall1     | gi8     |
-| R3                | gi1     | firewall2     | gi8     |
 | R4                | serial0 | R3            | serial0 |
 | R4                | serial1 | R2            | serial0 |
 | R2                | serial1 | R3            | serial1 |
-| R5                | gi0     | R4            | gi1     |
 
 
 
-#### 6.6.2 OSPF (Open Shortest Path First)
+
+#### 6.6.4 OSPF (Open Shortest Path First)
 | Switch/Router | Puerta1 | Switch/Router2 | Puerta2 |
 |--------------|---------|---------------|---------|
 | R7           | gi0     | R8            | g1      |
 | R8           | g0      | R9            | fa1     |
-| R9           | fa6     | firewall5     | gi8     |
-| R9           | fa7     | firewall4     | gi8     |
 
 
-#### 6.6.3 EIGRP (Enhances Interior Gateway Routing Protocol)
+#### 6.6.5 EIGRP (Enhances Interior Gateway Routing Protocol)
 | Switch/Router | Puerta1 | Switch/Router2 | Puerta2 |
 |--------------|---------|---------------|---------|
 | MS4          | fa1-3   | MS3           | fa1-3   |
@@ -2150,19 +2870,14 @@ write memory
 | MS3          | fa7-9   | MS6           | fa7-9   |
 | MS3          | gi1     | R5            | gi1     |
 | MS6          | gi1     | R7            | gi1     |
+| R5           | gi0     | R4            | gi1     |
 
 
-
-#### 6.6.4 Rutas Estáticas
+#### 6.6.6 Rutas Estáticas
 
 | Switch/Router | Puerta1 | Switch/Router2 | Puerta2 |
 |--------------|---------|---------------|---------|
-| R6           | gi0     | firewall3     | gi8     |
-
-
-
-
-
+| R6           | gi0     | MS5           | fa24    |
 
 
 
