@@ -1,7 +1,7 @@
-# Manual Técnico - Proyecto 1
+# Manual Técnico - Proyecto 2
 
 ## Tabla de Contenidos
-- [Manual Técnico - Proyecto 1](#manual-técnico---proyecto-1)
+- [Manual Técnico - Proyecto 2](#manual-técnico---proyecto-2)
   - [Tabla de Contenidos](#tabla-de-contenidos)
   - [1. Objetivos](#1-objetivos)
     - [1.1 Objetivo General](#11-objetivo-general)
@@ -200,12 +200,12 @@ A continuación, se presenta el diagrama de la topología de red implementada en
 | vigilancia1                   | 32   | 192.158.20.129  | 255.255.255.224  | 192.158.20.158    |
 | biblioteca1                   | 52   | 192.158.20.161  | 255.255.255.224  | 192.158.20.190    |
 | biblioteca3                   | 52   | 192.158.20.162  | 255.255.255.224  | 192.158.20.190    |
-| Sub-interfaz R0 (biblioteca)  | 12   | 192.158.20.125   | 255.255.255.128  | 192.158.20.126    |
-| Sub-interfaz R1 (biblioteca)  | 12   | 192.158.20.124   | 255.255.255.128  | 192.158.20.126    |
-| Sub-interfaz R0 (biblioteca)  | 32   | 192.158.20.157   | 255.255.255.224  | 192.158.20.158    |
-| Sub-interfaz R1 (biblioteca)  | 32   | 192.158.20.156   | 255.255.255.224  | 192.158.20.158    |
-| Sub-interfaz R0 (biblioteca)  | 52   | 192.158.20.189   | 255.255.255.224  | 192.158.20.190    |
-| Sub-interfaz R1 (biblioteca)  | 52   | 192.158.20.188   | 255.255.255.224  | 192.158.20.190    |
+| Sub-interfaz R0 (biblioteca)  | 12   | 192.158.20.125  | 255.255.255.128  | 192.158.20.126    |
+| Sub-interfaz R1 (biblioteca)  | 12   | 192.158.20.124  | 255.255.255.128  | 192.158.20.126    |
+| Sub-interfaz R0 (biblioteca)  | 32   | 192.158.20.157  | 255.255.255.224  | 192.158.20.158    |
+| Sub-interfaz R1 (biblioteca)  | 32   | 192.158.20.156  | 255.255.255.224  | 192.158.20.158    |
+| Sub-interfaz R0 (biblioteca)  | 52   | 192.158.20.189  | 255.255.255.224  | 192.158.20.190    |
+| Sub-interfaz R1 (biblioteca)  | 52   | 192.158.20.188  | 255.255.255.224  | 192.158.20.190    |
 
 
 #### 4.1.3. Edificio T4
@@ -619,14 +619,17 @@ vtp password usac2025
 ! 3. Configuración de Puertas Troncales
 interface FastEthernet0/1
  description Enlace_a_SW5
+ switchport trunk encapsulation dot1q
  switchport mode trunk
  exit
 interface FastEthernet0/2
  description Enlace_a_SW4
+ switchport trunk encapsulation dot1q
  switchport mode trunk
  exit
 interface FastEthernet0/3
  description Enlace_a_SW3
+ switchport trunk encapsulation dot1q
  switchport mode trunk
  exit
 
@@ -695,14 +698,17 @@ vtp password usac2025
 ! 3. Configuración de Puertas Troncales
 interface FastEthernet0/1
  description Enlace_a_SW6
+ switchport trunk encapsulation dot1q
  switchport mode trunk
  exit
 interface FastEthernet0/2
  description Enlace_a_SW5
+ switchport trunk encapsulation dot1q
  switchport mode trunk
  exit
 interface FastEthernet0/3
  description Enlace_a_SW4
+ switchport trunk encapsulation dot1q
  switchport mode trunk
  exit
 
@@ -753,8 +759,6 @@ write memory
 ```
 
 
-
-
 #### 6.1.3 Conexiones entre los switches
 | Switch/Router | Puerta1 | Switch/Router2 | Puerta2 |
 |--------------|---------|---------------|---------|
@@ -767,8 +771,8 @@ write memory
 | MS1          | fa1     | SW5           | fa23    |
 | MS1          | fa2     | SW4           | fa23    |
 | MS1          | fa3     | SW3           | fa24    |
-| R3           | fa1     | MS2           | fa24    |
-| R3           | fa0     | MS1           | fa24    |
+| R3           | gi1     | MS2           | fa24    |
+| R3           | gi0     | MS1           | fa24    |
 
 
 #### 6.1.4 Conexiones a dispositivos finales
@@ -789,7 +793,6 @@ write memory
 
 
 ### 6.2 Biblioteca
-
 
 #### 6.2.1 Configuraciones Switches
 
@@ -915,22 +918,27 @@ vlan 52
 ! 3. Configuración de Puertos Troncales
 interface FastEthernet0/1
  description Enlace_a_SW0
+ switchport trunk encapsulation dot1q
  switchport mode trunk
  exit
 interface FastEthernet0/2
  description Enlace_a_Switch6
+ switchport trunk encapsulation dot1q
  switchport mode trunk
  exit
 interface FastEthernet0/3
  description Enlace_a_SW1
+ switchport trunk encapsulation dot1q
  switchport mode trunk
  exit
 interface FastEthernet0/24
  description Enlace_a_Router_R1
+ switchport trunk encapsulation dot1q
  switchport mode trunk
  exit
 interface FastEthernet0/23
  description Enlace_a_Router_R0
+ switchport trunk encapsulation dot1q
  switchport mode trunk
  exit
 
@@ -978,11 +986,17 @@ interface GigabitEthernet0/0
  exit
 
 ! 2. Configuración del Backbone (hacia R3)
-interface GigabitEthernet0/1
+interface Serial0/0/1
  description Enlace_Backbone_a_R3
  ip address 10.0.0.81 255.255.255.252 
+ ! R3 será el DCE, así que R0 no lleva clock rate
  no shutdown
  exit
+
+! La apago porque antes estaba funcionando
+interface GigabitEthernet0/1
+ shutdown
+ exit 
 
 ! 3. Configuración del Protocolo de Enrutamiento (RIP)
 router rip
@@ -1034,10 +1048,16 @@ interface GigabitEthernet0/0
  exit
 
 ! 2. Configuración del Backbone (hacia R3)
-interface GigabitEthernet0/1
+interface Serial0/0/0
  description Enlace_Backbone_a_R3
  ip address 10.0.0.77 255.255.255.252 
+ ! R3 será el DCE, así que R1 no lleva clock rate
  no shutdown
+ exit
+
+! Apagamos la interfaz que ya no se usa
+interface GigabitEthernet0/1
+ shutdown
  exit
 
 ! 3. Configuración del Protocolo de Enrutamiento (RIP)
@@ -1061,8 +1081,8 @@ write memory
 | MS0          | fa3     | SW1           | fa24    |
 | R1           | gi0     | MS0           | fa24    |
 | R0           | gi0     | MS0           | fa23    |
-| R3           | fa3     | R1            | gi1     |
-| R3           | fa2     | R0            | gi1     |
+| R3           | serial0 | R1            | serial0 |
+| R3           | serial1 | R0            | serial1 |
 
 
 
@@ -1240,14 +1260,17 @@ vtp password usac2025
 ! 3. Configuración de Puertos Troncales
 interface FastEthernet0/1
  description Enlace_a_SW9
+ switchport trunk encapsulation dot1q
  switchport mode trunk
  exit
 interface FastEthernet0/2
  description Enlace_a_SW8
+ switchport trunk encapsulation dot1q
  switchport mode trunk
  exit
 interface FastEthernet0/3
  description Enlace_a_SW7
+ switchport trunk encapsulation dot1q
  switchport mode trunk
  exit
 
@@ -1312,13 +1335,7 @@ write memory
 | SW7          | fa2              | biblioteca4        |
 
 
-
-
 ### 6.4 Edificio S11
-
-
-
-
 
 #### 6.4.1 Configuraciones Switches
 
@@ -1596,13 +1613,7 @@ write memory
 | SW12         | fa1              | estudiantes5      |
 | SW12         | fa2              | vigilancia5       |
 
-
-
-
 ### 6.5 Edificio S12
-
-
-
 
 #### 6.5.1 Configuraciones Switches
 
@@ -1800,6 +1811,7 @@ vtp password usac2025
 ! 3. Configuración de Puerto Troncal
 interface FastEthernet0/1
  description Enlace_a_MS9
+ switchport trunk encapsulation dot1q
  switchport mode trunk
  exit
 
@@ -1839,7 +1851,7 @@ interface Vlan42
 
 ! 6. CONFIGURACIÓN DE OSPF
 router ospf 1
- router-id 7.7.7.7 ! ID único para este switch/router
+ router-id 7.7.7.7 ! ID unico para este switch/router
  ! Anunciar la red del backbone para hablar con los vecinos
  network 10.0.0.96 0.0.0.3 area 0
  ! Anunciar las redes de las VLANs al resto del campus
@@ -1868,6 +1880,7 @@ vtp password usac2025
 ! 3. Configuración de Puerto Troncal
 interface FastEthernet0/1
  description Enlace_a_MS9
+ switchport trunk encapsulation dot1q
  switchport mode trunk
  exit
 
@@ -1907,7 +1920,7 @@ interface Vlan42
 
 ! 6. CONFIGURACIÓN DE OSPF
 router ospf 1
- router-id 8.8.8.8 ! ID único para este switch/router
+ router-id 8.8.8.8 ! ID unico para este switch/router
  ! Anunciar la red del backbone para hablar con los vecinos
  network 10.0.0.100 0.0.0.3 area 0
  ! Anunciar las redes de las VLANs al resto del campus
@@ -1943,18 +1956,22 @@ vlan 42
 ! 3. Configuración de Puertos Troncales
 interface FastEthernet0/1
  description Enlace_a_SW13
+ switchport trunk encapsulation dot1q
  switchport mode trunk
  exit
 interface FastEthernet0/2
  description Enlace_a_SW14
+ switchport trunk encapsulation dot1q
  switchport mode trunk
  exit
 interface FastEthernet0/24
  description Enlace_a_MS7
+ switchport trunk encapsulation dot1q
  switchport mode trunk
  exit
 interface FastEthernet0/23
  description Enlace_a_MS8
+ switchport trunk encapsulation dot1q
  switchport mode trunk
  exit
 
@@ -2030,7 +2047,6 @@ write memory
 
 #### 6.6.1.2 R3
 ```bash
-
 enable
 configure terminal
 hostname R3
@@ -2040,7 +2056,7 @@ hostname R3
 ip access-list extended ACL_SEGURIDAD_GLOBAL
 
  ! --- Reglas para ESTUDIANTES (VLAN 12) ---
- description ### Reglas de comunicacion para ESTUDIANTES ###
+ remark ### Reglas de comunicacion para ESTUDIANTES ###
  permit ip 192.168.20.168 0.0.0.7 192.158.20.0 0.0.0.127
  permit ip 192.168.20.168 0.0.0.7 172.16.20.128 0.0.0.63
  permit ip 192.168.20.168 0.0.0.7 172.148.20.0 0.0.0.127
@@ -2069,7 +2085,7 @@ ip access-list extended ACL_SEGURIDAD_GLOBAL
  permit ip 192.128.20.0 0.0.0.127 192.128.20.0 0.0.0.127
 
  ! --- Reglas para DOCENTES (VLAN 22) ---
- description ### Reglas de comunicacion para DOCENTES ###
+ remark ### Reglas de comunicacion para DOCENTES ###
  permit ip 192.168.20.160 0.0.0.7 172.16.20.240 0.0.0.15
  permit ip 192.168.20.160 0.0.0.7 172.148.20.192 0.0.0.31
  permit ip 192.168.20.160 0.0.0.7 192.128.20.128 0.0.0.63
@@ -2089,7 +2105,7 @@ ip access-list extended ACL_SEGURIDAD_GLOBAL
  permit ip 192.128.20.128 0.0.0.63 192.128.20.128 0.0.0.63
 
  ! --- Reglas para VIGILANCIA (VLAN 32) ---
- description ### Reglas de comunicacion para VIGILANCIA ###
+ remark ### Reglas de comunicacion para VIGILANCIA ###
  ! DIGA 192.168.20.128/27 con todas las demás subredes de Vigilancia
  permit ip 192.168.20.128 0.0.0.31 192.158.20.128 0.0.0.31
  permit ip 192.168.20.128 0.0.0.31 172.16.20.192 0.0.0.31
@@ -2123,7 +2139,7 @@ ip access-list extended ACL_SEGURIDAD_GLOBAL
  permit ip 192.128.20.224 0.0.0.31 192.128.20.224 0.0.0.31
 
  ! --- Reglas para ADMIN (VLAN 42) ---
- description ### Reglas de comunicacion para ADMIN ###
+ remark ### Reglas de comunicacion para ADMIN ###
  ! DIGA 192.168.20.0/25 con todas las demás subredes de Admin
  permit ip 192.168.20.0 0.0.0.127 172.16.20.0 0.0.0.127
  permit ip 192.168.20.0 0.0.0.127 172.148.20.128 0.0.0.63
@@ -2147,7 +2163,7 @@ ip access-list extended ACL_SEGURIDAD_GLOBAL
  permit ip 192.128.20.192 0.0.0.31 192.128.20.192 0.0.0.31
  
  ! --- Reglas para BIBLIOTECA (VLAN 52) ---
- description ### Reglas de comunicacion para BIBLIOTECA ###
+ remark ### Reglas de comunicacion para BIBLIOTECA ###
  permit ip 192.158.20.160 0.0.0.31 172.16.20.224 0.0.0.15
  permit ip 172.16.20.224 0.0.0.15 192.158.20.160 0.0.0.31
  ! Permite tráfico dentro de la misma subred
@@ -2158,13 +2174,15 @@ exit
 ! 2. Configurar Interfaces del Backbone
 !==========================================
 ! Conexiones a DIGA
-interface FastEthernet0/0
+interface GigabitEthernet0/0
+ no switchport
  description Enlace_a_MS1
  ip address 10.0.0.70 255.255.255.252
  ip access-group ACL_SEGURIDAD_GLOBAL in
  no shutdown
  exit
-interface FastEthernet0/1
+interface GigabitEthernet0/1
+ no switchport
  description Enlace_a_MS2
  ip address 10.0.0.74 255.255.255.252
  ip access-group ACL_SEGURIDAD_GLOBAL in
@@ -2172,15 +2190,19 @@ interface FastEthernet0/1
  exit
 
 ! Conexiones a Biblioteca
-interface FastEthernet0/2
+interface Serial0/0/1
+ no switchport
  description Enlace_a_R0
  ip address 10.0.0.82 255.255.255.252
+ clock rate 64000 ! R3 es el DCE
  ip access-group ACL_SEGURIDAD_GLOBAL in
  no shutdown
  exit
-interface FastEthernet0/3
+interface Serial0/0/0
+ no switchport
  description Enlace_a_R1
  ip address 10.0.0.78 255.255.255.252
+ clock rate 64000 ! R3 es el DCE
  ip access-group ACL_SEGURIDAD_GLOBAL in
  no shutdown
  exit
