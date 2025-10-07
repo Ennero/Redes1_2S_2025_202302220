@@ -2261,7 +2261,7 @@ write memory
 | SW10         | fa3     | SW11          | fa22    |
 | SW11         | fa3     | SW12          | fa24    |
 | R10          | gi0     | SW11          | fa24    |
-| R11          | gi0     | MS0           | fa23    |
+| R11          | gi0     | SW11          | fa23    |
 | firewall4    | fa0     | R10           | gi1     |
 | firewall4    | fa1     | R11           | gi1     |
 
@@ -3076,7 +3076,6 @@ router ospf 1
  passive-interface GigabitEthernet0/1
  ! Traducir rutas de EIGRP a OSPF
  redistribute eigrp 100 metric-type 1 subnets
- redistribute eigrp 100 subnets
  exit
 
 ! --- Configuración EIGRP ---
