@@ -913,6 +913,11 @@ ip access-list extended ACL_SEGURIDAD_GLOBAL
  ! Permite tráfico dentro de la misma subred
  permit ip 192.158.20.160 0.0.0.31 192.158.20.160 0.0.0.31
  permit ip 172.16.20.224 0.0.0.15 172.16.20.224 0.0.0.15
+
+ ! Permitir rip
+ permit udp any any eq 520
+  ! Permitir OSPF
+ permit ospf any any
 exit
 
 
@@ -1378,6 +1383,11 @@ ip access-list extended ACL_SEGURIDAD_GLOBAL
  ! Permite tráfico dentro de la misma subred
  permit ip 192.158.20.160 0.0.0.31 192.158.20.160 0.0.0.31
  permit ip 172.16.20.224 0.0.0.15 172.16.20.224 0.0.0.15
+
+ ! Permitir rip
+ permit udp any any eq 520
+  ! Permitir OSPF
+ permit ospf any any
 exit
 
 ! 2. Configurar Interfaces
@@ -1777,6 +1787,11 @@ ip access-list extended ACL_SEGURIDAD_GLOBAL
  ! Permite tráfico dentro de la misma subred
  permit ip 192.158.20.160 0.0.0.31 192.158.20.160 0.0.0.31
  permit ip 172.16.20.224 0.0.0.15 172.16.20.224 0.0.0.15
+
+ ! Permitir rip
+ permit udp any any eq 520
+  ! Permitir OSPF
+ permit ospf any any
 exit
 
 ! 2. Configurar Interfaces
@@ -2211,6 +2226,11 @@ ip access-list extended ACL_SEGURIDAD_GLOBAL
  ! Permite tráfico dentro de la misma subred
  permit ip 192.158.20.160 0.0.0.31 192.158.20.160 0.0.0.31
  permit ip 172.16.20.224 0.0.0.15 172.16.20.224 0.0.0.15
+
+ ! Permitir rip
+ permit udp any any eq 520
+  ! Permitir OSPF
+ permit ospf any any
 exit
 
 ! 2. Configurar Interfaces
@@ -2477,6 +2497,7 @@ interface FastEthernet0/1
  description Enlace_a_MS9
  switchport trunk encapsulation dot1q
  switchport mode trunk
+ switchport nonegotiate
  exit
 
 ! 4. Puerto Enrutado hacia el Firewall5
@@ -2547,6 +2568,7 @@ interface FastEthernet0/1
  description Enlace_a_MS9
  switchport trunk encapsulation dot1q
  switchport mode trunk
+ switchport nonegotiate
  exit
 
 ! 4. Puerto Enrutado hacia el Firewall5
@@ -2634,11 +2656,13 @@ interface FastEthernet0/24
  description Enlace_a_MS7
  switchport trunk encapsulation dot1q
  switchport mode trunk
+ switchport nonegotiate
  exit
 interface FastEthernet0/23
  description Enlace_a_MS8
  switchport trunk encapsulation dot1q
  switchport mode trunk
+ switchport nonegotiate
  exit
 
 end
@@ -2772,6 +2796,12 @@ ip access-list extended ACL_SEGURIDAD_GLOBAL
  ! Permite tráfico dentro de la misma subred
  permit ip 192.158.20.160 0.0.0.31 192.158.20.160 0.0.0.31
  permit ip 172.16.20.224 0.0.0.15 172.16.20.224 0.0.0.15
+
+ ! Permitir rip
+ permit udp any any eq 520
+
+ ! Permitir OSPF
+ permit ospf any any
 exit
 
 ! 2. Configurar Interfaces
