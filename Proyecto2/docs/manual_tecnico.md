@@ -918,6 +918,7 @@ ip access-list extended ACL_SEGURIDAD_GLOBAL
  permit udp any any eq 520
   ! Permitir OSPF
  permit ospf any any
+ permit eigrp any any
 exit
 
 
@@ -1388,6 +1389,7 @@ ip access-list extended ACL_SEGURIDAD_GLOBAL
  permit udp any any eq 520
   ! Permitir OSPF
  permit ospf any any
+ permit eigrp any any
 exit
 
 ! 2. Configurar Interfaces
@@ -1792,6 +1794,7 @@ ip access-list extended ACL_SEGURIDAD_GLOBAL
  permit udp any any eq 520
   ! Permitir OSPF
  permit ospf any any
+ permit eigrp any any
 exit
 
 ! 2. Configurar Interfaces
@@ -2023,16 +2026,23 @@ interface GigabitEthernet0/0.42
 interface GigabitEthernet0/1
  description Enlace_Backbone_a_Firewall4
  ip address 10.0.0.89 255.255.255.252
+ ip ospf network point-to-point
  no shutdown
  exit
 
-! 3. Configuración del Protocolo de Enrutamiento (OSPF)
+! 3. Configuración del Protocolo de Enrutamiento
+!===========================================================
 router ospf 1
  router-id 10.10.10.10
  ! Anunciar la red del backbone
  network 10.0.0.88 0.0.0.3 area 0
- ! Anunciar todas las redes de las VLANs
+ ! Anunciar las redes de las VLANs
  network 172.148.20.0 0.0.0.255 area 0
+ ! Marcar las sub-interfaces como pasivas para forzar su anuncio
+ passive-interface GigabitEthernet0/0.12
+ passive-interface GigabitEthernet0/0.22
+ passive-interface GigabitEthernet0/0.32
+ passive-interface GigabitEthernet0/0.42
  exit
 
 end
@@ -2084,16 +2094,23 @@ interface GigabitEthernet0/0.42
 interface GigabitEthernet0/1
  description Enlace_Backbone_a_Firewall4
  ip address 10.0.0.93 255.255.255.252
+ ip ospf network point-to-point
  no shutdown
  exit
 
-! 3. Configuración del Protocolo de Enrutamiento (OSPF)
+! 2. Configuración del Protocolo de Enrutamiento (CORREGIDA)
+!===========================================================
 router ospf 1
  router-id 11.11.11.11
  ! Anunciar la red del backbone
  network 10.0.0.92 0.0.0.3 area 0
- ! Anunciar todas las redes de las VLANs
+ ! Anunciar las redes de las VLANs
  network 172.148.20.0 0.0.0.255 area 0
+ ! Marcar las sub-interfaces como pasivas para forzar su anuncio
+ passive-interface GigabitEthernet0/0.12
+ passive-interface GigabitEthernet0/0.22
+ passive-interface GigabitEthernet0/0.32
+ passive-interface GigabitEthernet0/0.42
  exit
 
 end
@@ -2231,6 +2248,7 @@ ip access-list extended ACL_SEGURIDAD_GLOBAL
  permit udp any any eq 520
   ! Permitir OSPF
  permit ospf any any
+ permit eigrp any any
 exit
 
 ! 2. Configurar Interfaces
@@ -2239,12 +2257,14 @@ exit
 interface fastEthernet0/0 
  description Enlace_a_R10
  ip address 10.0.0.90 255.255.255.252 
+ ip ospf network point-to-point
  ip access-group ACL_SEGURIDAD_GLOBAL in
  no shutdown
  exit
 interface FastEthernet1/0 
  description Enlace_a_R11
- ip address 10.0.0.94 255.255.255.252 
+ ip address 10.0.0.94 255.255.255.252
+ ip ospf network point-to-point
  ip access-group ACL_SEGURIDAD_GLOBAL in
  no shutdown
  exit
@@ -2253,12 +2273,14 @@ interface FastEthernet1/0
 interface FastEthernet6/0 
  description Enlace_a_R9
  ip address 10.0.0.30 255.255.255.252 
+ ip ospf network point-to-point
  no shutdown
  exit
 
 ! 3. Configurar Protocolo de Enrutamiento OSPF
 !==============================================
 router ospf 1
+ network 172.148.20.0 0.0.0.255 area 0
  ! ID de router único para este dispositivo
  router-id 4.4.4.4 
  ! Anunciar las tres redes conectadas en la zona OSPF
@@ -2505,6 +2527,7 @@ interface FastEthernet0/24
  description Enlace_Backbone_a_Firewall5
  no switchport
  ip address 10.0.0.97 255.255.255.252
+ ip ospf network point-to-point 
  no shutdown
  exit
 
@@ -2576,6 +2599,7 @@ interface FastEthernet0/24
  description Enlace_Backbone_a_Firewall5
  no switchport
  ip address 10.0.0.101 255.255.255.252
+ ip ospf network point-to-point 
  no shutdown
  exit
 
@@ -2802,6 +2826,7 @@ ip access-list extended ACL_SEGURIDAD_GLOBAL
 
  ! Permitir OSPF
  permit ospf any any
+ permit eigrp any any
 exit
 
 ! 2. Configurar Interfaces
@@ -2810,12 +2835,14 @@ exit
 interface FastEthernet0/0 
  description Enlace_a_MS7
  ip address 10.0.0.98 255.255.255.252 
+ ip ospf network point-to-point
  ip access-group ACL_SEGURIDAD_GLOBAL in
  no shutdown
  exit
 interface FastEthernet1/0 
  description Enlace_a_MS8
- ip address 10.0.0.102 255.255.255.252 
+ ip address 10.0.0.102 255.255.255.252
+ ip ospf network point-to-point 
  ip access-group ACL_SEGURIDAD_GLOBAL in
  no shutdown
  exit
@@ -2823,6 +2850,7 @@ interface FastEthernet1/0
 ! --- Conexión al Backbone (EXTERNA) ---
 interface FastEthernet6/0 
  description Enlace_a_R9
+ ip ospf network point-to-point
  ip address 10.0.0.26 255.255.255.252 
  no shutdown
  exit
@@ -2842,7 +2870,6 @@ router ospf 1
 
 end
 write memory
-
 ```
 
 #### 6.5.3 Conexiones entre los switches
@@ -3089,33 +3116,34 @@ hostname R7
 
 ! Interfaces
 interface GigabitEthernet0/1
- description Enlace_a_MS6
- ip address 10.0.0.14 255.255.255.252
- no shutdown
- exit
+ description Enlace_a_MS6
+ ip address 10.0.0.14 255.255.255.252
+ no shutdown
+ exit
 interface GigabitEthernet0/0
- description Enlace_a_R8_OSPF
- ip address 10.0.0.17 255.255.255.252
- no shutdown
- exit
+ description Enlace_a_R8_OSPF
+ ip address 10.0.0.17 255.255.255.252
+ no shutdown
+ exit
 
-! --- Configuración OSPF ---
+! --- Configuración OSPF (CORREGIDA) ---
 router ospf 1
- router-id 7.7.7.7
- network 10.0.0.16 0.0.0.3 area 0
- passive-interface GigabitEthernet0/1
- ! Traducir rutas de EIGRP a OSPF
- redistribute eigrp 100 metric-type 1 subnets
- exit
+ router-id 7.7.7.7
+ network 10.0.0.16 0.0.0.3 area 0
+ passive-interface GigabitEthernet0/1
+ ! Traducir rutas de EIGRP a OSPF
+ redistribute eigrp 100 metric-type 1 subnets
+ default-metric 100
+ exit
 
 ! --- Configuración EIGRP ---
 router eigrp 100
- no auto-summary
- network 10.0.0.0
- passive-interface GigabitEthernet0/0
- ! Traducir rutas de OSPF a EIGRP
- redistribute ospf 1 metric 10000 100 255 1 1500
- exit
+ no auto-summary
+ network 10.0.0.0
+ passive-interface GigabitEthernet0/0
+ ! Traducir rutas de OSPF a EIGRP
+ redistribute ospf 1 metric 10000 100 255 1 1500
+ exit
 
 end
 write memory
@@ -3168,6 +3196,7 @@ hostname R9
 interface FastEthernet1/0
  description Enlace_a_R8
  ip address 10.0.0.22 255.255.255.252
+ ip ospf network point-to-point
  no shutdown
  exit
 
@@ -3175,6 +3204,7 @@ interface FastEthernet1/0
 interface FastEthernet6/0
  description Enlace_a_Firewall5
  ip address 10.0.0.25 255.255.255.252
+ ip ospf network point-to-point
  no shutdown
  exit
 
@@ -3182,6 +3212,7 @@ interface FastEthernet6/0
 interface FastEthernet7/0
  description Enlace_a_Firewall4
  ip address 10.0.0.29 255.255.255.252
+ ip ospf network point-to-point
  no shutdown
  exit
 
