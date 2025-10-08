@@ -2274,6 +2274,7 @@ interface FastEthernet6/0
  description Enlace_a_R9
  ip address 10.0.0.30 255.255.255.252 
  ip ospf network point-to-point
+ ip access-group ACL_SEGURIDAD_GLOBAL in
  no shutdown
  exit
 
@@ -2850,8 +2851,9 @@ interface FastEthernet1/0
 ! --- Conexión al Backbone (EXTERNA) ---
 interface FastEthernet6/0 
  description Enlace_a_R9
- ip ospf network point-to-point
  ip address 10.0.0.26 255.255.255.252 
+ ip ospf network point-to-point
+ ip access-group ACL_SEGURIDAD_GLOBAL in
  no shutdown
  exit
 
@@ -3114,7 +3116,7 @@ enable
 configure terminal
 hostname R7
 
-! Interfaces
+! Interfaces (con el cambio para OSPF)
 interface GigabitEthernet0/1
  description Enlace_a_MS6
  ip address 10.0.0.14 255.255.255.252
@@ -3123,16 +3125,18 @@ interface GigabitEthernet0/1
 interface GigabitEthernet0/0
  description Enlace_a_R8_OSPF
  ip address 10.0.0.17 255.255.255.252
+ ip ospf network point-to-point 
  no shutdown
  exit
 
-! --- Configuración OSPF (CORREGIDA) ---
+! --- Configuración OSPF ---
 router ospf 1
  router-id 7.7.7.7
  network 10.0.0.16 0.0.0.3 area 0
  passive-interface GigabitEthernet0/1
  ! Traducir rutas de EIGRP a OSPF
- redistribute eigrp 100 metric-type 1 subnets
+ redistribute eigrp 100 subnets
+ ! Asignar un costo por defecto a las rutas traducidas
  default-metric 100
  exit
 
@@ -3141,7 +3145,7 @@ router eigrp 100
  no auto-summary
  network 10.0.0.0
  passive-interface GigabitEthernet0/0
- ! Traducir rutas de OSPF a EIGRP
+ ! Traducir rutas de OSPF a EIGRP (con sus métricas semilla)
  redistribute ospf 1 metric 10000 100 255 1 1500
  exit
 
