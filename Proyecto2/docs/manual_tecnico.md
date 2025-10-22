@@ -2560,8 +2560,11 @@ interface Vlan42
 
 ! 6. CONFIGURACIÓN DE OSPF
 router ospf 1
-! ID único para este switch/router
- router-id 7.7.7.7 
+ ! ID único para este switch/router (corregido para evitar colisión con R7)
+ router-id 12.7.7.7 
+ ! Limitar adyacencias OSPF solo al enlace hacia el firewall
+ passive-interface default
+ no passive-interface FastEthernet0/24
  ! Anunciar la red del backbone para hablar con los vecinos
  network 10.0.0.96 0.0.0.3 area 0
  ! Anunciar las redes de las VLANs al resto del campus
@@ -2632,8 +2635,11 @@ interface Vlan42
 
 ! 6. CONFIGURACIÓN DE OSPF
 router ospf 1
- ! ID único para este switch/router
- router-id 8.8.8.8 
+ ! ID único para este switch/router (corregido para evitar colisión con R8)
+ router-id 12.8.8.8 
+ ! Limitar adyacencias OSPF solo al enlace hacia el firewall
+ passive-interface default
+ no passive-interface FastEthernet0/24
  ! Anunciar la red del backbone para hablar con los vecinos
  network 10.0.0.100 0.0.0.3 area 0
  ! Anunciar las redes de las VLANs al resto del campus
@@ -3135,9 +3141,7 @@ router ospf 1
  network 10.0.0.16 0.0.0.3 area 0
  passive-interface GigabitEthernet0/1
  ! Traducir rutas de EIGRP a OSPF
- redistribute eigrp 100 subnets
- ! Asignar un costo por defecto a las rutas traducidas
- default-metric 100
+ aredistribute eigrp 100 subnets metric 20 metric-type 1
  exit
 
 ! --- Configuración EIGRP ---
