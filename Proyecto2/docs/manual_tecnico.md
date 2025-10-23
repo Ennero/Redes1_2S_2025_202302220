@@ -799,6 +799,7 @@ hostname firewall1
 !=======================================================
 ip access-list extended ACL_SEGURIDAD_GLOBAL
 
+
  ! --- Reglas para ESTUDIANTES (VLAN 12) ---
  remark ### Reglas de comunicacion para ESTUDIANTES ###
  permit ip 192.168.20.168 0.0.0.7 192.158.20.0 0.0.0.127
@@ -1269,6 +1270,7 @@ hostname firewall2
 ! 1. Crear la Lista de Acceso de Seguridad Global (ACL)
 !=======================================================
 ip access-list extended ACL_SEGURIDAD_GLOBAL
+
 
  ! --- Reglas para ESTUDIANTES (VLAN 12) ---
  remark ### Reglas de comunicacion para ESTUDIANTES ###
@@ -2129,6 +2131,7 @@ hostname firewall4
 !=======================================================
 ip access-list extended ACL_SEGURIDAD_GLOBAL
 
+
  ! --- Reglas para ESTUDIANTES (VLAN 12) ---
  remark ### Reglas de comunicacion para ESTUDIANTES ###
  permit ip 192.168.20.168 0.0.0.7 192.158.20.0 0.0.0.127
@@ -2713,6 +2716,7 @@ hostname firewall5
 !=======================================================
 ip access-list extended ACL_SEGURIDAD_GLOBAL
 
+
  ! --- Reglas para ESTUDIANTES (VLAN 12) ---
  remark ### Reglas de comunicacion para ESTUDIANTES ###
  permit ip 192.168.20.168 0.0.0.7 192.158.20.0 0.0.0.127
@@ -3135,13 +3139,27 @@ interface GigabitEthernet0/0
  no shutdown
  exit
 
+! Ruta por defecto hacia el dominio EIGRP (MS6)
+ip route 0.0.0.0 0.0.0.0 10.0.0.13
+! Rutas específicas hacia dominios no-OSPF (EIGRP/RIP) a través de MS6
+! T4
+ip route 172.16.20.0 255.255.255.0 10.0.0.13   
+! DIGA
+ip route 192.168.20.0 255.255.255.0 10.0.0.13  
+! Biblioteca
+ip route 192.158.20.0 255.255.255.0 10.0.0.13  
+
 ! --- Configuración OSPF ---
 router ospf 1
  router-id 7.7.7.7
  network 10.0.0.16 0.0.0.3 area 0
  passive-interface GigabitEthernet0/1
  ! Traducir rutas de EIGRP a OSPF
- aredistribute eigrp 100 subnets metric 20 metric-type 1
+  redistribute eigrp 100 subnets
+  ! Publicar default hacia el área OSPF para alcanzar dominios no-OSPF
+  default-information originate
+ ! Publicar también rutas estáticas específicas a T4/DIGA/Biblioteca
+ redistribute static subnets
  exit
 
 ! --- Configuración EIGRP ---
@@ -3149,7 +3167,6 @@ router eigrp 100
  no auto-summary
  network 10.0.0.0
  passive-interface GigabitEthernet0/0
- ! Traducir rutas de OSPF a EIGRP (con sus métricas semilla)
  redistribute ospf 1 metric 10000 100 255 1 1500
  exit
 
