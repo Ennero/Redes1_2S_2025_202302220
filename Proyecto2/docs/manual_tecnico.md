@@ -111,8 +111,8 @@
       - [6.6.1.8 R9](#6618-r9)
     - [6.6.2 Configuración de MultiSwitches](#662-configuración-de-multiswitches)
       - [6.6.2.1 MS3](#6621-ms3)
-      - [6.6.2.1 MS4](#6621-ms4)
-      - [6.6.2.1 MS6](#6621-ms6)
+      - [6.6.2.2 MS4](#6622-ms4)
+      - [6.6.2.3 MS6](#6623-ms6)
       - [6.6.3 RIP (Routing Information Protocol)](#663-rip-routing-information-protocol)
       - [6.6.4 OSPF (Open Shortest Path First)](#664-ospf-open-shortest-path-first)
       - [6.6.5 EIGRP (Enhances Interior Gateway Routing Protocol)](#665-eigrp-enhances-interior-gateway-routing-protocol)
@@ -156,20 +156,31 @@
 ## 3. Topología de Red
 A continuación, se presenta el diagrama de la topología de red implementada en Cisco Packet Tracer para el proyecto NetUSAC. La red interconecta cinco edificios clave del campus central de la Universidad de San Carlos: Biblioteca Central, Edificio T4, Edificio S11, Edificio S12 y DIGA. La comunicación entre estos edificios se gestiona a través de un Backbone central, diseñado para garantizar la redundancia, la seguridad y un flujo de tráfico eficiente mediante enrutamiento avanzado.
 
+![alt text](./imgs/7.png)
+
 ### 3.1 DIGA
+
+![alt text](./imgs/1.png)
 
 ### 3.2 Biblioteca
 
+![alt text](./imgs/2.png)
+
 ### 3.3 Edificio T4
+
+![alt text](./imgs/3.png)
 
 ### 3.4 Edificio S11
 
+![alt text](./imgs/4.png)
+
 ### 3.5 Edificio S12
 
+![alt text](./imgs/5.png)
 
 ### 3.6 BACKBONE
 
-
+![alt text](./imgs/6.png)
 
 ## 4. Tabla de Direccionamiento IP
 
@@ -3318,7 +3329,7 @@ end
 write memory
 ```
 
-#### 6.6.2.1 MS4
+#### 6.6.2.2 MS4
 
 ```bash
 enable
@@ -3374,7 +3385,7 @@ end
 write memory
 ```
 
-#### 6.6.2.1 MS6
+#### 6.6.2.3 MS6
 
 ```bash
 enable
