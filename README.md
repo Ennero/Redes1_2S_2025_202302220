@@ -1,68 +1,42 @@
-<div align="center">
+# Topologías y configuración de redes en Cisco Packet Tracer
 
-# 🌐 Network Topology Design, Routing Protocols & VLSM (Redes 1)
+Práctica y dos proyectos de Redes de Computadoras 1 con topologías, direccionamiento, subnetting y configuración de dispositivos. Cada entrega conserva su simulación y manual técnico.
 
-**Diseño y configuración de topologías de red en Cisco Packet Tracer: enrutamiento estático/dinámico, VLANs y direccionamiento VLSM.**
+## Requisitos
 
-[![Language](https://img.shields.io/badge/Language-Cisco%20Packet%20Tracer-blue?style=for-the-badge)](https://github.com/Ennero/Redes1_2S_2025_202302220)
-[![Course](https://img.shields.io/badge/Course-Redes%20de%20Computadoras%201-003366?style=for-the-badge)](https://ingenieria.usac.edu.gt/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](LICENSE)
+Cisco Packet Tracer compatible con los archivos .pkt de las entregas. Los manuales incluyen tablas de direccionamiento y comandos de configuración.
 
-</div>
+## Ejecución
 
----
+Los comandos parten de la raíz del repositorio, salvo donde se indica otra terminal.
 
-
-## 📌 Descripción General
-
-Este repositorio contiene la implementación y entrega de **🌐 Network Topology Design, Routing Protocols & VLSM (Redes 1)**, desarrollado en el curso de **Redes de Computadoras 1** en la Universidad de San Carlos de Guatemala.
-
-- **Objetivo:** Diseño y configuración de topologías de red en Cisco Packet Tracer: enrutamiento estático/dinámico, VLANs y direccionamiento VLSM.
-- **Stack Principal:** `Cisco Packet Tracer`.
-- **Área:** Ciencias de la Computación, Algoritmos y Desarrollo de Software.
-
----
-
-## 🚀 Características y Componentes
-
-- Implementación modular y buenas prácticas de codificación.
-- Manejo estructurado de datos, control de flujo y validaciones.
-- Documentación y scripts de soporte para compilación o ejecución.
-
----
-
-## 📦 Estructura del Proyecto
-
-```
-Redes1_2S_2025_202302220/
-├── src/ o archivos de código fuente
-├── docs/ (si aplica)
-├── .gitignore
-├── LICENSE
-└── README.md
+```bash
+# Abrir desde Packet Tracer:
+# Practica1/packet_tracer_files/practica1.pkt
+# Proyecto1/Proyecto_1_202302220.pkt
+# Proyecto2/Proyecto_2_202302220.pkt
 ```
 
----
+## Recorrido de demostración
 
-## ⚙️ Requisitos y Ejecución
+Elegir una entrega, abrir su .pkt y verificar la topología contra el manual. Comprobar interfaces, VLAN/direccionamiento y conectividad con ping/traceroute según el escenario. Guardar experimentos en otra copia del .pkt.
 
-1. Clonar el repositorio:
-   ```bash
-   git clone https://github.com/Ennero/Redes1_2S_2025_202302220.git
-   cd Redes1_2S_2025_202302220
-   ```
-2. Ejecutar según el entorno (`Cisco Packet Tracer`):
-   - Consultar los scripts o archivos principales del proyecto para parámetros específicos.
+## Organización
 
----
+Carpetas de la entrega: [`Practica1/`](Practica1/), [`Proyecto1/`](Proyecto1/), [`Proyecto2/`](Proyecto2/).
 
-## 📄 Licencia
+## Documentación
 
-Este proyecto está bajo la Licencia **MIT**. Consulta el archivo [LICENSE](LICENSE) para más detalles.
+- [manual_tecnico](Practica1/docs/manual_tecnico.mkd)
+- [manual_tecnico](Proyecto1/docs/manual_tecnico.md)
+- [manual_tecnico](Proyecto2/docs/manual_tecnico.md)
 
----
+## Alcance y límites
 
-## 👨‍💻 Autor
+No es una aplicación web ni requiere npm/Python. La existencia del archivo de simulación no certifica convergencia o conectividad: deben comprobarse en Packet Tracer.
 
-- **Enner Mendizabal** - [@Ennero](https://github.com/Ennero)  
-- *Facultad de Ingeniería, Universidad de San Carlos de Guatemala.*
+## Contexto y licencia
+
+Trabajo académico o de aprendizaje conservado en el portafolio de [Enner Mendizabal](https://github.com/Ennero). Los créditos de los trabajos en grupo se conservan en sus entregas y manuales.
+
+Consultar [LICENSE](LICENSE) para la licencia de la raíz. Las dependencias y los componentes con avisos o licencias propios conservan sus condiciones.
